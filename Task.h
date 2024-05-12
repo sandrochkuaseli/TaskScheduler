@@ -33,6 +33,9 @@ public:
 	void setPriority(int priority);
 	void setRecurring(bool recurring);
 
+	bool operator==(const Task& other) const;
+
+
 	// Serialize task to a string (for saving to file)
 	std::string serialize() const;
 
@@ -40,8 +43,6 @@ public:
 	static Task deserialize(const std::string& serializedTask);
 
 
+
 };
-
-
-
 #endif

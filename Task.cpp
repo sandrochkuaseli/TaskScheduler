@@ -28,6 +28,14 @@ void Task::setDueDate(time_t dueDate_) { dueDate = dueDate_;  }
 void Task::setPriority(int priority_) { priority = priority_; }
 void Task::setRecurring(bool recurring_) { recurring = recurring_; }
 
+bool Task::operator==(const Task& other) const
+{
+    return (title == other.title &&
+        description == other.description &&
+        dueDate == other.dueDate &&
+        priority == other.priority &&
+        recurring == other.recurring);
+}
 
 // SERIALIZE AND DESERIALIZE FUNCTIONS FOR READING AND SAVING TASKS FROM FILES
 std::string Task::serialize() const {

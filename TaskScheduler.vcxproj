@@ -129,9 +129,11 @@
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Task.cpp" />
+    <ClCompile Include="TaskScheduler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Task.h" />
+    <ClInclude Include="TaskScheduler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
