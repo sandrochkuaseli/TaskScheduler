@@ -24,12 +24,18 @@
     <ClCompile Include="TaskScheduler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Reminder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Task.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TaskScheduler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Reminder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
