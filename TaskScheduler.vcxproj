@@ -127,12 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="Reminder.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TaskScheduler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FileHandler.h" />
     <ClInclude Include="Reminder.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="TaskScheduler.h" />

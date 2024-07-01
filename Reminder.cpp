@@ -4,31 +4,34 @@
 #include <iomanip>
 
 
-Reminder::Reminder(const TaskScheduler& taskScheduler, std::chrono::minutes interval)
-	: taskScheduler_(taskScheduler), checkInterval_(interval), running_(false){}
+Reminder::Reminder(TaskScheduler& taskScheduler) : taskScheduler(taskScheduler), running(false) {}
 
-void Reminder::start()
-{
-	running_ = true;
-
-	std::thread([this])() {
-		while (running_)
-		{
-			checkForReminder();
-			std::this_thread:
-		}
-	}
+Reminder::~Reminder() {
+    stop();
 }
 
-void Reminder::stop()
-{
+void Reminder::start() {
+    if (!running) {
+        running = true;
+        reminderThread = std::thread([this]() {
+            while (running) {
+                checkReminders();
+                std::this_thread::sleep_for(std::chrono::minutes(1));
+            }
+            });
+    }
 }
 
-void Reminder::checkForReminder() const
-{
+void Reminder::stop() {
+    if (running) {
+        running = false;
+        if (reminderThread.joinable()) {
+            reminderThread.join();
+        }
+    }
 }
 
-std::string Reminder::timeToString(time_t time) const
-{
-	return std::string();
+void Reminder::checkReminders() {
+    std::cout << "Checking reminders..." << std::endl;
+
 }

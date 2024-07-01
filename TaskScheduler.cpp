@@ -1,53 +1,61 @@
 #include "TaskScheduler.h"
+#include "FileHandler.h"
 #include <iostream>
 
-void TaskScheduler::addTask(const Task& task)
-{
-	tasks.push_back(task);
+TaskScheduler::TaskScheduler(const std::string& filename) : filename(filename) {
+    loadTasksFromFile();
 }
 
-void TaskScheduler::removeTask(const Task& task)
-{
-	for (auto it = tasks.begin(); it != tasks.end(); ++it){
-		if (*it == task) {
-			tasks.erase(it);
-			break;
-		}
-	}
+void TaskScheduler::addTask(const Task& task) {
+    tasks.push_back(task);
+    saveTasksToFile();
 }
 
-std::vector<Task> TaskScheduler::getAllTasks() const
-{
-	return tasks;
+void TaskScheduler::editTask(int index, const Task& task) {
+    if (index >= 0 && index < tasks.size()) {
+        tasks[index] = task;
+        saveTasksToFile();
+    }
+    else {
+        std::cout << "Invalid task index." << std::endl;
+    }
 }
 
-void TaskScheduler::printAllTasks() const
-{
-	std::cout << "Displaying all the tasks in Scheduler:" << std::endl;
-	for (const auto& task : tasks) {
-		std::cout << "Title: " << task.getTitle() << ", Description: " << task.getDescription()
-			<< ", Due Date : " << task.getDueDate() << ", Priority: " << task.getPriority()
-			<< ", Recurring: " << (task.isRecurring() ? "YES" : "NO") << std::endl;
-	}
+void TaskScheduler::removeTask(int index) {
+    if (index >= 0 && index < tasks.size()) {
+        tasks.erase(tasks.begin() + index);
+        saveTasksToFile();
+    }
+    else {
+        std::cout << "Invalid task index." << std::endl;
+    }
 }
 
-void TaskScheduler::printTask(int index) const
-{
-	if (index >= 0 && index < tasks.size()) {
-		const Task& task = tasks[index];
-
-		std::cout << "Title: " << task.getTitle() << ", Description: " << task.getDescription()
-			<< ", Due Date : " << task.getDueDate() << ", Priority: " << task.getPriority()
-			<< ", Recurring: " << (task.isRecurring() ? "YES" : "NO") << std::endl;
-
-	}
-	else {
-		std::cout << "Invalid task index!" << std::endl;
-	}
+void TaskScheduler::listTasks() const {
+    if (tasks.empty()) {
+        std::cout << "No tasks found." << std::endl;
+    }
+    else {
+        for (size_t i = 0; i < tasks.size(); ++i) {
+            std::cout << i + 1 << ". " << tasks[i].getTitle() << " - Due: " << tasks[i].getDueDate()
+                << " - Priority: " << tasks[i].getPriority() << std::endl;
+        }
+    }
 }
 
+void TaskScheduler::exportTasks() const {
+    FileHandler::exportTasks(filename, tasks);
+}
 
+void TaskScheduler::importTasks(const std::string& importFilename) {
+    tasks.clear();
+    FileHandler::importTasks(importFilename, tasks);
+}
 
+void TaskScheduler::loadTasksFromFile() {
+    FileHandler::readTasksFromFile(filename, tasks);
+}
 
-
-
+void TaskScheduler::saveTasksToFile() const {
+    FileHandler::writeTasksToFile(filename, tasks);
+}

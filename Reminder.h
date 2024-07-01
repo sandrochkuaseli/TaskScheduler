@@ -7,21 +7,17 @@
 
 class Reminder {
 private:
-	const TaskScheduler& taskScheduler_;
-	bool running_;
-	std::chrono::minutes checkInterval_;
+    TaskScheduler& taskScheduler;
+    bool running;
+    std::thread reminderThread;
 
 public:
-	Reminder(const TaskScheduler& taskScheduler, std::chrono::minutes interval = std::chrono::minutes(1));
+    ~Reminder();
+    Reminder(TaskScheduler& taskScheduler);
 
-	void start();
-
-	void stop();
-
-	void checkForReminder() const;
-
-	std::string timeToString(time_t time) const;
-
+    void start();
+    void stop();
+    void checkReminders();
 };
 
 

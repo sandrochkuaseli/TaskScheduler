@@ -2,47 +2,26 @@
 #define TASK_H
 
 #include <string>
-#include <ctime>
-
+#include <fstream>
 
 class Task {
-
 private:
-	std::string title;
-	std::string description;
-	time_t dueDate;
-	int priority;
-	bool recurring;
+    std::string title;
+    std::string description;
+    std::string dueDate;
+    int priority;
+    bool recurring;
 
 public:
-	Task();
-	Task(std::string title_, std::string description_, time_t dueDate_, int priority_, bool recurring_);
+    Task(const std::string& title, const std::string& description, const std::string& dueDate, int priority, bool recurring);
 
-	// GETTERS
-	std::string getTitle() const;
-	std::string getDescription() const;
-	time_t getDueDate() const;
-	int getPriority() const;
-	bool isRecurring() const;
+    std::string getTitle() const;
+    std::string getDescription() const;
+    std::string getDueDate() const;
+    int getPriority() const;
+    bool isRecurring() const;
 
-
-	// SETTERS
-	void setTitle(std::string title);
-	void setDescription(std::string description);
-	void setDueDate(time_t dueDate);
-	void setPriority(int priority);
-	void setRecurring(bool recurring);
-
-	bool operator==(const Task& other) const;
-
-
-	// Serialize task to a string (for saving to file)
-	std::string serialize() const;
-
-	// Deserialize task from a string (for reading from file)
-	static Task deserialize(const std::string& serializedTask);
-
-
-
+    void saveToFile(std::ofstream& file) const;
 };
-#endif
+
+#endif // TASK_H
