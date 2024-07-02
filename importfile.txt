@@ -1,0 +1,32 @@
+Job
+Work stuff
+2024-07-02 09:00
+4
+0
+---
+Isa
+esa
+wrong
+right
+2024-07-03 10:30
+4
+1
+---
+Study
+Prepare for exam
+2024-07-04 14:00
+3
+0
+---
+Project
+Research new technology
+2024-07-05 12:15
+5
+0
+---
+Meeting
+Team discussion
+2024-07-06 11:00
+2
+0
+---

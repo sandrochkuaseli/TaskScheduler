@@ -22,7 +22,7 @@ int main() {
     printInstructions();
 
 
-    reminderSystem.start();
+    //reminderSystem.start();
 
     std::string command;
     while (true) {
@@ -41,13 +41,16 @@ int main() {
             std::getline(std::cin, description);
             std::cout << "Enter due date (YYYY-MM-DD HH:MM): ";
             std::getline(std::cin, dueDate);
+            
             std::cout << "Enter priority (1-5): ";
             std::cin >> priority;
-            std::cin.ignore(); // Consume newline
+            std::cin.ignore();
             std::cout << "Is this task recurring? (yes/no): ";
             std::string recurringInput;
             std::getline(std::cin, recurringInput);
             recurring = (recurringInput == "yes" || recurringInput == "y");
+
+            std::cout << "Is this task based on completion of any other task?" << std::endl;
 
             Task newTask(title, description, dueDate, priority, recurring);
             taskScheduler.addTask(newTask);
@@ -120,6 +123,8 @@ int main() {
             std::cout << "Invalid command. Type 'help' for instructions." << std::endl;
         }
     }
+
+    taskScheduler.saveTasksToFile();
 
     return 0;
 }

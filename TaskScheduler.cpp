@@ -1,20 +1,21 @@
 #include "TaskScheduler.h"
 #include "FileHandler.h"
 #include <iostream>
+#include <regex>
 
 TaskScheduler::TaskScheduler(const std::string& filename) : filename(filename) {
     loadTasksFromFile();
 }
 
 void TaskScheduler::addTask(const Task& task) {
-    tasks.push_back(task);
-    saveTasksToFile();
+    if (checkFormat(task)) {
+        tasks.push_back(task);
+    }
 }
 
 void TaskScheduler::editTask(int index, const Task& task) {
     if (index >= 0 && index < tasks.size()) {
         tasks[index] = task;
-        saveTasksToFile();
     }
     else {
         std::cout << "Invalid task index." << std::endl;
@@ -24,7 +25,6 @@ void TaskScheduler::editTask(int index, const Task& task) {
 void TaskScheduler::removeTask(int index) {
     if (index >= 0 && index < tasks.size()) {
         tasks.erase(tasks.begin() + index);
-        saveTasksToFile();
     }
     else {
         std::cout << "Invalid task index." << std::endl;
@@ -52,15 +52,42 @@ void TaskScheduler::importTasks(const std::string& importFilename) {
 }
 
 void TaskScheduler::loadTasksFromFile() {
-    FileHandler::readTasksFromFile(filename, tasks);
+    FileHandler::importTasks(filename, tasks);
 }
 
 void TaskScheduler::saveTasksToFile() const {
     FileHandler::writeTasksToFile(filename, tasks);
 }
 
-void TaskScheduler::removeAllTasks() const {
+void TaskScheduler::removeAllTasks() {
     tasks.clear();
+}
+
+
+bool TaskScheduler::dueDateValidity(const std::string& dueDateString) {
+    std::regex pattern("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}");
+
+    return std::regex_match(dueDateString, pattern);
+}
+
+bool TaskScheduler::checkFormat(const Task& task)
+{
+    bool valid = true;
+    // Title not more than 200 char
+    if (task.getTitle().length() > 200) {
+        std::cout << "!! Task not added to the scheduler: Title exceeds the character limit !!" << std::endl;
+        valid = false;
+    }
+    else if (!dueDateValidity(task.getDueDate())) {
+        std::cout << "!! Task not added to the scheduler: Due date '" << task.getDueDate() << "' format is incorrect !!" << std::endl;
+        valid = false;
+    }
+    else if (1 < task.getPriority() && task.getPriority() > 5) {
+        std::cout << "!! Task not added to the scheduler: Priority out of bounds !!" << std::endl;
+        valid = false;
+    }
+
+    return valid;
 }
 
 std::vector<Task> TaskScheduler::getTasks() {

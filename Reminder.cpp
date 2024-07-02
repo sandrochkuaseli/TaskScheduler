@@ -37,8 +37,6 @@ void Reminder::run() {
 }
 
 void Reminder::checkTasksAndRemind() {
-    std::cout << "Checking reminders..." << std::endl;
-
     auto now = std::chrono::system_clock::now();
     std::time_t currentTime;
     std::tm localTime;

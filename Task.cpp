@@ -23,6 +23,32 @@ bool Task::isRecurring() const {
     return recurring;
 }
 
+void Task::setTitle(const std::string& newTitle)
+{
+    title = newTitle;
+}
+
+void Task::setDescription(std::string& newDescription)
+{
+    description = newDescription;
+}
+
+void Task::setDueDate(std::string& newDueDate)
+{
+    dueDate = newDueDate;
+}
+
+void Task::setPriority(int newPriority)
+{
+    priority = newPriority;
+}
+
+void Task::setRecurring(bool newRecurring)
+{
+    recurring = newRecurring;
+}
+
+
 void Task::saveToFile(std::ofstream& file) const {
     file << title << '\n';
     file << description << '\n';

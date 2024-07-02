@@ -10,6 +10,7 @@ public:
     static void importTasks(const std::string& filename, std::vector<Task>& tasks);
     static void readTasksFromFile(const std::string& filename, std::vector<Task>& tasks);
     static void writeTasksToFile(const std::string& filename, const std::vector<Task>& tasks);
+
 };
 
 #endif // FILE_HANDLER_H

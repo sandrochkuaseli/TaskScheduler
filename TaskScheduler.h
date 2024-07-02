@@ -20,7 +20,9 @@ public:
     void importTasks(const std::string& importFilename);
     void loadTasksFromFile();
     void saveTasksToFile() const;
-    void removeAllTasks() const;
+    void removeAllTasks();
+    static bool checkFormat(const Task& task);
+    static bool dueDateValidity(const std::string& dueDateString);
 
     std::vector<Task> getTasks();
 };

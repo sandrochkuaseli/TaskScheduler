@@ -1,6 +1,8 @@
 #include "FileHandler.h"
+#include "TaskScheduler.h"
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 void FileHandler::exportTasks(const std::string& filename, const std::vector<Task>& tasks) {
     std::ofstream file(filename);
@@ -20,22 +22,39 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
     std::ifstream file(filename);
     if (file.is_open()) {
         std::string line;
-        std::string title, description, dueDate;
-        int priority;
-        bool recurring;
+        while (std::getline(file, line)) {
+            std::string title = line;
 
-        while (std::getline(file, title)) {
+            std::string description;
             std::getline(file, description);
+
+            std::string dueDate;
             std::getline(file, dueDate);
-            file >> priority;
-            file.ignore();
-            file >> std::boolalpha >> recurring;
-            file.ignore();
+
+            int priority;
+            std::string priorityStr;
+            std::getline(file, priorityStr);
+            std::istringstream priorityStream(priorityStr);
+            priorityStream >> priority;
+
+            std::cout << "Priority: " << priority << std::endl;
+
+            bool recurring;
+            std::string recurringStr;
+            std::getline(file, recurringStr);
+            std::istringstream recurringStream(recurringStr);
+            recurringStream >> recurring;
 
             Task task(title, description, dueDate, priority, recurring);
-            tasks.push_back(task);
+            if (TaskScheduler::checkFormat(task)) {
+                tasks.push_back(task);
+            }
 
-            std::getline(file, line);
+            while (std::getline(file, line)) {
+                if (line == "---") {
+                    break;
+                }
+            }
         }
 
         file.close();
@@ -46,45 +65,22 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
     }
 }
 
-void FileHandler::readTasksFromFile(const std::string& filename, std::vector<Task>& tasks) {
-    std::ifstream file(filename);
-    if (file.is_open()) {
-        tasks.clear();
-        std::string line;
-        std::string title, description, dueDate;
-        int priority;
-        bool recurring;
 
-        while (std::getline(file, title)) {
-            std::getline(file, description);
-            std::getline(file, dueDate);
-            file >> priority;
-            file.ignore(); 
-            file >> std::boolalpha >> recurring;
-            file.ignore(); 
-
-            Task task(title, description, dueDate, priority, recurring);
-            tasks.push_back(task);
-
-            std::getline(file, line);
-        }
-
-        file.close();
-    }
-    else {
-        std::cout << "Creating new task file: " << filename << std::endl;
-    }
-}
 
 void FileHandler::writeTasksToFile(const std::string& filename, const std::vector<Task>& tasks) {
-    std::ofstream file(filename);
+    std::ofstream file(filename, std::ios::trunc);
     if (file.is_open()) {
         for (const auto& task : tasks) {
-            task.saveToFile(file);
+            file << task.getTitle()<< '\n';
+            file << task.getDescription() << '\n';
+            file << task.getDueDate() << '\n';
+            file << task.getPriority() << '\n';
+            file << task.isRecurring() << '\n';
+            file << "---" << std::endl;
         }
-        file.close();
     }
     else {
         std::cout << "Unable to open file: " << filename << std::endl;
     }
+    file.close();
 }
