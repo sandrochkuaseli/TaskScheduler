@@ -20,6 +20,8 @@ public:
     void importTasks(const std::string& importFilename);
     void loadTasksFromFile();
     void saveTasksToFile() const;
+
+    std::vector<Task> getTasks();
 };
 
 #endif // TASK_SCHEDULER_H

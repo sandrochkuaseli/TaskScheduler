@@ -20,7 +20,7 @@ public:
     std::string getDueDate() const;
     int getPriority() const;
     bool isRecurring() const;
-
+    
     void saveToFile(std::ofstream& file) const;
 };
 

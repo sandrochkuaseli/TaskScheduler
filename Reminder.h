@@ -17,7 +17,8 @@ public:
 
     void start();
     void stop();
-    void checkReminders();
+    void run();
+    void checkTasksAndRemind();
 };
 
 

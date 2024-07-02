@@ -22,6 +22,9 @@ int main() {
 
     printInstructions();
 
+
+    reminderSystem.start();
+
     std::string command;
     while (true) {
         std::cout << "> ";
@@ -37,7 +40,7 @@ int main() {
             std::getline(std::cin, title);
             std::cout << "Enter task description: ";
             std::getline(std::cin, description);
-            std::cout << "Enter due date (YYYY-MM-DD): ";
+            std::cout << "Enter due date (YYYY-MM-DD HH:MM): ";
             std::getline(std::cin, dueDate);
             std::cout << "Enter priority (1-5): ";
             std::cin >> priority;

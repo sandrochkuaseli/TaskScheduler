@@ -59,3 +59,7 @@ void TaskScheduler::loadTasksFromFile() {
 void TaskScheduler::saveTasksToFile() const {
     FileHandler::writeTasksToFile(filename, tasks);
 }
+
+std::vector<Task> TaskScheduler::getTasks() {
+    return tasks;
+}
