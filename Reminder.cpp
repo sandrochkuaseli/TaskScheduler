@@ -40,9 +40,13 @@ void Reminder::checkTasksAndRemind() {
     std::cout << "Checking reminders..." << std::endl;
 
     auto now = std::chrono::system_clock::now();
-    std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
-    std::tm* localTime = std::localtime(&currentTime);
-
+    std::time_t currentTime;
+    std::tm localTime;
+#if defined(_MSC_VER) // Microsoft Visual Studio
+    localtime_s(&localTime, &currentTime);
+#else // Other compilers that support POSIX
+    localtime_r(&currentTime, &localTime);
+#endif
     for (const auto& task : taskScheduler.getTasks()) {
         std::istringstream dueDateStream(task.getDueDate());
         int year, month, day, hour, minute;
@@ -50,9 +54,13 @@ void Reminder::checkTasksAndRemind() {
 
         dueDateStream >> year >> dash1 >> month >> dash2 >> day >> hour >> colon >> minute;
 
-        if (localTime->tm_year == year - 1900 && localTime->tm_mon + 1 = month &&
-            localTime->tm_mday == day && localTime->tm_hour == hour &&
-            localTime->tm_min == minute) {
+
+        auto dueDate = std::chrono::system_clock::from_time_t(std::mktime(&localTime));
+        dueDate += std::chrono::hours(hour) + std::chrono::minutes(minute);
+
+
+        if (now >= dueDate &&
+            now < dueDate + std::chrono::minutes(1)) {
             std::cout << "Reminder: Task '" << task.getTitle() << "' is due now!";
         }
     }

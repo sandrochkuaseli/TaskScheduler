@@ -20,6 +20,7 @@ public:
     void importTasks(const std::string& importFilename);
     void loadTasksFromFile();
     void saveTasksToFile() const;
+    void removeAllTasks() const;
 
     std::vector<Task> getTasks();
 };

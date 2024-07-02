@@ -48,7 +48,6 @@ void TaskScheduler::exportTasks() const {
 }
 
 void TaskScheduler::importTasks(const std::string& importFilename) {
-    tasks.clear();
     FileHandler::importTasks(importFilename, tasks);
 }
 
@@ -58,6 +57,10 @@ void TaskScheduler::loadTasksFromFile() {
 
 void TaskScheduler::saveTasksToFile() const {
     FileHandler::writeTasksToFile(filename, tasks);
+}
+
+void TaskScheduler::removeAllTasks() const {
+    tasks.clear();
 }
 
 std::vector<Task> TaskScheduler::getTasks() {

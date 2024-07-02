@@ -12,7 +12,6 @@ void printInstructions() {
     std::cout << "- list: List all tasks" << std::endl;
     std::cout << "- export: Export tasks to a file" << std::endl;
     std::cout << "- import: Import tasks from a file" << std::endl;
-    std::cout << "- reminders: Manage reminders" << std::endl;
     std::cout << "- quit: Quit the program" << std::endl;
 }
 
@@ -110,22 +109,6 @@ int main() {
             std::getline(std::cin, importFilename);
 
             taskScheduler.importTasks(importFilename);
-
-        }
-        else if (command == "reminders") {
-            std::string action;
-            std::cout << "Enter 'start' to start reminders or 'stop' to stop: ";
-            std::getline(std::cin, action);
-
-            if (action == "start") {
-                reminderSystem.start();
-            }
-            else if (action == "stop") {
-                reminderSystem.stop();
-            }
-            else {
-                std::cout << "Invalid command." << std::endl;
-            }
 
         }
         else if (command == "quit") {
