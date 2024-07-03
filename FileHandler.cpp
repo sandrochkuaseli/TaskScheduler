@@ -37,8 +37,6 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
             std::istringstream priorityStream(priorityStr);
             priorityStream >> priority;
 
-            std::cout << "Priority: " << priority << std::endl;
-
             bool recurring;
             std::string recurringStr;
             std::getline(file, recurringStr);
@@ -48,6 +46,7 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
             std::vector<int> dependencies;
             std::string dependencyStr;
             std::getline(file, dependencyStr);
+            std::cout << dependencyStr << std::endl;
             std::istringstream dependenciesStream(dependencyStr);
             int dependencyInt;
             while (dependenciesStream >> dependencyInt) {
@@ -57,6 +56,7 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
             std::vector<int> dependendants;
             std::string dependendantsStr;
             std::getline(file, dependendantsStr);
+            std::cout << dependendantsStr << std::endl;
             std::istringstream dependendantsStream(dependendantsStr);
             int dependendantsInt;
             while (dependendantsStream >> dependendantsInt) {
@@ -69,15 +69,14 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
             std::istringstream idStream(idString);
             idStream >> id;
 
-
-
             Task task(title, description, dueDate, priority, recurring, dependencies, id);
             if (TaskScheduler::checkFormat(task)) {
-                tasks.push_back(task);
+                
                 for (int i : dependendants) {
 
                     task.setDependant(i);
                 }
+                tasks.push_back(task);
             }
 
             while (std::getline(file, line)) {

@@ -13,7 +13,6 @@ void TaskScheduler::addTask(const Task& task) {
     if (checkFormat(task)) {
         tasks.push_back(task);
         idCount++;
-        std::cout << task.getTitle() << " : " << task.getTaskID() << std::endl;
         
         if (!task.getDependencies().empty()) {
             for (int i : task.getDependencies()) {
