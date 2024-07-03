@@ -1,7 +1,7 @@
 #include "Task.h"
 
-Task::Task(const std::string& title, const std::string& description, const std::string& dueDate, int priority, bool recurring, std::vector<int>& dependecies)
-    : title(title), description(description), dueDate(dueDate), priority(priority), recurring(recurring), dependecies(dependecies) {}
+Task::Task(const std::string& title, const std::string& description, const std::string& dueDate, int priority, bool recurring, std::vector<int>& dependecies, int id)
+    : title(title), description(description), dueDate(dueDate), priority(priority), recurring(recurring), dependecies(dependecies), taskID(id) {}
 
 std::string Task::getTitle() const {
     return title;

@@ -17,7 +17,7 @@ private:
     int taskID;
 
 public:
-    Task(const std::string& title, const std::string& description, const std::string& dueDate, int priority, bool recurring, std::vector<int>& dependecies);
+    Task(const std::string& title, const std::string& description, const std::string& dueDate, int priority, bool recurring, std::vector<int>& dependecies, int id);
     // Getters
     std::string getTitle() const;
     std::string getDescription() const;

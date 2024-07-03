@@ -8,14 +8,36 @@ TaskScheduler::TaskScheduler(const std::string& filename) : filename(filename) {
 }
 
 void TaskScheduler::addTask(const Task& task) {
+    bool correctFormat = true;
+    
     if (checkFormat(task)) {
         tasks.push_back(task);
-        tasks[tasks.size() - 1].setTaskID(tasks.size() - 1);
+        idCount++;
+        std::cout << task.getTitle() << " : " << task.getTaskID() << std::endl;
+        
+        if (!task.getDependencies().empty()) {
+            for (int i : task.getDependencies()) {
+                if (1 < i && i > tasks.size()) {
+                    std::cout << "No such task with ID '" << i << "' exists!" << std::endl;
+                    idCount--;
+                    correctFormat = false;
+                    break;
+                }
+                else {
 
-        for (int i : task.getDependencies()) {
-            tasks[i].setDependant(task.getTaskID());
+                    tasks[i - 1].setDependant(task.getTaskID());
+                }
+            }
+
+        }
+        
+        if (!correctFormat) {
+            tasks.pop_back();
+            std::cout << "!! Task not added to the scheduler: Dependancy list includes task that does not exist !!" << std::endl;
         }
     }
+
+
 }
 
 void TaskScheduler::editTask(int index, const Task& task) {
@@ -45,6 +67,42 @@ void TaskScheduler::listTasks() const {
             std::cout << i + 1 << ". " << tasks[i].getTitle() << " - Due: " << tasks[i].getDueDate()
                 << " - Priority: " << tasks[i].getPriority() << std::endl;
         }
+    }
+}
+
+void TaskScheduler::showTask(int index) {
+    if (index >= 0 && index < tasks.size()) {
+        std::cout << "Title: " <<  tasks[index].getTitle() << std::endl;
+        std::cout << "Description: " << tasks[index].getDescription() << std::endl;
+        std::cout << "Due date: " << tasks[index].getDueDate() << std::endl;
+        std::cout << "Priority: " << tasks[index].getPriority() << std::endl;
+        std::cout << "Recurring: " << tasks[index].isRecurring() << std::endl;
+        if (!tasks[index].getDependencies().empty()) {
+            std::cout << "Dependecy list: ";
+            for (int i : tasks[index].getDependencies()) {
+                std::cout << i << " ";
+            }
+            std::cout << std::endl;
+
+        }
+        else {
+            std::cout << "No dependencies!" << std::endl;
+        }
+
+        if (!tasks[index].getDependants().empty()) {
+            std::cout << "Dependant list: ";
+            for (int i : tasks[index].getDependants()) {
+                std::cout << i << " ";
+            }
+            std::cout << std::endl;
+
+        }
+        else {
+            std::cout << "No dependants!" << std::endl;
+        }
+            
+        std::cout << "Task ID: " << tasks[index].getTaskID() << std::endl;
+
     }
 }
 
@@ -102,4 +160,9 @@ void TaskScheduler::setDependants(int taskId, int dependantId)
 
 const std::vector<Task>& TaskScheduler::getTasks() const {
     return tasks;
+}
+
+int TaskScheduler::getIdCount()
+{
+    return idCount;
 }

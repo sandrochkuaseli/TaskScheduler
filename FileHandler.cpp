@@ -54,9 +54,30 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
                 dependencies.push_back(dependencyInt);
             }
 
-            Task task(title, description, dueDate, priority, recurring, dependencies);
+            std::vector<int> dependendants;
+            std::string dependendantsStr;
+            std::getline(file, dependendantsStr);
+            std::istringstream dependendantsStream(dependendantsStr);
+            int dependendantsInt;
+            while (dependendantsStream >> dependendantsInt) {
+                dependendants.push_back(dependendantsInt);
+            }
+
+            int id;
+            std::string idString;
+            std::getline(file, idString);
+            std::istringstream idStream(idString);
+            idStream >> id;
+
+
+
+            Task task(title, description, dueDate, priority, recurring, dependencies, id);
             if (TaskScheduler::checkFormat(task)) {
                 tasks.push_back(task);
+                for (int i : dependendants) {
+
+                    task.setDependant(i);
+                }
             }
 
             while (std::getline(file, line)) {

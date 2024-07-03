@@ -35,7 +35,7 @@ int main() {
             std::string title, description, dueDate;
             int priority;
             bool recurring;
-            std::vector<int> dependencies{ -1 };
+            std::vector<int> dependencies;
 
             std::cout << "Enter task title: ";
             std::getline(std::cin, title);
@@ -66,46 +66,46 @@ int main() {
                     dependencies.push_back(dependecyID);
                 }
             }
-            std::cout << dependencyCont << std::endl;
-            Task newTask(title, description, dueDate, priority, recurring, dependencies);
+            int id = taskScheduler.getIdCount();
+            Task newTask(title, description, dueDate, priority, recurring, dependencies, id);
             taskScheduler.addTask(newTask);
 
         }
         else if (command == "edit") {
-            // Implement edit task functionality
-            int index;
-            std::cout << "Enter task index to edit: ";
-            std::cin >> index;
-            std::cin.ignore();
+            //// Implement edit task functionality
+            //int index;
+            //std::cout << "Enter task index to edit: ";
+            //std::cin >> index;
+            //std::cin.ignore();
 
-            std::string title, description, dueDate;
-            int priority;
-            bool recurring;
-            std::vector<int> dependencies;
+            //std::string title, description, dueDate;
+            //int priority;
+            //bool recurring;
+            //std::vector<int> dependencies;
 
-            std::cout << "Enter task title: ";
-            std::getline(std::cin, title);
-            std::cout << "Enter task description: ";
-            std::getline(std::cin, description);
-            std::cout << "Enter due date (YYYY-MM-DD): ";
-            std::getline(std::cin, dueDate);
-            std::cout << "Enter priority (1-5): ";
-            std::cin >> priority;
-            std::cin.ignore();
-            std::cout << "Is this task recurring? (yes/no): ";
-            std::string recurringInput;
-            std::getline(std::cin, recurringInput);
-            recurring = (recurringInput == "yes" || recurringInput == "y");
-            std::cout << "Is this task dependant on other tasks? ( Write down ID's seperated by spaces )" << std::endl;
-            std::string dependencyInput;
-            std::getline(std::cin, dependencyInput);
-            std::istringstream dependenciesStream(dependencyInput);
-            int dependecyID;
-            while (dependenciesStream >> dependecyID) {
-                dependencies.push_back(dependecyID);
-            }
-            Task updatedTask(title, description, dueDate, priority, recurring, dependencies);
-            taskScheduler.editTask(index - 1, updatedTask);
+            //std::cout << "Enter task title: ";
+            //std::getline(std::cin, title);
+            //std::cout << "Enter task description: ";
+            //std::getline(std::cin, description);
+            //std::cout << "Enter due date (YYYY-MM-DD): ";
+            //std::getline(std::cin, dueDate);
+            //std::cout << "Enter priority (1-5): ";
+            //std::cin >> priority;
+            //std::cin.ignore();
+            //std::cout << "Is this task recurring? (yes/no): ";
+            //std::string recurringInput;
+            //std::getline(std::cin, recurringInput);
+            //recurring = (recurringInput == "yes" || recurringInput == "y");
+            //std::cout << "Is this task dependant on other tasks? ( Write down ID's seperated by spaces )" << std::endl;
+            //std::string dependencyInput;
+            //std::getline(std::cin, dependencyInput);
+            //std::istringstream dependenciesStream(dependencyInput);
+            //int dependecyID;
+            //while (dependenciesStream >> dependecyID) {
+            //    dependencies.push_back(dependecyID);
+            //}
+            //Task updatedTask(title, description, dueDate, priority, recurring, dependencies);
+            //taskScheduler.editTask(index - 1, updatedTask);
 
         }
         else if (command == "remove") {
@@ -113,7 +113,7 @@ int main() {
             int index;
             std::cout << "Enter task index to remove: ";
             std::cin >> index;
-            std::cin.ignore(); // Consume newline
+            std::cin.ignore();
 
             taskScheduler.removeTask(index - 1);
 
@@ -144,6 +144,13 @@ int main() {
         }
         else if (command == "remove all") {
             taskScheduler.removeAllTasks();
+        }
+        else if (command == "show") {
+            int index;
+            std::cout << "Enter task ID to show: ";
+            std::cin >> index;
+            std::cin.ignore();
+            taskScheduler.showTask(index - 1);
         }
         else {
             std::cout << "Invalid command. Type 'help' for instructions." << std::endl;
