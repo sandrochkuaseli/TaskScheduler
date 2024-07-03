@@ -3,6 +3,7 @@
 
 #include "Task.h"
 #include <vector>
+#include <string>
 
 class TaskScheduler {
 private:
@@ -24,7 +25,8 @@ public:
     static bool checkFormat(const Task& task);
     static bool dueDateValidity(const std::string& dueDateString);
 
-    std::vector<Task> getTasks();
+    void setDependants(int taskId, int dependantId);
+    const std::vector<Task>& getTasks() const;
 };
 
 #endif // TASK_SCHEDULER_H

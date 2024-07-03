@@ -10,6 +10,11 @@ TaskScheduler::TaskScheduler(const std::string& filename) : filename(filename) {
 void TaskScheduler::addTask(const Task& task) {
     if (checkFormat(task)) {
         tasks.push_back(task);
+        tasks[tasks.size() - 1].setTaskID(tasks.size() - 1);
+
+        for (int i : task.getDependencies()) {
+            tasks[i].setDependant(task.getTaskID());
+        }
     }
 }
 
@@ -90,6 +95,11 @@ bool TaskScheduler::checkFormat(const Task& task)
     return valid;
 }
 
-std::vector<Task> TaskScheduler::getTasks() {
+void TaskScheduler::setDependants(int taskId, int dependantId)
+{
+    tasks[taskId].getDependants().push_back(dependantId);
+}
+
+const std::vector<Task>& TaskScheduler::getTasks() const {
     return tasks;
 }

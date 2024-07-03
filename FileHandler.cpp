@@ -45,7 +45,16 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
             std::istringstream recurringStream(recurringStr);
             recurringStream >> recurring;
 
-            Task task(title, description, dueDate, priority, recurring);
+            std::vector<int> dependencies;
+            std::string dependencyStr;
+            std::getline(file, dependencyStr);
+            std::istringstream dependenciesStream(dependencyStr);
+            int dependencyInt;
+            while (dependenciesStream >> dependencyInt) {
+                dependencies.push_back(dependencyInt);
+            }
+
+            Task task(title, description, dueDate, priority, recurring, dependencies);
             if (TaskScheduler::checkFormat(task)) {
                 tasks.push_back(task);
             }
@@ -71,16 +80,13 @@ void FileHandler::writeTasksToFile(const std::string& filename, const std::vecto
     std::ofstream file(filename, std::ios::trunc);
     if (file.is_open()) {
         for (const auto& task : tasks) {
-            file << task.getTitle()<< '\n';
-            file << task.getDescription() << '\n';
-            file << task.getDueDate() << '\n';
-            file << task.getPriority() << '\n';
-            file << task.isRecurring() << '\n';
-            file << "---" << std::endl;
+            task.saveToFile(file);
         }
+
+        file.close();
     }
     else {
         std::cout << "Unable to open file: " << filename << std::endl;
     }
-    file.close();
+    
 }

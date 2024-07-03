@@ -2,6 +2,7 @@
 #include "Reminder.h"
 #include <iostream>
 #include <string>
+#include <sstream>
 
 void printInstructions() {
     std::cout << "Welcome to Task Scheduler!" << std::endl;
@@ -34,6 +35,7 @@ int main() {
             std::string title, description, dueDate;
             int priority;
             bool recurring;
+            std::vector<int> dependencies{ -1 };
 
             std::cout << "Enter task title: ";
             std::getline(std::cin, title);
@@ -50,9 +52,22 @@ int main() {
             std::getline(std::cin, recurringInput);
             recurring = (recurringInput == "yes" || recurringInput == "y");
 
-            std::cout << "Is this task based on completion of any other task?" << std::endl;
-
-            Task newTask(title, description, dueDate, priority, recurring);
+            std::cout << "Is this task dependant on other tasks? (yes/no): " ;
+            std::string dependencyCont;
+            std::getline(std::cin, dependencyCont);
+            
+            if (dependencyCont == "yes" || dependencyCont == "y") {
+                std::cout << "Write down ID's seperated by spaces: ";
+                std::string dependencyInput;
+                std::getline(std::cin, dependencyInput);
+                std::istringstream dependenciesStream(dependencyInput);
+                int dependecyID;
+                while (dependenciesStream >> dependecyID) {
+                    dependencies.push_back(dependecyID);
+                }
+            }
+            std::cout << dependencyCont << std::endl;
+            Task newTask(title, description, dueDate, priority, recurring, dependencies);
             taskScheduler.addTask(newTask);
 
         }
@@ -66,6 +81,7 @@ int main() {
             std::string title, description, dueDate;
             int priority;
             bool recurring;
+            std::vector<int> dependencies;
 
             std::cout << "Enter task title: ";
             std::getline(std::cin, title);
@@ -80,8 +96,15 @@ int main() {
             std::string recurringInput;
             std::getline(std::cin, recurringInput);
             recurring = (recurringInput == "yes" || recurringInput == "y");
-
-            Task updatedTask(title, description, dueDate, priority, recurring);
+            std::cout << "Is this task dependant on other tasks? ( Write down ID's seperated by spaces )" << std::endl;
+            std::string dependencyInput;
+            std::getline(std::cin, dependencyInput);
+            std::istringstream dependenciesStream(dependencyInput);
+            int dependecyID;
+            while (dependenciesStream >> dependecyID) {
+                dependencies.push_back(dependecyID);
+            }
+            Task updatedTask(title, description, dueDate, priority, recurring, dependencies);
             taskScheduler.editTask(index - 1, updatedTask);
 
         }
@@ -118,6 +141,9 @@ int main() {
             std::cout << "Exiting program..." << std::endl;
             break;
 
+        }
+        else if (command == "remove all") {
+            taskScheduler.removeAllTasks();
         }
         else {
             std::cout << "Invalid command. Type 'help' for instructions." << std::endl;

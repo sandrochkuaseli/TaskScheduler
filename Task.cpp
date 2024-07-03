@@ -1,7 +1,7 @@
 #include "Task.h"
 
-Task::Task(const std::string& title, const std::string& description, const std::string& dueDate, int priority, bool recurring)
-    : title(title), description(description), dueDate(dueDate), priority(priority), recurring(recurring) {}
+Task::Task(const std::string& title, const std::string& description, const std::string& dueDate, int priority, bool recurring, std::vector<int>& dependecies)
+    : title(title), description(description), dueDate(dueDate), priority(priority), recurring(recurring), dependecies(dependecies) {}
 
 std::string Task::getTitle() const {
     return title;
@@ -21,6 +21,21 @@ int Task::getPriority() const {
 
 bool Task::isRecurring() const {
     return recurring;
+}
+
+std::vector<int> Task::getDependencies() const
+{
+    return dependecies;
+}
+
+std::vector<int> Task::getDependants() const
+{
+    return dependants;
+}
+
+int Task::getTaskID() const
+{
+    return taskID;
 }
 
 void Task::setTitle(const std::string& newTitle)
@@ -48,6 +63,20 @@ void Task::setRecurring(bool newRecurring)
     recurring = newRecurring;
 }
 
+void Task::setDependency(int taskId)
+{
+    dependecies.push_back(taskId);
+}
+
+void Task::setTaskID(int taskId)
+{
+    taskID = taskId;
+}
+
+void Task::setDependant(int taskId)
+{
+    dependants.push_back(taskId);
+}
 
 void Task::saveToFile(std::ofstream& file) const {
     file << title << '\n';
@@ -55,5 +84,15 @@ void Task::saveToFile(std::ofstream& file) const {
     file << dueDate << '\n';
     file << priority << '\n';
     file << recurring << '\n';
+    for (int i : dependecies) {
+
+        file << i << " ";
+    }
+    file << '\n';
+    for (int i : dependants) {
+
+        file << i << " ";
+    }
+    file << '\n';
     file << "---\n";
 }

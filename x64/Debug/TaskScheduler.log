@@ -1,4 +1,3 @@
-﻿  FileHandler.cpp
-  TaskScheduler.cpp
-  Generating Code...
+﻿  TaskScheduler.cpp
+C:\Users\Sandroi\Desktop\TaskScheduler\TaskScheduler.cpp(13,56): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   TaskScheduler.vcxproj -> C:\Users\Sandroi\Desktop\TaskScheduler\x64\Debug\TaskScheduler.exe
