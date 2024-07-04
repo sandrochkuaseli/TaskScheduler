@@ -15,7 +15,7 @@ public:
     TaskScheduler(const std::string& filename);
 
     void addTask(const Task& task);
-    void editTask(int index, const Task& task);
+    void editTask(int index, std::string attribute, std::string newAttributeDefinition);
     void removeTask(int index);
     void listTasks() const;
     void showTask(int index);

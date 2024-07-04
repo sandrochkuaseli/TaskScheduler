@@ -2,6 +2,7 @@
 #include "FileHandler.h"
 #include <iostream>
 #include <regex>
+#include <sstream>
 
 TaskScheduler::TaskScheduler(const std::string& filename) : filename(filename) {
     loadTasksFromFile();
@@ -37,12 +38,51 @@ void TaskScheduler::addTask(const Task& task) {
 
 }
 
-void TaskScheduler::editTask(int index, ) {
+void TaskScheduler::editTask(int index, std::string attribute, std::string newAttributeDefinition) {
     if (index >= 0 && index < tasks.size()) {
-        tasks[index] = task;
-    }
+        if (attribute == "Title" || attribute == "title") {
+            tasks[index].setTitle(newAttributeDefinition);
+        }
+        else if (attribute == "Description" || attribute == "description") {
+            tasks[index].setDescription(newAttributeDefinition);
+        }
+        else if (attribute == "Due Date" || attribute == "due date") {
+            if (dueDateValidity(newAttributeDefinition)) {
+
+                tasks[index].setDueDate(newAttributeDefinition);
+            }
+            else {
+                std::cout << "Invalid input! Date format is incorrect!" << std::endl;
+            }
+        }
+        else if (attribute == "Priority" || attribute == "priority") {
+            std::istringstream priorityStream(newAttributeDefinition);
+            int priority;
+            priorityStream >> priority;
+            if (priority > 0 && priority <= 5) {
+
+                tasks[index].setPriority(priority);
+            }
+            else {
+                std::cout << "Invalid input!" << std::endl;
+            }
+        }
+        else if (attribute == "Recurrence" || attribute == "recurrence") {
+
+            if (newAttributeDefinition == "yes" || newAttributeDefinition == "y") {
+                tasks[index].setRecurring(true);
+            }
+            else if (newAttributeDefinition == "no" || newAttributeDefinition == "n") {
+                tasks[index].setRecurring(false);
+            }
+            else {
+                std::cout << "Invalid input!" << std::endl;
+            }
+
+        }
+    } 
     else {
-        std::cout << "Invalid task index." << std::endl;
+        std::cout << "Task index out of bounds!" << std::endl;
     }
 }
 

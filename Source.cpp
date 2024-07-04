@@ -53,22 +53,37 @@ int main() {
             std::cout << "Is this task recurring? (yes/no): ";
             std::string recurringInput;
             std::getline(std::cin, recurringInput);
-            recurring = (recurringInput == "yes" || recurringInput == "y");
+            if (recurringInput == "yes" || recurringInput == "y") {
+                recurring = true;
+            }
+            else if (recurringInput == "no" || recurringInput == "n") {
+                recurring = false;
+            }
+            else {
+                std::cout << "Invalid input for recurrence!" << std::endl;
+                continue;
+            }
 
-            std::cout << "Is this task dependant on other tasks? (yes/no): " ;
-            std::string dependencyCont;
-            std::getline(std::cin, dependencyCont);
-            
-            if (dependencyCont == "yes" || dependencyCont == "y") {
-                std::cout << "Write down ID's seperated by spaces: ";
-                std::string dependencyInput;
-                std::getline(std::cin, dependencyInput);
-                std::istringstream dependenciesStream(dependencyInput);
-                int dependecyID;
-                while (dependenciesStream >> dependecyID) {
-                    dependencies.push_back(dependecyID);
+            if (taskScheduler.getTasks().size() > 0) {
+                std::cout << "Is this task dependant on other tasks? (yes/no): ";
+                std::string dependencyCont;
+                std::getline(std::cin, dependencyCont);
+
+                if (dependencyCont == "yes" || dependencyCont == "y") {
+                    std::cout << "Write down ID's seperated by spaces: ";
+                    std::string dependencyInput;
+                    std::getline(std::cin, dependencyInput);
+                    std::istringstream dependenciesStream(dependencyInput);
+                    int dependecyID;
+                    while (dependenciesStream >> dependecyID) {
+                        dependencies.push_back(dependecyID);
+                    }
                 }
             }
+            else {
+                std::cout << "First task can't be dependant as no other tasks are in the list!" << std::endl;
+            }
+            
             int id = taskScheduler.getTasks().size();
             Task newTask(title, description, dueDate, priority, recurring, dependencies, id);
             taskScheduler.addTask(newTask);
@@ -76,6 +91,7 @@ int main() {
         }
         else if (command == "edit") {
             // Implement edit task functionality
+            std::cout << "! Warning: User is unable to change dependecies, dependants or task id !" << std::endl;
             int index;
             std::cout << "Enter task index to edit: ";
             std::cin >> index;
@@ -86,33 +102,37 @@ int main() {
 
             std::string newAttributeDefinition;
             if (attribute == "Title" || attribute == "title") {
-                std::cout << "Previous Title: " << taskScheduler.getTasks()[index - 1].getTitle() << std::endl;
+                std::cout << "Previous Title: " << taskScheduler.getTasks()[index].getTitle() << std::endl;
                 std::cout << "Provide new Title: ";
                 std::getline(std::cin, newAttributeDefinition);
             } 
             else if (attribute == "Description" || attribute == "description") {
-                std::cout << "Previous Description: " << taskScheduler.getTasks()[index - 1].getDescription() << std::endl;
+                std::cout << "Previous Description: " << taskScheduler.getTasks()[index].getDescription() << std::endl;
                 std::cout << "Provide new Description: ";
                 std::getline(std::cin, newAttributeDefinition);
             }
             else if (attribute == "Due Date" || attribute == "due date") {
-                std::cout << "Previous Due Date: " << taskScheduler.getTasks()[index - 1].getDueDate() << std::endl;
+                std::cout << "Previous Due Date: " << taskScheduler.getTasks()[index].getDueDate() << std::endl;
                 std::cout << "Provide new Due Date: ";
                 std::getline(std::cin, newAttributeDefinition);
             }
             else if (attribute == "Priority" || attribute == "priority") {
-                std::cout << "Previous Priority: " << taskScheduler.getTasks()[index - 1].getPriority() << std::endl;
+                std::cout << "Previous Priority: " << taskScheduler.getTasks()[index].getPriority() << std::endl;
                 std::cout << "Provide new Priority (1-5): ";
                 std::getline(std::cin, newAttributeDefinition);
             }
             else if (attribute == "Recurrence" || attribute == "recurrence") {
-                std::cout << "Previous Recurrence: " << taskScheduler.getTasks()[index - 1].isRecurring() << std::endl;
+                std::string recurring = "Not recurring";
+                if (taskScheduler.getTasks()[index].isRecurring()) {
+                    recurring = "Recurring";
+                }
+                std::cout << "Previous Recurrence: " << recurring << std::endl;
                 std::cout << "Provide new Recurrence. Is this task recurring? (yes/no): ";
                 std::getline(std::cin, newAttributeDefinition);
 
             }
             else {
-                std::cout << "Edit not possible! Task index incorrect or incorrect attribute provided!" << std::endl;
+                std::cout << "Edit not possible! Invalid task index or invalid attribute provided!" << std::endl;
             }
 
             if (!newAttributeDefinition.empty()) {
