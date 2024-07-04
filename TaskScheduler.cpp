@@ -50,6 +50,14 @@ void TaskScheduler::editTask(int index, const Task& task) {
 
 void TaskScheduler::removeTask(int index) {
     if (index >= 0 && index < tasks.size()) {
+        for (int i : tasks[index].getDependants()) {
+            for (Task task : tasks) {
+                if (task.getTaskID() == i) {
+                    task.removeDependency(tasks[index].getTaskID());
+
+                }
+            }
+        }
         tasks.erase(tasks.begin() + index);
     }
     else {

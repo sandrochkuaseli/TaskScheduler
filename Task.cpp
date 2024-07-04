@@ -80,6 +80,11 @@ void Task::setDependant(int taskId)
     dependants.push_back(taskId);
 }
 
+void Task::removeDependency(int taskId)
+{
+    dependecies.erase(std::remove(dependecies.begin(), dependecies.end(), taskId), dependecies.end());
+}
+
 void Task::saveToFile(std::ofstream& file) const {
     file << title << '\n';
     file << description << '\n';
