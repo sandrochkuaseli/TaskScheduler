@@ -15,6 +15,7 @@ private:
     std::vector<int> dependecies;
     std::vector<int> dependants;
     int taskID;
+    bool completed;
 
 public:
     Task(const std::string& title, const std::string& description, const std::string& dueDate, int priority, bool recurring, std::vector<int>& dependecies, int id);

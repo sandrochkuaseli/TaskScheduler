@@ -110,11 +110,11 @@ void TaskScheduler::exportTasks() const {
 }
 
 void TaskScheduler::importTasks(const std::string& importFilename) {
-    FileHandler::importTasks(importFilename, tasks);
+    FileHandler::importTasks(importFilename, tasks, idCount);
 }
 
 void TaskScheduler::loadTasksFromFile() {
-    FileHandler::importTasks(filename, tasks);
+    FileHandler::importTasks(filename, tasks, idCount);
 }
 
 void TaskScheduler::saveTasksToFile() const {

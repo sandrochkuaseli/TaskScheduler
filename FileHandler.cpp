@@ -18,10 +18,11 @@ void FileHandler::exportTasks(const std::string& filename, const std::vector<Tas
     }
 }
 
-void FileHandler::importTasks(const std::string& filename, std::vector<Task>& tasks) {
+void FileHandler::importTasks(const std::string& filename, std::vector<Task>& tasks, int& countId) {
     std::ifstream file(filename);
     if (file.is_open()) {
         std::string line;
+        int highestId = 0;
         while (std::getline(file, line)) {
             std::string title = line;
 
@@ -77,6 +78,10 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
                     task.setDependant(i);
                 }
                 tasks.push_back(task);
+
+                if (id > highestId) {
+                    highestId = id;
+                }
             }
 
             while (std::getline(file, line)) {
@@ -86,6 +91,7 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
             }
         }
 
+        countId = highestId + 1;
         file.close();
         std::cout << "Tasks imported from " << filename << " successfully." << std::endl;
     }
