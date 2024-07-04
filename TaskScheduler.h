@@ -30,6 +30,9 @@ public:
     void setDependants(int taskId, int dependantId);
     const std::vector<Task>& getTasks() const;
 
+    Task& operator[](size_t index);
+    const Task& operator[](size_t index) const;
+
     int getIdCount();
 };
 

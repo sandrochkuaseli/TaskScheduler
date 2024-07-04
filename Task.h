@@ -42,6 +42,9 @@ public:
     void removeDependency(int taskId);
     void removeDependant(int taskId);
 
+    void adjustDependencyList(int taskId);
+    void adjustDependantList(int taskId);
+
     void saveToFile(std::ofstream& file) const;
 };
 

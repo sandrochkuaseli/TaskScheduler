@@ -82,11 +82,39 @@ void Task::setDependant(int taskId)
 
 void Task::removeDependency(int taskId)
 {
-    dependecies.erase(std::remove(dependecies.begin(), dependecies.end(), taskId), dependecies.end());
+    for (int j = 0; j < dependecies.size(); j++) {
+        if (dependecies[j] == taskId) {
+            dependecies.erase(dependecies.begin() + j);
+            break;
+        }
+    }
 }
 
 void Task::removeDependant(int taskId) {
-    dependants.erase(std::remove(dependants.begin(), dependants.end(), taskId), dependants.end());
+    for (int j = 0; j < dependants.size(); j++) {
+        if (dependants[j] == taskId) {
+            dependants.erase(dependants.begin() + j);
+            break;
+        }
+    }
+}
+
+void Task::adjustDependencyList(int taskId)
+{
+    for (int i = 0; i < dependecies.size(); i++) {
+        if (dependecies[i] >= taskId) {
+            dependecies[i] -= 1;
+        }
+    }
+}
+
+void Task::adjustDependantList(int taskId)
+{
+    for (int i = 0; i < dependants.size(); i++) {
+        if (dependants[i] >= taskId) {
+            dependants[i] -= 1;
+        }
+    }
 }
 
 void Task::saveToFile(std::ofstream& file) const {

@@ -15,7 +15,7 @@ void TaskScheduler::addTask(const Task& task) {
         
         if (!task.getDependencies().empty()) {
             for (int i : task.getDependencies()) {
-                if (1 < i && i > tasks.size()) {
+                if (0 < i && i > tasks.size()) {
                     std::cout << "No such task with ID '" << i << "' exists!" << std::endl;
                     correctFormat = false;
                     break;
@@ -37,7 +37,7 @@ void TaskScheduler::addTask(const Task& task) {
 
 }
 
-void TaskScheduler::editTask(int index, const Task& task) {
+void TaskScheduler::editTask(int index, ) {
     if (index >= 0 && index < tasks.size()) {
         tasks[index] = task;
     }
@@ -48,28 +48,37 @@ void TaskScheduler::editTask(int index, const Task& task) {
 
 void TaskScheduler::removeTask(int index) {
     if (index >= 0 && index < tasks.size()) {
-        for (int i : tasks[index].getDependants()) {
-            for (Task task : tasks) {
-                if (task.getTaskID() == i) {
-                    task.removeDependency(tasks[index].getTaskID());
 
-                }
+        for (int depIndex : tasks[index].getDependencies()) {
+
+            tasks[depIndex].removeDependant(index);
+
+            for (int i : tasks[index].getDependencies()) {
+                std::cout << i << ", ";
             }
+            std::cout << std::endl;
+
         }
 
-        for (int i : tasks[index].getDependencies()) {
-            for (Task task : tasks) {
-                if (task.getTaskID() == i) {
-                    task.removeDependant(tasks[index].getTaskID());
-                }
-            }
-        }
+        for (int depIndex : tasks[index].getDependants()) {
 
-        for (int j = index; j < tasks.size(); j++) {
-            tasks[j].
+            tasks[depIndex].removeDependency(index);
+
+            for (int i : tasks[depIndex].getDependencies()) {
+                std::cout << i << ", ";
+            }
+            std::cout << std::endl;
+
         }
 
         tasks.erase(tasks.begin() + index);
+
+        for (int j = index; j < tasks.size(); j++) {
+            tasks[j].adjustDependencyList(index);
+            tasks[j].adjustDependantList(index);
+            tasks[j].setTaskID(j);
+        }
+
     }
     else {
         std::cout << "Invalid task index." << std::endl;
@@ -82,7 +91,7 @@ void TaskScheduler::listTasks() const {
     }
     else {
         for (size_t i = 0; i < tasks.size(); ++i) {
-            std::cout << i + 1 << ". " << tasks[i].getTitle() << " - Due: " << tasks[i].getDueDate()
+            std::cout << i << ". " << tasks[i].getTitle() << " - Due: " << tasks[i].getDueDate()
                 << " - Priority: " << tasks[i].getPriority() << std::endl;
         }
     }
@@ -178,6 +187,14 @@ void TaskScheduler::setDependants(int taskId, int dependantId)
 
 const std::vector<Task>& TaskScheduler::getTasks() const {
     return tasks;
+}
+
+Task& TaskScheduler::operator[](size_t index) {
+    return tasks[index];
+}
+
+const Task& TaskScheduler::operator[](size_t index) const {
+    return tasks[index];
 }
 
 int TaskScheduler::getIdCount()
