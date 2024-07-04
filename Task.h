@@ -40,6 +40,7 @@ public:
     void setTaskID(int taskId);
     void setDependant(int taskId);
     void removeDependency(int taskId);
+    void removeDependant(int taskId);
 
     void saveToFile(std::ofstream& file) const;
 };

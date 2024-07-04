@@ -12,19 +12,17 @@ void TaskScheduler::addTask(const Task& task) {
     
     if (checkFormat(task)) {
         tasks.push_back(task);
-        idCount++;
         
         if (!task.getDependencies().empty()) {
             for (int i : task.getDependencies()) {
                 if (1 < i && i > tasks.size()) {
                     std::cout << "No such task with ID '" << i << "' exists!" << std::endl;
-                    idCount--;
                     correctFormat = false;
                     break;
                 }
                 else {
 
-                    tasks[i - 1].setDependant(task.getTaskID());
+                    tasks[i].setDependant(task.getTaskID());
                 }
             }
 
@@ -58,6 +56,19 @@ void TaskScheduler::removeTask(int index) {
                 }
             }
         }
+
+        for (int i : tasks[index].getDependencies()) {
+            for (Task task : tasks) {
+                if (task.getTaskID() == i) {
+                    task.removeDependant(tasks[index].getTaskID());
+                }
+            }
+        }
+
+        for (int j = index; j < tasks.size(); j++) {
+            tasks[j].
+        }
+
         tasks.erase(tasks.begin() + index);
     }
     else {

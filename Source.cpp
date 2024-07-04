@@ -66,7 +66,7 @@ int main() {
                     dependencies.push_back(dependecyID);
                 }
             }
-            int id = taskScheduler.getIdCount();
+            int id = taskScheduler.getTasks().size() - 1;
             Task newTask(title, description, dueDate, priority, recurring, dependencies, id);
             taskScheduler.addTask(newTask);
 
