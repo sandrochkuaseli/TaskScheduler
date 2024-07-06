@@ -80,6 +80,33 @@ void TaskScheduler::editTask(int index, std::string attribute, std::string newAt
             }
 
         }
+        else if (attribute == "Dependence" || attribute == "dependence") {
+            for (int i : tasks[index].getDependencies()) {
+                tasks[i].removeDependant(index);
+                tasks[index].removeDependency(i);
+            }
+            std::vector<int> newDependencies;
+            int val;
+            std::istringstream dependencyStream(newAttributeDefinition);
+            while (dependencyStream >> val) {
+                newDependencies.push_back(val);
+            }
+
+            for (int i : newDependencies) {
+                if(i == index){
+                    std::cout << "Can't add '" << i << "', as it is this task's ID! It is already dependants on itself!" << std::endl;
+                }
+                else if (0 < i && i >= tasks.size()) {
+                    std::cout << "No such task with ID '" << i << "' exists!" << std::endl;
+
+                }
+                else {
+                    tasks[index].setDependency(i);
+                    tasks[i].setDependant(index);
+                }
+            }
+
+        }
     } 
     else {
         std::cout << "Task index out of bounds!" << std::endl;

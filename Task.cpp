@@ -125,12 +125,12 @@ void Task::saveToFile(std::ofstream& file) const {
     file << recurring << '\n';
     for (int i : dependecies) {
 
-        file << i + 1 << " ";
+        file << i << " ";
     }
     file << '\n';
     for (int i : dependants) {
 
-        file << i + 1 << " ";
+        file << i << " ";
     }
     file << '\n';
     file << taskID << '\n';

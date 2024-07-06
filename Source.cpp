@@ -91,12 +91,11 @@ int main() {
         }
         else if (command == "edit") {
             // Implement edit task functionality
-            std::cout << "! Warning: User is unable to change dependecies, dependants or task id !" << std::endl;
             int index;
             std::cout << "Enter task index to edit: ";
             std::cin >> index;
             std::cin.ignore();
-            std::cout << "Choose one attribute to edit (Title, Description, Due date, Priority, Recurrence): ";
+            std::cout << "Choose one attribute to edit (Title, Description, Due date, Priority, Recurrence, Dependence): ";
             std::string attribute;
             std::getline(std::cin, attribute);
 
@@ -128,6 +127,20 @@ int main() {
                 }
                 std::cout << "Previous Recurrence: " << recurring << std::endl;
                 std::cout << "Provide new Recurrence. Is this task recurring? (yes/no): ";
+                std::getline(std::cin, newAttributeDefinition);
+
+            }
+            else if (attribute == "Dependence" || attribute == "dependence") {
+                
+                std::cout << "Previous Dependence List: ";
+                for (int i : taskScheduler.getTasks()[index].getDependencies()) {
+                    std::cout << i << " ";
+                }
+                if (taskScheduler.getTasks()[index].getDependencies().empty()) {
+                    std::cout << "Empty!";
+                }
+                std::cout << std::endl;
+                std::cout << "Provide new Depenedce List. Write down ID's seperated by spaces (If not dependant on other tasks, type 'empty'): ";
                 std::getline(std::cin, newAttributeDefinition);
 
             }
@@ -184,6 +197,9 @@ int main() {
             std::cin >> index;
             std::cin.ignore();
             taskScheduler.showTask(index);
+        }
+        else if (command == "save") {
+            taskScheduler.saveTasksToFile();
         }
         else {
             std::cout << "Invalid command. Type 'help' for instructions." << std::endl;
