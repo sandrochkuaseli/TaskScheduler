@@ -3,6 +3,8 @@
 #include <iostream>
 #include <regex>
 #include <sstream>
+#include <chrono>
+#include <ctime>
 
 TaskScheduler::TaskScheduler(const std::string& filename) : filename(filename) {
     loadTasksFromFile();
@@ -223,6 +225,56 @@ void TaskScheduler::removeAllTasks() {
 
 bool TaskScheduler::dueDateValidity(const std::string& dueDateString) {
     std::regex pattern("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}");
+
+    if (std::regex_match(dueDateString, pattern)) {
+        int year, month, day, hour, minute;
+        char dash1, dash2, colon;
+        
+        std::istringstream dueDateStream(dueDateString);
+
+        dueDateStream >> year >> dash1 >> month >> dash2 >> day >> hour >> colon >> minute;
+
+        auto now = std::chrono::system_clock::now();
+        std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
+
+        std::tm localTime;
+#if defined(_MSC_VER) // For Microsoft Visual Studio
+        localtime_s(&localTime, &currentTime);
+#else // For other compilers
+        localtime_r(&currentTime, &localTime);
+#endif
+
+        std::cout << "Year: " << (localTime.tm_year + 1900) << "\n";
+        std::cout << "Month: " << (localTime.tm_mon + 1) << "\n";
+        std::cout << "Day: " << localTime.tm_mday << "\n";
+        std::cout << "Hour: " << localTime.tm_hour << "\n";
+        std::cout << "Minute: " << localTime.tm_min << "\n";
+        std::cout << "Second: " << localTime.tm_sec << "\n";
+
+        if (localTime.tm_year + 1900 > year) {
+            return false;
+        }
+        else if (localTime.tm_year + 1900 == year) {
+            if (localTime.tm_mon > month) {
+                return false;
+            }
+            else if (localTime.tm_mon == month) {
+                if (localTime.tm_mday > day) {
+                    return false;
+                }
+                else if (localTime.tm_mday == day) {
+                    if (localTime.tm_hour > hour) {
+                        return false;
+                    }
+                    else if (localTime.tm_hour == hour) {
+                        if (localTime.tm_min >= minute) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     return std::regex_match(dueDateString, pattern);
 }
