@@ -28,6 +28,7 @@ public:
 
     void setDependants(int taskId, int dependantId);
     const std::vector<Task>& getTasks() const;
+    std::vector<Task>& getTasks();
 
     void setComplete(int taskId, bool complete);
 

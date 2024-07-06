@@ -347,6 +347,10 @@ const std::vector<Task>& TaskScheduler::getTasks() const {
     return tasks;
 }
 
+std::vector<Task>& TaskScheduler::getTasks() { 
+    return tasks;
+}
+
 void TaskScheduler::setComplete(int taskId, bool complete)
 {
     tasks[taskId].setCompleted(complete);

@@ -33,8 +33,8 @@ public:
     
     // Setters
     void setTitle(const std::string& newTitle);
-    void setDescription(std::string& newDescription);
-    void setDueDate(std::string& newDueDate);
+    void setDescription(const std::string& newDescription);
+    void setDueDate(const std::string& newDueDate);
     void setPriority(int newPriority);
     void setRecurring(bool newRecurring);
     void setDependency(int taskId);

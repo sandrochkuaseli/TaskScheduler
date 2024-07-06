@@ -50,12 +50,12 @@ void Task::setTitle(const std::string& newTitle)
     title = newTitle;
 }
 
-void Task::setDescription(std::string& newDescription)
+void Task::setDescription(const std::string& newDescription)
 {
     description = newDescription;
 }
 
-void Task::setDueDate(std::string& newDueDate)
+void Task::setDueDate(const std::string& newDueDate)
 {
     dueDate = newDueDate;
 }

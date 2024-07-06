@@ -92,22 +92,49 @@ void Reminder::checkTasksAndRemindNow() {
     localtime_r(&currentTime, &localTime);
 #endif
 
-    for (Task task : taskScheduler.getTasks()) {
+    for (Task& task : taskScheduler.getTasks()) {
         if (!task.getCompleted()) {
             std::istringstream dueDateStream(task.getDueDate());
+
+            localTime.tm_sec = 0;
+            std::time_t currentTimeT = std::mktime(&localTime);
+
+            std::tm dueDateTime = {};
             int year, month, day, hour, minute;
             char dash1, dash2, colon;
 
             dueDateStream >> year >> dash1 >> month >> dash2 >> day >> hour >> colon >> minute;
 
-            if (localTime.tm_year + 1900 == year && localTime.tm_mon + 1 == month &&
-                localTime.tm_mday == day && localTime.tm_hour == hour && localTime.tm_min == minute) {
+            dueDateTime.tm_year = year - 1900;
+            dueDateTime.tm_mon = month - 1;   
+            dueDateTime.tm_mday = day;
+            dueDateTime.tm_hour = hour - 1;
+            dueDateTime.tm_min = minute;
+            dueDateTime.tm_sec = 0;
+
+            std::time_t dueDateTimeT = std::mktime(&dueDateTime);
+
+            if(currentTimeT == dueDateTimeT){
                 
-                std::cout << std::endl;
-                std::cout << "Reminder: Task '" << task.getTitle() << "' is due now!" << std::endl;
+                std::cout << "\nReminder: Task '" << task.getTitle() << "' is due now!" << std::endl;
+                std::cout << "Reminder: Task '" << task.getTitle() << "' has not yet been completed! Reminding again in 1 hour! (Due date will be adjusted) " << std::endl;
+                
+                dueDateTimeT += 3600;
+                std::tm newDueDateTime;
+#if defined(_MSC_VER) // For Microsoft Visual Studio
+                localtime_s(&newDueDateTime, &dueDateTimeT);
+#else // For other compilers
+                localtime_r(&dueDateTimeT, &newDueDateTime);
+#endif
+                std::ostringstream oss;
+                oss << std::put_time(&newDueDateTime, "%Y-%m-%d %H:%M");
+                std::string newdueStr = oss.str();
+                task.setDueDate(newdueStr);
+
+                std::cout << "New Due Date Time: " << newdueStr << std::endl;
+
                 std::cout << "> ";
 
-                // To add: Check if complete if not remind every hour until the end of the day and then remove the task or set as completed
             }
 
         }
@@ -131,30 +158,36 @@ void Reminder::checkTasksAndRemindLonger() {
         if (!task.getCompleted()) {
             int daysToDate = countDaysToDate(task.getDueDate());
 
-            if (daysToDate == 0) {
-                std::cout << std::endl;
-                std::cout << "Reminder: Task '" << task.getTitle() << "' is due soon!" << std::endl;
+            std::istringstream dueDateStream(task.getDueDate());
+
+            int year, month, day, hour, minute;
+            char dash1, dash2, colon;
+
+            dueDateStream >> year >> dash1 >> month >> dash2 >> day >> hour >> colon >> minute;
+
+            if (daysToDate == 0 && localTime.tm_hour > hour) {
+                std::cout << "\nReminder: Task '" << task.getTitle() << "' is due soon!" << std::endl;
                 std::cout << "> ";
             }
             else if (daysToDate == 1)
             {
-                std::cout << std::endl;
-                std::cout << "Reminder: Task '" << task.getTitle() << "' is due in 1 day!" << std::endl;
+
+                std::cout << "\nReminder: Task '" << task.getTitle() << "' is due tomorrow!" << std::endl;
                 std::cout << "> ";
             }
             else if (daysToDate < 8 && daysToDate > 1) {
-                std::cout << std::endl;
-                std::cout << "Reminder: Task '" << task.getTitle() << "' is due in " << daysToDate << " days!" << std::endl;
+
+                std::cout << "\nReminder: Task '" << task.getTitle() << "' is due in " << daysToDate << " days!" << std::endl;
                 std::cout << "> ";
             }
             else if (daysToDate == 30 ) {
-                std::cout << std::endl;
-                std::cout << "Reminder: Task '" << task.getTitle() << "' is due in 1 month!" << std::endl;
+
+                std::cout << "\nReminder: Task '" << task.getTitle() << "' is due in 1 month!" << std::endl;
                 std::cout << "> ";
             }
-            else if (daysToDate % 30 == 0) {
-                std::cout << std::endl;
-                std::cout << "Reminder: Task '" << task.getTitle() << "' is due in " << daysToDate / 30 << " months!" << std::endl;
+            else if (daysToDate % 30 == 0 && daysToDate != 0) {
+
+                std::cout << "\nReminder: Task '" << task.getTitle() << "' is due in " << daysToDate / 30 << " months!" << std::endl;
                 std::cout << "> ";
             }
         }
