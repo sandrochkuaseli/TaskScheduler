@@ -26,7 +26,6 @@ int main() {
 
     printInstructions();
 
-
     reminderSystem.start();
 
     std::string command;
@@ -49,8 +48,11 @@ int main() {
             std::getline(std::cin, dueDate);
             
             std::cout << "Enter priority (1-5): ";
-            std::cin >> priority;
-            std::cin.ignore();
+            std::string priorityStr;
+            std::getline(std::cin, priorityStr);
+            std::istringstream priorityStream(priorityStr);
+            priorityStream >> priority;
+
             std::cout << "Is this task recurring? (yes/no): ";
             std::string recurringInput;
             std::getline(std::cin, recurringInput);
@@ -186,7 +188,7 @@ int main() {
         }
         else if (command == "quit") {
             std::cout << "Exiting program..." << std::endl;
-            reminderSystem.stop();
+
             break;
 
         }
@@ -216,6 +218,7 @@ int main() {
     }
 
     taskScheduler.saveTasksToFile();
+    reminderSystem.stop();
 
     return 0;
 }

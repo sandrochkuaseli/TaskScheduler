@@ -9,7 +9,8 @@ class Reminder {
 private:
     TaskScheduler& taskScheduler;
     bool running;
-    std::thread reminderThread;
+    std::thread reminderThreadMin;
+    std::thread reminderThreadHour;
 
 public:
     ~Reminder();
@@ -17,8 +18,10 @@ public:
 
     void start();
     void stop();
-    void run();
-    void checkTasksAndRemind();
+    void runEveryMin();
+    void runEveryHour();
+    void checkTasksAndRemindNow();
+    void checkTasksAndRemindLonger();
 };
 
 

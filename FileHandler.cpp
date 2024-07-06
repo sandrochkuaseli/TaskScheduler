@@ -55,7 +55,6 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
             std::vector<int> dependendants;
             std::string dependendantsStr;
             std::getline(file, dependendantsStr);
-            std::cout << dependendantsStr << std::endl;
             std::istringstream dependendantsStream(dependendantsStr);
             int dependendantsInt;
             while (dependendantsStream >> dependendantsInt) {
