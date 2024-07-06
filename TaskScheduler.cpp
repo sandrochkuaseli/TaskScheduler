@@ -269,39 +269,40 @@ bool TaskScheduler::dueDateValidity(const std::string& dueDateString) {
         localtime_r(&currentTime, &localTime);
 #endif
 
-        std::cout << "Year: " << (localTime.tm_year + 1900) << "\n";
-        std::cout << "Month: " << (localTime.tm_mon + 1) << "\n";
-        std::cout << "Day: " << localTime.tm_mday << "\n";
-        std::cout << "Hour: " << localTime.tm_hour << "\n";
-        std::cout << "Minute: " << localTime.tm_min << "\n";
-        std::cout << "Second: " << localTime.tm_sec << "\n";
+        if (12 < month || getDaysInMonth(year, month) < day || 24 < hour || 59 < minute) {
+            return false;
+        }
+
 
         if (localTime.tm_year + 1900 > year) {
             return false;
         }
         else if (localTime.tm_year + 1900 == year) {
-            if (localTime.tm_mon > month || 12 < month) {
+            if (localTime.tm_mon > month ) {
                 return false;
             }
             else if (localTime.tm_mon == month) {
-                if (localTime.tm_mday > day || getDaysInMonth(year, month) < day) {
+                if (localTime.tm_mday > day) {
                     return false;
                 }
                 else if (localTime.tm_mday == day) {
-                    if (localTime.tm_hour > hour || 24 < hour) {
+                    if (localTime.tm_hour > hour ) {
                         return false;
                     }
                     else if (localTime.tm_hour == hour) {
-                        if (localTime.tm_min >= minute || 59 < minute) {
+                        if (localTime.tm_min >= minute ) {
                             return false;
                         }
                     }
                 }
             }
         }
+        
+        return true;
+
     }
 
-    return std::regex_match(dueDateString, pattern);
+    return false;
 }
 
 bool TaskScheduler::checkFormat(const Task& task)
@@ -313,7 +314,7 @@ bool TaskScheduler::checkFormat(const Task& task)
         valid = false;
     }
     else if (!dueDateValidity(task.getDueDate())) {
-        std::cout << "!! Task not added to the scheduler: Due date '" << task.getDueDate() << "' format is incorrect !!" << std::endl;
+        std::cout << "!! Task not added to the scheduler: Due date format is incorrect !!" << std::endl;
         valid = false;
     }
     else if (1 < task.getPriority() && task.getPriority() > 5) {

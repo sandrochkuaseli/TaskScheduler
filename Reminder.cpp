@@ -32,34 +32,36 @@ void Reminder::stop() {
 void Reminder::run() {
     while (running) {
         checkTasksAndRemind();
-        std::this_thread::sleep_for(std::chrono::minutes(1));
+        std::this_thread::sleep_for(std::chrono::seconds(59));
     }
 }
 
 void Reminder::checkTasksAndRemind() {
     auto now = std::chrono::system_clock::now();
-    std::time_t currentTime;
+    std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
+
     std::tm localTime;
-#if defined(_MSC_VER) // Microsoft Visual Studio
+#if defined(_MSC_VER) // For Microsoft Visual Studio
     localtime_s(&localTime, &currentTime);
-#else // Other compilers that support POSIX
+#else // For other compilers
     localtime_r(&currentTime, &localTime);
 #endif
-    for (const auto& task : taskScheduler.getTasks()) {
+
+    for (Task task : taskScheduler.getTasks()) {
         std::istringstream dueDateStream(task.getDueDate());
         int year, month, day, hour, minute;
         char dash1, dash2, colon;
-
+        
         dueDateStream >> year >> dash1 >> month >> dash2 >> day >> hour >> colon >> minute;
 
+        if (localTime.tm_year + 1900 == year && localTime.tm_mon + 1 == month &&
+            localTime.tm_mday == day && localTime.tm_hour == hour && localTime.tm_min == minute) {
+            std::cout << "Reminder: Task '" << task.getTitle() << "' is due now!" << std::endl;
 
-        auto dueDate = std::chrono::system_clock::from_time_t(std::mktime(&localTime));
-        dueDate += std::chrono::hours(hour) + std::chrono::minutes(minute);
-
-
-        if (now >= dueDate &&
-            now < dueDate + std::chrono::minutes(1)) {
-            std::cout << "Reminder: Task '" << task.getTitle() << "' is due now!";
+            // To add: Check if complete if not remind every hour until the end of the day and then remove the task or set as completed
+        }
+        else if ((localTime.tm_year + 1900 == year && localTime.tm_mon + 1 == month - 1 && localTime.tm_mday == day && month != 1) || (month == 1 && localTime.tm_year + 1900 == year - 1 && localTime.tm_mon + 1 == 12 && localTime.tm_mday == day)) {
+            std::cout << "Reminder: Task '" << task.getTitle() << "' is due in 1 month!" << std::endl;
         }
     }
 

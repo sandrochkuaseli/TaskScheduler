@@ -26,7 +26,7 @@ int main() {
     printInstructions();
 
 
-    //reminderSystem.start();
+    reminderSystem.start();
 
     std::string command;
     while (true) {
@@ -185,6 +185,7 @@ int main() {
         }
         else if (command == "quit") {
             std::cout << "Exiting program..." << std::endl;
+            reminderSystem.stop();
             break;
 
         }
