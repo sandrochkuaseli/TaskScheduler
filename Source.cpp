@@ -14,6 +14,7 @@ void printInstructions() {
     std::cout << "- list: List all tasks" << std::endl;
     std::cout << "- show: Show a task with all its attributes" << std::endl;
     std::cout << "- save: Save to local primary 'tasks.txt' file" << std::endl;
+    std::cout << "- completed: Set task to completed" << std::endl;
     std::cout << "- export: Export tasks to a file" << std::endl;
     std::cout << "- import: Import tasks from a file" << std::endl;
     std::cout << "- quit: Quit the program" << std::endl;
@@ -194,13 +195,20 @@ int main() {
         }
         else if (command == "show") {
             int index;
-            std::cout << "Enter task ID to show: ";
+            std::cout << "Enter task index to show: ";
             std::cin >> index;
             std::cin.ignore();
             taskScheduler.showTask(index);
         }
         else if (command == "save") {
             taskScheduler.saveTasksToFile();
+        }
+        else if (command == "completed") {
+            std::cout << "Enter task index you completed: ";
+            int index;
+            std::cin >> index;
+            std::cin.ignore();
+            taskScheduler.setComplete(index, true);
         }
         else {
             std::cout << "Invalid command. Type 'help' for instructions." << std::endl;

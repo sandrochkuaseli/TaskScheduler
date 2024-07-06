@@ -28,6 +28,7 @@ public:
     std::vector<int> getDependencies() const;
     std::vector<int> getDependants() const;
     int getTaskID() const;
+    bool getCompleted() const;
 
     
     // Setters
@@ -39,6 +40,8 @@ public:
     void setDependency(int taskId);
     void setTaskID(int taskId);
     void setDependant(int taskId);
+    void setCompleted(bool complete);
+
     void removeDependency(int taskId);
     void removeDependant(int taskId);
 

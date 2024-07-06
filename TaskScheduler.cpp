@@ -172,7 +172,14 @@ void TaskScheduler::showTask(int index) {
         std::cout << "Description: " << tasks[index].getDescription() << std::endl;
         std::cout << "Due date: " << tasks[index].getDueDate() << std::endl;
         std::cout << "Priority: " << tasks[index].getPriority() << std::endl;
-        std::cout << "Recurring: " << tasks[index].isRecurring() << std::endl;
+
+        std::string recurringStr = "NO";
+        if (tasks[index].isRecurring()) {
+            recurringStr = "YES";
+        }
+
+        std::cout << "Recurring: " <<  recurringStr << std::endl;
+        
         if (!tasks[index].getDependencies().empty()) {
             std::cout << "Dependecy list: ";
             for (int i : tasks[index].getDependencies()) {
@@ -199,6 +206,12 @@ void TaskScheduler::showTask(int index) {
             
         std::cout << "Task ID: " << tasks[index].getTaskID() << std::endl;
 
+        std::string completeStr = "INCOMPLETE!";
+        if (tasks[index].getCompleted()) {
+            completeStr = "COMPLETE!";
+        }
+        std::cout << "Completed: " << completeStr << std::endl;
+
     }
 }
 
@@ -207,11 +220,11 @@ void TaskScheduler::exportTasks() const {
 }
 
 void TaskScheduler::importTasks(const std::string& importFilename) {
-    FileHandler::importTasks(importFilename, tasks, idCount);
+    FileHandler::importTasks(importFilename, tasks);
 }
 
 void TaskScheduler::loadTasksFromFile() {
-    FileHandler::importTasks(filename, tasks, idCount);
+    FileHandler::importTasks(filename, tasks);
 }
 
 void TaskScheduler::saveTasksToFile() const {
@@ -334,15 +347,15 @@ const std::vector<Task>& TaskScheduler::getTasks() const {
     return tasks;
 }
 
+void TaskScheduler::setComplete(int taskId, bool complete)
+{
+    tasks[taskId].setCompleted(complete);
+}
+
 Task& TaskScheduler::operator[](size_t index) {
     return tasks[index];
 }
 
 const Task& TaskScheduler::operator[](size_t index) const {
     return tasks[index];
-}
-
-int TaskScheduler::getIdCount()
-{
-    return idCount;
 }

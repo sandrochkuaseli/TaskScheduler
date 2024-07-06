@@ -18,7 +18,7 @@ void FileHandler::exportTasks(const std::string& filename, const std::vector<Tas
     }
 }
 
-void FileHandler::importTasks(const std::string& filename, std::vector<Task>& tasks, int& countId) {
+void FileHandler::importTasks(const std::string& filename, std::vector<Task>& tasks) {
     std::ifstream file(filename);
     if (file.is_open()) {
         std::string line;
@@ -46,7 +46,6 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
             std::vector<int> dependencies;
             std::string dependencyStr;
             std::getline(file, dependencyStr);
-            std::cout << dependencyStr << std::endl;
             std::istringstream dependenciesStream(dependencyStr);
             int dependencyInt;
             while (dependenciesStream >> dependencyInt) {
@@ -69,6 +68,12 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
             std::istringstream idStream(idString);
             idStream >> id;
 
+            bool completed;
+            std::string completedStr;
+            std::getline(file, completedStr);
+            std::istringstream completedStream(completedStr);
+            completedStream >> completed;
+
             Task task(title, description, dueDate, priority, recurring, dependencies, id);
             if (TaskScheduler::checkFormat(task)) {
                 
@@ -76,6 +81,7 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
 
                     task.setDependant(i);
                 }
+                task.setCompleted(completed);
                 tasks.push_back(task);
             }
 

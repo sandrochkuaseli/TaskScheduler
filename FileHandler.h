@@ -7,7 +7,7 @@
 class FileHandler {
 public:
     static void exportTasks(const std::string& filename, const std::vector<Task>& tasks);
-    static void importTasks(const std::string& filename, std::vector<Task>& tasks, int& countId);
+    static void importTasks(const std::string& filename, std::vector<Task>& tasks);
     static void writeTasksToFile(const std::string& filename, const std::vector<Task>& tasks);
 
 };

@@ -40,6 +40,11 @@ int Task::getTaskID() const
     return taskID;
 }
 
+bool Task::getCompleted() const
+{
+    return completed;
+}
+
 void Task::setTitle(const std::string& newTitle)
 {
     title = newTitle;
@@ -78,6 +83,11 @@ void Task::setTaskID(int taskId)
 void Task::setDependant(int taskId)
 {
     dependants.push_back(taskId);
+}
+
+void Task::setCompleted(bool complete)
+{
+    completed = complete;
 }
 
 void Task::removeDependency(int taskId)
@@ -134,5 +144,6 @@ void Task::saveToFile(std::ofstream& file) const {
     }
     file << '\n';
     file << taskID << '\n';
+    file << completed << '\n';
     file << "---\n";
 }
