@@ -222,6 +222,31 @@ void TaskScheduler::removeAllTasks() {
     tasks.clear();
 }
 
+int getDaysInMonth(int year, int month) {
+    // Checks for leap year
+    if (month == 2) {
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+            return 29;
+        }
+        else {
+            return 28;
+        }
+    }
+
+    switch (month)
+    {
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+        return 30;
+    default:
+        break;
+    }
+
+    return 31;
+}
+
 
 bool TaskScheduler::dueDateValidity(const std::string& dueDateString) {
     std::regex pattern("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}");
@@ -255,19 +280,19 @@ bool TaskScheduler::dueDateValidity(const std::string& dueDateString) {
             return false;
         }
         else if (localTime.tm_year + 1900 == year) {
-            if (localTime.tm_mon > month) {
+            if (localTime.tm_mon > month || 12 < month) {
                 return false;
             }
             else if (localTime.tm_mon == month) {
-                if (localTime.tm_mday > day) {
+                if (localTime.tm_mday > day || getDaysInMonth(year, month) < day) {
                     return false;
                 }
                 else if (localTime.tm_mday == day) {
-                    if (localTime.tm_hour > hour) {
+                    if (localTime.tm_hour > hour || 24 < hour) {
                         return false;
                     }
                     else if (localTime.tm_hour == hour) {
-                        if (localTime.tm_min >= minute) {
+                        if (localTime.tm_min >= minute || 59 < minute) {
                             return false;
                         }
                     }
