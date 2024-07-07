@@ -23,6 +23,7 @@ public:
     void loadTasksFromFile();
     void saveTasksToFile() const;
     void removeAllTasks();
+    void removeWD(int index);
     static bool checkFormat(const Task& task);
     static bool dueDateValidity(const std::string& dueDateString);
 

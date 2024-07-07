@@ -11,10 +11,12 @@ void printInstructions() {
     std::cout << "- edit: Edit an existing task" << std::endl;
     std::cout << "- remove: Remove a task" << std::endl;
     std::cout << "- remove all: Remove all tasks" << std::endl;
+    std::cout << "- remove wd: Remove a task along with all its dependants" << std::endl;
     std::cout << "- list: List all tasks" << std::endl;
     std::cout << "- show: Show a task with all its attributes" << std::endl;
     std::cout << "- save: Save to local primary 'tasks.txt' file" << std::endl;
-    std::cout << "- completed: Set task to completed" << std::endl;
+    std::cout << "- completed: Set task state to incomplete (All dependants' states are also set to complete)" << std::endl;
+    std::cout << "- incomplete: Set task state to incomplete (All dependants' states are also set to incomplete)" << std::endl;
     std::cout << "- export: Export tasks to a file" << std::endl;
     std::cout << "- import: Import tasks from a file" << std::endl;
     std::cout << "- quit: Quit the program" << std::endl;
@@ -195,6 +197,9 @@ int main() {
         else if (command == "remove all") {
             taskScheduler.removeAllTasks();
         }
+        //else if (command == "remove wd") {
+        //    task
+        //}
         else if (command == "show") {
             int index;
             std::cout << "Enter task index to show: ";
@@ -211,6 +216,13 @@ int main() {
             std::cin >> index;
             std::cin.ignore();
             taskScheduler.setComplete(index, true);
+        }
+        else if (command == "incomplete") {
+            std::cout << "Enter task index you completed: ";
+            int index;
+            std::cin >> index;
+            std::cin.ignore();
+            taskScheduler.setComplete(index, false);
         }
         else {
             std::cout << "Invalid command. Type 'help' for instructions." << std::endl;

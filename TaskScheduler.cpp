@@ -5,6 +5,7 @@
 #include <sstream>
 #include <chrono>
 #include <ctime>
+#include <queue>
 
 TaskScheduler::TaskScheduler(const std::string& filename) : filename(filename) {
     loadTasksFromFile();
@@ -235,6 +236,13 @@ void TaskScheduler::removeAllTasks() {
     tasks.clear();
 }
 
+void TaskScheduler::removeWD(int index)
+{
+    for (int i : tasks[index].getDependants()) {
+
+    }
+}
+
 int getDaysInMonth(int year, int month) {
     // Checks for leap year
     if (month == 2) {
@@ -354,6 +362,65 @@ std::vector<Task>& TaskScheduler::getTasks() {
 void TaskScheduler::setComplete(int taskId, bool complete)
 {
     tasks[taskId].setCompleted(complete);
+
+    if (complete) {
+
+        std::queue<Task> taskQueueT;
+        taskQueueT.push(tasks[taskId]);
+
+        while (!taskQueueT.empty()) {
+            Task task = taskQueueT.front();
+            taskQueueT.pop();
+
+            for (int i : task.getDependencies()) {
+                bool isComplete = true;
+                for (int j : tasks[i].getDependants()) {
+                    if (!tasks[j].getCompleted()) {
+                        isComplete = false;
+                        break;
+                    }
+                }
+
+                if (isComplete) {
+                    tasks[i].setCompleted(true);
+                    taskQueueT.push(tasks[i]);
+                }
+            }
+        }
+
+    }
+    else {
+        std::queue<Task> taskQueueF;
+        taskQueueF.push(tasks[taskId]);
+
+        while (!taskQueueF.empty()) {
+            Task task = taskQueueF.front();
+            taskQueueF.pop();
+
+            for (int i : task.getDependencies()) {
+                if (tasks[i].getCompleted() != complete) {
+                    tasks[i].setCompleted(complete);
+                    taskQueueF.push(tasks[i]);
+                }
+            }
+        }
+    }
+
+    std::queue<Task> taskQueue;
+    taskQueue.push(tasks[taskId]);
+
+    while (!taskQueue.empty()) {
+        Task task = taskQueue.front();
+        taskQueue.pop();
+
+        for (int i : task.getDependants()) {
+            if (tasks[i].getCompleted() != complete) {
+                tasks[i].setCompleted(complete);
+                taskQueue.push(tasks[i]);
+            }
+        }
+    }
+    
 }
 
 Task& TaskScheduler::operator[](size_t index) {
