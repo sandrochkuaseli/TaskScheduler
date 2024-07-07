@@ -49,7 +49,7 @@ void TaskScheduler::editTask(int index, std::string attribute, std::string newAt
         else if (attribute == "Description" || attribute == "description") {
             tasks[index].setDescription(newAttributeDefinition);
         }
-        else if (attribute == "Due Date" || attribute == "due date") {
+        else if (attribute == "Due Date" || attribute == "due date" || attribute == "Due date") {
             if (dueDateValidity(newAttributeDefinition)) {
 
                 tasks[index].setDueDate(newAttributeDefinition);
@@ -363,61 +363,63 @@ void TaskScheduler::setComplete(int taskId, bool complete)
 {
     tasks[taskId].setCompleted(complete);
 
-    if (complete) {
+    std::queue<Task> taskQueueDependency;
+    taskQueueDependency.push(tasks[taskId]);
+    std::vector<bool> visitedDependency(tasks.size(), false);
+    visitedDependency[taskId] = true;
 
-        std::queue<Task> taskQueueT;
-        taskQueueT.push(tasks[taskId]);
+    while (!taskQueueDependency.empty()) {
+        Task task = taskQueueDependency.front();
+        taskQueueDependency.pop();
 
-        while (!taskQueueT.empty()) {
-            Task task = taskQueueT.front();
-            taskQueueT.pop();
+        for (int i : task.getDependencies()) {
+            if (!visitedDependency[i]) {
 
-            for (int i : task.getDependencies()) {
-                bool isComplete = true;
-                for (int j : tasks[i].getDependants()) {
-                    if (!tasks[j].getCompleted()) {
-                        isComplete = false;
-                        break;
+                visitedDependency[i] = true;
+
+                if (complete) {
+                    bool isComplete = true;
+                    for (int j : tasks[i].getDependants()) {
+                        if (!tasks[j].getCompleted()) {
+                            isComplete = false;
+                            break;
+                        }
+                    }
+
+                    if (isComplete) {
+                        tasks[i].setCompleted(true);
+                        taskQueueDependency.push(tasks[i]);
                     }
                 }
-
-                if (isComplete) {
-                    tasks[i].setCompleted(true);
-                    taskQueueT.push(tasks[i]);
+                else {
+                    if (tasks[i].getCompleted() != complete) {
+                        tasks[i].setCompleted(complete);
+                        taskQueueDependency.push(tasks[i]);
+                    }
                 }
-            }
-        }
-
-    }
-    else {
-        std::queue<Task> taskQueueF;
-        taskQueueF.push(tasks[taskId]);
-
-        while (!taskQueueF.empty()) {
-            Task task = taskQueueF.front();
-            taskQueueF.pop();
-
-            for (int i : task.getDependencies()) {
-                if (tasks[i].getCompleted() != complete) {
-                    tasks[i].setCompleted(complete);
-                    taskQueueF.push(tasks[i]);
-                }
+                
             }
         }
     }
 
-    std::queue<Task> taskQueue;
-    taskQueue.push(tasks[taskId]);
 
-    while (!taskQueue.empty()) {
-        Task task = taskQueue.front();
-        taskQueue.pop();
+    std::queue<Task> taskQueueDependant;
+    taskQueueDependant.push(tasks[taskId]);
+    std::vector<bool> visitedDependants;
+
+    while (!taskQueueDependant.empty() && !taskQueueDependency.empty()) {
+        Task task = taskQueueDependant.front();
+        taskQueueDependant.pop();
 
         for (int i : task.getDependants()) {
-            if (tasks[i].getCompleted() != complete) {
-                tasks[i].setCompleted(complete);
-                taskQueue.push(tasks[i]);
+            if (!visitedDependants[i]) {
+                visitedDependants[i] = true;
+                if (tasks[i].getCompleted() != complete) {
+                    tasks[i].setCompleted(complete);
+                    taskQueueDependant.push(tasks[i]);
+                }
             }
+            
         }
     }
     

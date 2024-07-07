@@ -93,51 +93,70 @@ void Reminder::checkTasksAndRemindNow() {
 #endif
 
     for (Task& task : taskScheduler.getTasks()) {
-        if (!task.getCompleted()) {
-            std::istringstream dueDateStream(task.getDueDate());
 
-            localTime.tm_sec = 0;
-            std::time_t currentTimeT = std::mktime(&localTime);
+        std::istringstream dueDateStream(task.getDueDate());
 
-            std::tm dueDateTime = {};
-            int year, month, day, hour, minute;
-            char dash1, dash2, colon;
+        localTime.tm_sec = 0;
+        std::time_t currentTimeT = std::mktime(&localTime);
 
-            dueDateStream >> year >> dash1 >> month >> dash2 >> day >> hour >> colon >> minute;
+        std::tm dueDateTime = {};
+        int year, month, day, hour, minute;
+        char dash1, dash2, colon;
 
-            dueDateTime.tm_year = year - 1900;
-            dueDateTime.tm_mon = month - 1;   
-            dueDateTime.tm_mday = day;
-            dueDateTime.tm_hour = hour - 1;
-            dueDateTime.tm_min = minute;
-            dueDateTime.tm_sec = 0;
+        dueDateStream >> year >> dash1 >> month >> dash2 >> day >> hour >> colon >> minute;
 
-            std::time_t dueDateTimeT = std::mktime(&dueDateTime);
+        dueDateTime.tm_year = year - 1900;
+        dueDateTime.tm_mon = month - 1;   
+        dueDateTime.tm_mday = day;
+        dueDateTime.tm_hour = hour - 1;
+        dueDateTime.tm_min = minute;
+        dueDateTime.tm_sec = 0;
 
-            if(currentTimeT == dueDateTimeT){
+        std::time_t dueDateTimeT = std::mktime(&dueDateTime);
+
+        if(currentTimeT == dueDateTimeT && !task.getCompleted()){
                 
-                std::cout << "\nReminder: Task '" << task.getTitle() << "' is due now!" << std::endl;
-                std::cout << "Reminder: Task '" << task.getTitle() << "' has not yet been completed! Reminding again in 1 hour! (Due date will be adjusted) " << std::endl;
+            std::cout << "\nReminder: Task '" << task.getTitle() << "' is due now!" << std::endl;
+            std::cout << "Reminder: Task '" << task.getTitle() << "' has not yet been completed! Reminding again in 1 hour! (Due date will be adjusted) " << std::endl;
                 
-                dueDateTimeT += 3600;
-                std::tm newDueDateTime;
+            dueDateTimeT += 3600;
+            std::tm newDueDateTime;
 #if defined(_MSC_VER) // For Microsoft Visual Studio
-                localtime_s(&newDueDateTime, &dueDateTimeT);
+            localtime_s(&newDueDateTime, &dueDateTimeT);
 #else // For other compilers
-                localtime_r(&dueDateTimeT, &newDueDateTime);
+            localtime_r(&dueDateTimeT, &newDueDateTime);
 #endif
-                std::ostringstream oss;
-                oss << std::put_time(&newDueDateTime, "%Y-%m-%d %H:%M");
-                std::string newdueStr = oss.str();
-                task.setDueDate(newdueStr);
+            std::ostringstream oss;
+            oss << std::put_time(&newDueDateTime, "%Y-%m-%d %H:%M");
+            std::string newdueStr = oss.str();
+            task.setDueDate(newdueStr);
 
-                std::cout << "New Due Date Time: " << newdueStr << std::endl;
+            std::cout << "New Due Date Time: " << newdueStr << std::endl;
 
-                std::cout << "> ";
+            std::cout << "> ";
 
+        }else if (currentTimeT == dueDateTimeT && task.getCompleted() && task.isRecurring()) {
+
+            std::cout << "\nReminder: Task '" << task.getTitle() << "' is due now! It has already been completed but it is a recurring task!" << std::endl;
+
+            while (true) {
+                std::string dueDate;
+                std::cout << "Please enter new due date (YYYY-MM-DD HH:MM): ";
+                std::getline(std::cin, dueDate);
+                if (dueDate.empty()) {
+                    std::cout << "Due date cannot be empty!";
+                }
+                if (taskScheduler.dueDateValidity(dueDate)) {
+                    task.setDueDate(dueDate);
+                    break;
+                }
+                std::cout << "Due date format is incorrect!" << std::endl;
             }
 
+            std::cout << "> ";
         }
+
+   
         
     }
 
@@ -165,6 +184,7 @@ void Reminder::checkTasksAndRemindLonger() {
 
             dueDateStream >> year >> dash1 >> month >> dash2 >> day >> hour >> colon >> minute;
 
+            std::cout << "\nDays to date:" << daysToDate << std::endl;
             if (daysToDate == 0 && localTime.tm_hour > hour) {
                 std::cout << "\nReminder: Task '" << task.getTitle() << "' is due soon!" << std::endl;
                 std::cout << "> ";

@@ -13,6 +13,7 @@ void printInstructions() {
     std::cout << "- remove all: Remove all tasks" << std::endl;
     std::cout << "- remove wd: Remove a task along with all its dependants" << std::endl;
     std::cout << "- list: List all tasks" << std::endl;
+    std::cout << "- listP: List all tasks based on priority" << std::endl;
     std::cout << "- show: Show a task with all its attributes" << std::endl;
     std::cout << "- save: Save to local primary 'tasks.txt' file" << std::endl;
     std::cout << "- completed: Set task state to incomplete (All dependants' states are also set to complete)" << std::endl;
@@ -42,31 +43,67 @@ int main() {
             bool recurring;
             std::vector<int> dependencies;
 
-            std::cout << "Enter task title: ";
-            std::getline(std::cin, title);
-            std::cout << "Enter task description: ";
-            std::getline(std::cin, description);
-            std::cout << "Enter due date (YYYY-MM-DD HH:MM): ";
-            std::getline(std::cin, dueDate);
+            while (true) {
+                std::cout << "Enter task title: ";
+                std::getline(std::cin, title);
+                if (!title.empty()) {
+                    break;
+                }
+                std::cout << "Title cannot be empty!" << std::endl;
+            }
             
-            std::cout << "Enter priority (1-5): ";
-            std::string priorityStr;
-            std::getline(std::cin, priorityStr);
-            std::istringstream priorityStream(priorityStr);
-            priorityStream >> priority;
+            while (true) {
+                std::cout << "Enter task description: ";
+                std::getline(std::cin, description);
+                if (!description.empty()) {
+                    break;
+                }
+                std::cout << "Description cannot be empty!" << std::endl;
+            }
 
-            std::cout << "Is this task recurring? (yes/no): ";
-            std::string recurringInput;
-            std::getline(std::cin, recurringInput);
-            if (recurringInput == "yes" || recurringInput == "y") {
-                recurring = true;
+            while (true) {
+                std::cout << "Enter due date (YYYY-MM-DD HH:MM): ";
+                std::getline(std::cin, dueDate);
+                if (dueDate.empty()) {
+                    std::cout << "Due date cannot be empty!";
+                }
+                if (taskScheduler.dueDateValidity(dueDate)) {
+                    break;
+                }
+                std::cout << "Due date format is incorrect!" << std::endl;
             }
-            else if (recurringInput == "no" || recurringInput == "n") {
-                recurring = false;
+
+            while (true) {
+
+                std::cout << "Enter priority (1-5): ";
+                std::string priorityStr;
+                std::getline(std::cin, priorityStr);
+                std::istringstream priorityStream(priorityStr);
+
+                if (priorityStream >> priority) {
+                    if (priority >= 1 && priority <= 5) {
+                        break;
+                    }
+                }
+                std::cout << "Priority must be a number between 1 and 5!" << std::endl;
             }
-            else {
+
+            while (true) {
+
+                std::cout << "Is this task recurring? (yes/no): ";
+                std::string recurringInput;
+                std::getline(std::cin, recurringInput);
+                if (recurringInput == "yes" || recurringInput == "y") {
+                    recurring = true;
+                    break;
+                }
+                else if (recurringInput == "no" || recurringInput == "n") {
+                    recurring = false;
+                    break;
+                }
+
                 std::cout << "Invalid input for recurrence!" << std::endl;
-                continue;
+                
             }
 
             if (taskScheduler.getTasks().size() > 0) {
@@ -80,7 +117,10 @@ int main() {
                     std::getline(std::cin, dependencyInput);
                     std::istringstream dependenciesStream(dependencyInput);
                     int dependecyID;
+                    bool valid;
+
                     while (dependenciesStream >> dependecyID) {
+
                         dependencies.push_back(dependecyID);
                     }
                 }
@@ -115,7 +155,7 @@ int main() {
                 std::cout << "Provide new Description: ";
                 std::getline(std::cin, newAttributeDefinition);
             }
-            else if (attribute == "Due Date" || attribute == "due date") {
+            else if (attribute == "Due Date" || attribute == "due date" || attribute == "Due date") {
                 std::cout << "Previous Due Date: " << taskScheduler.getTasks()[index].getDueDate() << std::endl;
                 std::cout << "Provide new Due Date: ";
                 std::getline(std::cin, newAttributeDefinition);

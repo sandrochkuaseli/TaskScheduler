@@ -1,3 +1,2 @@
-﻿  Source.cpp
-C:\Users\Sandroi\Desktop\TaskScheduler\Source.cpp(92,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  TaskScheduler.cpp
   TaskScheduler.vcxproj -> C:\Users\Sandroi\Desktop\TaskScheduler\x64\Debug\TaskScheduler.exe
