@@ -72,14 +72,15 @@ void TaskScheduler::editTask(int index, std::string attribute, std::string newAt
         }
         else if (attribute == "Recurrence" || attribute == "recurrence") {
 
-            if (newAttributeDefinition == "yes" || newAttributeDefinition == "y") {
+            if (newAttributeDefinition == "daily" || newAttributeDefinition == "monthly" || newAttributeDefinition == "yearly") {
                 tasks[index].setRecurring(true);
+                tasks[index].setRecurringOpt(newAttributeDefinition);
             }
             else if (newAttributeDefinition == "no" || newAttributeDefinition == "n") {
                 tasks[index].setRecurring(false);
             }
             else {
-                std::cout << "Invalid input!" << std::endl;
+                std::cout << "Invalid input! Choose one of four options provided!" << std::endl;
             }
 
         }
@@ -155,16 +156,27 @@ void TaskScheduler::removeTask(int index) {
     }
 }
 
-void TaskScheduler::listTasks() const {
+void TaskScheduler::listTasks(std::vector<Task> taskVec) const {
     if (tasks.empty()) {
-        std::cout << "No tasks found." << std::endl;
+        std::cout << "No tasks found!" << std::endl;
     }
     else {
-        for (size_t i = 0; i < tasks.size(); ++i) {
-            std::cout << i << ". " << tasks[i].getTitle() << " - Due: " << tasks[i].getDueDate()
-                << " - Priority: " << tasks[i].getPriority() << std::endl;
+        for (size_t i = 0; i < taskVec.size(); ++i) {
+            std::cout <<"ID: " << taskVec[i].getTaskID() << " - Title: " << taskVec[i].getTitle() << " - Due: " << taskVec[i].getDueDate()
+                << " - Priority: " << taskVec[i].getPriority() << " - " << (taskVec[i].getCompleted() ? "COMPLETED!" : "INCOMPLETE!" ) << std::endl;
         }
     }
+}
+
+void TaskScheduler::listTasksByPriority() const
+{
+    std::vector<Task> sortedByPriority = tasks;
+    std::sort(sortedByPriority.begin(), sortedByPriority.end(), [](const Task& a, const Task& b) {
+        return a.getPriority() > b.getPriority();
+        });
+
+    listTasks(sortedByPriority);
+
 }
 
 void TaskScheduler::showTask(int index) {
@@ -174,12 +186,9 @@ void TaskScheduler::showTask(int index) {
         std::cout << "Due date: " << tasks[index].getDueDate() << std::endl;
         std::cout << "Priority: " << tasks[index].getPriority() << std::endl;
 
-        std::string recurringStr = "NO";
-        if (tasks[index].isRecurring()) {
-            recurringStr = "YES";
-        }
+        
+        std::cout << "Recurring: " <<  (tasks[index].isRecurring() ? "Yes, " + tasks[index].getRecurringOpt() : "NO") << std::endl;
 
-        std::cout << "Recurring: " <<  recurringStr << std::endl;
         
         if (!tasks[index].getDependencies().empty()) {
             std::cout << "Dependecy list: ";
@@ -207,16 +216,12 @@ void TaskScheduler::showTask(int index) {
             
         std::cout << "Task ID: " << tasks[index].getTaskID() << std::endl;
 
-        std::string completeStr = "INCOMPLETE!";
-        if (tasks[index].getCompleted()) {
-            completeStr = "COMPLETE!";
-        }
-        std::cout << "Completed: " << completeStr << std::endl;
+        std::cout << "Completed: " << (tasks[index].getCompleted() ? "COMPLETED!" : "INCOMPLETE!") << std::endl;
 
     }
 }
 
-void TaskScheduler::exportTasks() const {
+void TaskScheduler::exportTasks(std::string filename) const {
     FileHandler::exportTasks(filename, tasks);
 }
 
@@ -228,10 +233,6 @@ void TaskScheduler::loadTasksFromFile() {
     FileHandler::importTasks(filename, tasks);
 }
 
-void TaskScheduler::saveTasksToFile() const {
-    FileHandler::writeTasksToFile(filename, tasks);
-}
-
 void TaskScheduler::removeAllTasks() {
     tasks.clear();
 }
@@ -239,7 +240,7 @@ void TaskScheduler::removeAllTasks() {
 void TaskScheduler::removeWD(int index)
 {
     for (int i : tasks[index].getDependants()) {
-
+        removeTask(i);
     }
 }
 
@@ -253,7 +254,7 @@ int getDaysInMonth(int year, int month) {
             return 28;
         }
     }
-
+     
     switch (month)
     {
     case 4:
@@ -291,6 +292,7 @@ bool TaskScheduler::dueDateValidity(const std::string& dueDateString) {
 #endif
 
         if (12 < month || getDaysInMonth(year, month) < day || 24 < hour || 59 < minute) {
+            
             return false;
         }
 
@@ -337,6 +339,9 @@ bool TaskScheduler::checkFormat(const Task& task)
     else if (!dueDateValidity(task.getDueDate())) {
         std::cout << "!! Task not added to the scheduler: Due date format is incorrect !!" << std::endl;
         valid = false;
+    }
+    if (task.getRecurringOpt() != "daily" && task.getRecurringOpt() != "monthly" && task.getRecurringOpt() != "yearly") {
+        std::cout << "!!Task not added to the scheduler : Invalid recurrence option provided !!" << std::endl;
     }
     else if (1 < task.getPriority() && task.getPriority() > 5) {
         std::cout << "!! Task not added to the scheduler: Priority out of bounds !!" << std::endl;
@@ -405,9 +410,10 @@ void TaskScheduler::setComplete(int taskId, bool complete)
 
     std::queue<Task> taskQueueDependant;
     taskQueueDependant.push(tasks[taskId]);
-    std::vector<bool> visitedDependants;
+    std::vector<bool> visitedDependants(tasks.size(), false);
+    visitedDependants[taskId] = true;
 
-    while (!taskQueueDependant.empty() && !taskQueueDependency.empty()) {
+    while (!taskQueueDependant.empty()) {
         Task task = taskQueueDependant.front();
         taskQueueDependant.pop();
 

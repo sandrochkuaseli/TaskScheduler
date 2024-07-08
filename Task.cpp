@@ -1,7 +1,7 @@
 #include "Task.h"
 
-Task::Task(const std::string& title, const std::string& description, const std::string& dueDate, int priority, bool recurring, std::vector<int>& dependecies, int id)
-    : title(title), description(description), dueDate(dueDate), priority(priority), recurring(recurring), dependecies(dependecies), taskID(id) {
+Task::Task(const std::string& title, const std::string& description, const std::string& dueDate, int priority, bool recurring, std::string& recurringOption, std::vector<int>& dependecies, int id)
+    : title(title), description(description), dueDate(dueDate), priority(priority), recurring(recurring), dependecies(dependecies), taskID(id), recurringOption(recurringOption) {
     completed = false;
 }
 
@@ -23,6 +23,11 @@ int Task::getPriority() const {
 
 bool Task::isRecurring() const {
     return recurring;
+}
+
+std::string Task::getRecurringOpt() const
+{
+    return (recurringOption.empty() ? "None" : recurringOption);
 }
 
 std::vector<int> Task::getDependencies() const
@@ -68,6 +73,11 @@ void Task::setPriority(int newPriority)
 void Task::setRecurring(bool newRecurring)
 {
     recurring = newRecurring;
+}
+
+void Task::setRecurringOpt(std::string recurringOpt)
+{
+    recurringOption = recurringOpt;
 }
 
 void Task::setDependency(int taskId)
@@ -133,6 +143,7 @@ void Task::saveToFile(std::ofstream& file) const {
     file << dueDate << '\n';
     file << priority << '\n';
     file << recurring << '\n';
+    file << recurringOption << '\n';
     for (int i : dependecies) {
 
         file << i << " ";

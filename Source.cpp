@@ -19,7 +19,7 @@ void printInstructions() {
     std::cout << "- completed: Set task state to incomplete (All dependants' states are also set to complete)" << std::endl;
     std::cout << "- incomplete: Set task state to incomplete (All dependants' states are also set to incomplete)" << std::endl;
     std::cout << "- export: Export tasks to a file" << std::endl;
-    std::cout << "- import: Import tasks from a file" << std::endl;
+    std::cout << "- import: Import tasks from a file (deletes previous tasks)" << std::endl;
     std::cout << "- quit: Quit the program" << std::endl;
 }
 
@@ -38,7 +38,7 @@ int main() {
 
         if (command == "add") {
             // Implement add task functionality
-            std::string title, description, dueDate;
+            std::string title, description, dueDate, reccOption;
             int priority;
             bool recurring;
             std::vector<int> dependencies;
@@ -95,6 +95,21 @@ int main() {
                 std::getline(std::cin, recurringInput);
                 if (recurringInput == "yes" || recurringInput == "y") {
                     recurring = true;
+                    std::cout << "Recurrence options (daily, monthly, yearly): ";
+                    while (true) {
+
+                        std::getline(std::cin, reccOption);
+                        if (reccOption.empty()) {
+                            std::cout << "Field can't be empty!" << std::endl;
+                            continue;
+                        }
+                        if (reccOption == "daily" || reccOption == "monthly" || reccOption == "yearly") {
+                            break;
+                        }
+                        else {
+                            std::cout << "Invalid input! Please provide either 'daily', 'monthly', or 'yearly' !" << std::endl;
+                        }
+                    }
                     break;
                 }
                 else if (recurringInput == "no" || recurringInput == "n") {
@@ -117,11 +132,18 @@ int main() {
                     std::getline(std::cin, dependencyInput);
                     std::istringstream dependenciesStream(dependencyInput);
                     int dependecyID;
-                    bool valid;
+                    bool valid = true;
 
                     while (dependenciesStream >> dependecyID) {
-
+                        if (dependecyID < 0 || dependecyID >= taskScheduler.getTasks().size()) {
+                            std::cout << "Invalid dependency ID: " << dependecyID << " !" << std::endl;
+                            valid = false;
+                            break;
+                        }
                         dependencies.push_back(dependecyID);
+                    }
+                    if (!valid) {
+                        continue;
                     }
                 }
             }
@@ -130,7 +152,7 @@ int main() {
             }
             
             int id = taskScheduler.getTasks().size();
-            Task newTask(title, description, dueDate, priority, recurring, dependencies, id);
+            Task newTask(title, description, dueDate, priority, recurring, reccOption, dependencies, id);
             taskScheduler.addTask(newTask);
 
         }
@@ -157,7 +179,7 @@ int main() {
             }
             else if (attribute == "Due Date" || attribute == "due date" || attribute == "Due date") {
                 std::cout << "Previous Due Date: " << taskScheduler.getTasks()[index].getDueDate() << std::endl;
-                std::cout << "Provide new Due Date: ";
+                std::cout << "Provide new Due Date (YYYY-MM-DD HH:MM): ";
                 std::getline(std::cin, newAttributeDefinition);
             }
             else if (attribute == "Priority" || attribute == "priority") {
@@ -166,12 +188,9 @@ int main() {
                 std::getline(std::cin, newAttributeDefinition);
             }
             else if (attribute == "Recurrence" || attribute == "recurrence") {
-                std::string recurring = "Not recurring";
-                if (taskScheduler.getTasks()[index].isRecurring()) {
-                    recurring = "Recurring";
-                }
-                std::cout << "Previous Recurrence: " << recurring << std::endl;
-                std::cout << "Provide new Recurrence. Is this task recurring? (yes/no): ";
+
+                std::cout << "Previous Recurrence: " << (taskScheduler.getTasks()[index].isRecurring() ? "Recurring" : "Not recurring") << std::endl;
+                std::cout << "Provide new Recurrence. Options - daily, monthly, yearly, no. Is this task recurring? : ";
                 std::getline(std::cin, newAttributeDefinition);
 
             }
@@ -185,7 +204,7 @@ int main() {
                     std::cout << "Empty!";
                 }
                 std::cout << std::endl;
-                std::cout << "Provide new Depenedce List. Write down ID's seperated by spaces (If not dependant on other tasks, type 'empty'): ";
+                std::cout << "Provide new Dependence List. Write down ID's seperated by spaces (If not dependant on other tasks, type 'empty'): ";
                 std::getline(std::cin, newAttributeDefinition);
 
             }
@@ -196,6 +215,9 @@ int main() {
             if (!newAttributeDefinition.empty()) {
                 taskScheduler.editTask(index, attribute, newAttributeDefinition);
             }
+            else {
+                std::cout << "Field cannot be left empty!" << std::endl;
+            }
            
 
         }
@@ -203,20 +225,29 @@ int main() {
             // Implement remove task functionality
             int index;
             std::cout << "Enter task index to remove: ";
-            std::cin >> index;
+
+            if (std::cin >> index) {
+                taskScheduler.removeTask(index);
+                
+            }
             std::cin.ignore();
 
-            taskScheduler.removeTask(index);
 
         }
         else if (command == "list") {
             // Implement list tasks functionality
-            taskScheduler.listTasks();
+            taskScheduler.listTasks(taskScheduler.getTasks());
 
+        }
+        else if (command == "listP") {
+            taskScheduler.listTasksByPriority();
         }
         else if (command == "export") {
             // Implement export tasks functionality
-            taskScheduler.exportTasks();
+            std::cout << "Enter file name to export to (If file does not exist, it will be created): ";
+            std::string filename;
+            std::getline(std::cin, filename);
+            taskScheduler.exportTasks(filename);
 
         }
         else if (command == "import") {
@@ -237,9 +268,6 @@ int main() {
         else if (command == "remove all") {
             taskScheduler.removeAllTasks();
         }
-        //else if (command == "remove wd") {
-        //    task
-        //}
         else if (command == "show") {
             int index;
             std::cout << "Enter task index to show: ";
@@ -247,29 +275,41 @@ int main() {
             std::cin.ignore();
             taskScheduler.showTask(index);
         }
+        else if (command == "remove wd") {
+            int index;
+            std::cout << "Enter task index to remove: ";
+            std::cin >> index;
+            std::cin.ignore();
+            taskScheduler.removeWD(index);
+        }
         else if (command == "save") {
-            taskScheduler.saveTasksToFile();
+            taskScheduler.exportTasks("tasks.txt");
         }
         else if (command == "completed") {
             std::cout << "Enter task index you completed: ";
             int index;
-            std::cin >> index;
+            if (std::cin >> index) {
+
+                taskScheduler.setComplete(index, true);
+            }
             std::cin.ignore();
-            taskScheduler.setComplete(index, true);
+            
         }
         else if (command == "incomplete") {
             std::cout << "Enter task index you completed: ";
             int index;
-            std::cin >> index;
+            if (std::cin >> index) {
+
+                taskScheduler.setComplete(index, false);
+            }
             std::cin.ignore();
-            taskScheduler.setComplete(index, false);
         }
         else {
             std::cout << "Invalid command. Type 'help' for instructions." << std::endl;
         }
     }
 
-    taskScheduler.saveTasksToFile();
+    taskScheduler.exportTasks("tasks.txt");
     reminderSystem.stop();
 
     return 0;

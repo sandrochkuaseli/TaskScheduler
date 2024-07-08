@@ -1,20 +1,33 @@
 Task 1
-iejifje
-2024-07-05 16:19
+Example task number one
+2024-08-08 17:31
 2
 1
+daily
 
 1 
 0
-0
+1
 ---
 Task 2
-dfiejhifdie
-2024-09-09 09:00
+Example task number two
+2024-08-10 17:30
 2
-0
+1
+monthly
 0 
 
 1
-0
+1
+---
+task 3
+Example task number three
+2024-09-08 17:29
+3
+1
+yearly
+
+
+2
+1
 ---

@@ -63,7 +63,8 @@ int countDaysToDate(std::string dueDateStr) {
     localTime.tm_hour = 0;
     localTime.tm_min = 0;
     localTime.tm_sec = 0;
-    std::time_t currentDate = std::mktime(&localTime);
+
+    auto currentDate = std::chrono::system_clock::from_time_t(std::mktime(&localTime));
 
     std::tm futureTime = {};
     std::istringstream dueDateStream(dueDateStr);
@@ -73,13 +74,39 @@ int countDaysToDate(std::string dueDateStr) {
     futureTime.tm_min = 0;
     futureTime.tm_sec = 0;
 
-    std::time_t futureDate = std::mktime(&futureTime);
+    auto futureDate = std::chrono::system_clock::from_time_t(std::mktime(&futureTime));
 
-    auto diff = std::difftime(futureDate, currentDate);
-    int days = static_cast<int>(diff / (60 * 60 * 24));
+    auto diff = (std::chrono::duration_cast<std::chrono::hours>(futureDate - currentDate).count());
+    int days = static_cast<int>(diff);
 
     return days;
 }
+
+int getDaysInMonth2(int year, int month) {
+    // Checks for leap year
+    if (month == 2) {
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+            return 29;
+        }
+        else {
+            return 28;
+        }
+    }
+
+    switch (month)
+    {
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+        return 30;
+    default:
+        break;
+    }
+
+    return 31;
+}
+
 
 void Reminder::checkTasksAndRemindNow() {
     auto now = std::chrono::system_clock::now();
@@ -137,27 +164,37 @@ void Reminder::checkTasksAndRemindNow() {
 
         }else if (currentTimeT == dueDateTimeT && task.getCompleted() && task.isRecurring()) {
 
-            std::cout << "\nReminder: Task '" << task.getTitle() << "' is due now! It has already been completed but it is a recurring task!" << std::endl;
-
-            while (true) {
-                std::string dueDate;
-                std::cout << "Please enter new due date (YYYY-MM-DD HH:MM): ";
-                std::getline(std::cin, dueDate);
-                if (dueDate.empty()) {
-                    std::cout << "Due date cannot be empty!";
-                }
-                if (taskScheduler.dueDateValidity(dueDate)) {
-                    task.setDueDate(dueDate);
-                    break;
-                }
-                std::cout << "Due date format is incorrect!" << std::endl;
+            
+            if (task.getRecurringOpt() == "daily") {
+                dueDateTimeT += 3600 * 24;
             }
+            else if(task.getRecurringOpt() == "monthly"){
+                dueDateTimeT += 3600 * 24 * getDaysInMonth2(year, month);
+            }
+            else if (task.getRecurringOpt() == "yearly") {
+                dueDateTimeT += 3600 * 24 * 365;
+            }
+
+            std::cout << "\nReminder: Task '" << task.getTitle() << "' is due now! It has already been completed but it is a " << task.getRecurringOpt() << " recurring task!" << std::endl;
+            std::cout << "Setting task to incomplete! Respective, dependants and dependecies are also set to incomplete!" << std::endl;
+            
+            std::tm newDueDateTime;
+#if defined(_MSC_VER) // For Microsoft Visual Studio
+            localtime_s(&newDueDateTime, &dueDateTimeT);
+#else // For other compilers
+            localtime_r(&dueDateTimeT, &newDueDateTime);
+#endif
+            std::ostringstream oss;
+            oss << std::put_time(&newDueDateTime, "%Y-%m-%d %H:%M");
+            std::string newdueStr = oss.str();
+            task.setDueDate(newdueStr);
+            task.setCompleted(false);
+
+            std::cout << "New Due Date Time: " << newdueStr << std::endl;
 
             std::cout << "> ";
         }
 
-   
-        
     }
 
 }
@@ -184,12 +221,16 @@ void Reminder::checkTasksAndRemindLonger() {
 
             dueDateStream >> year >> dash1 >> month >> dash2 >> day >> hour >> colon >> minute;
 
-            std::cout << "\nDays to date:" << daysToDate << std::endl;
-            if (daysToDate == 0 && localTime.tm_hour > hour) {
+            //std::cout << "Hours to date: " << daysToDate << std::endl;
+            if (daysToDate < -1) {
+                std::cout << "\nReminder: Task '" << task.getTitle() << "' was due on " << task.getDueDate() << " and is still incomplete!" << std::endl;
+                std::cout << "> ";
+            }
+            else if (daysToDate < 24 ){
                 std::cout << "\nReminder: Task '" << task.getTitle() << "' is due soon!" << std::endl;
                 std::cout << "> ";
             }
-            else if (daysToDate == 1)
+            else if (daysToDate > 24 && daysToDate < 48)
             {
 
                 std::cout << "\nReminder: Task '" << task.getTitle() << "' is due tomorrow!" << std::endl;

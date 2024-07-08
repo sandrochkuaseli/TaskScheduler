@@ -5,7 +5,7 @@
 #include <sstream>
 
 void FileHandler::exportTasks(const std::string& filename, const std::vector<Task>& tasks) {
-    std::ofstream file(filename);
+    std::ofstream file(filename, std::ios::trunc);
     if (file.is_open()) {
         for (const auto& task : tasks) {
             task.saveToFile(file);
@@ -43,6 +43,9 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
             std::istringstream recurringStream(recurringStr);
             recurringStream >> recurring;
 
+            std::string recurrOption;
+            std::getline(file, recurrOption);
+
             std::vector<int> dependencies;
             std::string dependencyStr;
             std::getline(file, dependencyStr);
@@ -73,13 +76,16 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
             std::istringstream completedStream(completedStr);
             completedStream >> completed;
 
-            Task task(title, description, dueDate, priority, recurring, dependencies, id);
+            Task task(title, description, dueDate, priority, recurring, recurrOption, dependencies, id);
+            
+            task.setTaskID(tasks.size());
             if (TaskScheduler::checkFormat(task)) {
                 
                 for (int i : dependendants) {
 
                     task.setDependant(i);
                 }
+
                 task.setCompleted(completed);
                 tasks.push_back(task);
             }
@@ -96,21 +102,4 @@ void FileHandler::importTasks(const std::string& filename, std::vector<Task>& ta
     else {
         std::cout << "Unable to open file: " << filename << std::endl;
     }
-}
-
-
-
-void FileHandler::writeTasksToFile(const std::string& filename, const std::vector<Task>& tasks) {
-    std::ofstream file(filename, std::ios::trunc);
-    if (file.is_open()) {
-        for (const auto& task : tasks) {
-            task.saveToFile(file);
-        }
-
-        file.close();
-    }
-    else {
-        std::cout << "Unable to open file: " << filename << std::endl;
-    }
-    
 }

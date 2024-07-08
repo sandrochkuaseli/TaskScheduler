@@ -16,12 +16,12 @@ public:
     void addTask(const Task& task);
     void editTask(int index, std::string attribute, std::string newAttributeDefinition);
     void removeTask(int index);
-    void listTasks() const;
+    void listTasks(std::vector<Task> taskVec) const;
+    void listTasksByPriority() const;
     void showTask(int index);
-    void exportTasks() const;
+    void exportTasks(std::string filename) const;
     void importTasks(const std::string& importFilename);
     void loadTasksFromFile();
-    void saveTasksToFile() const;
     void removeAllTasks();
     void removeWD(int index);
     static bool checkFormat(const Task& task);
