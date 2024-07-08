@@ -7,10 +7,17 @@
 #include <ctime>
 #include <queue>
 
+/*
+    Constructor
+    Imports tasks from local 'tasks.txt' file
+*/
 TaskScheduler::TaskScheduler(const std::string& filename) : filename(filename) {
     loadTasksFromFile();
 }
 
+/*
+    Handles addition of tasks from command line
+*/
 void TaskScheduler::addTask(const Task& task) {
     bool correctFormat = true;
     
@@ -41,82 +48,87 @@ void TaskScheduler::addTask(const Task& task) {
 
 }
 
+
+/*
+    Edits one of the attributes
+*/
 void TaskScheduler::editTask(int index, std::string attribute, std::string newAttributeDefinition) {
-    if (index >= 0 && index < tasks.size()) {
-        if (attribute == "Title" || attribute == "title") {
-            tasks[index].setTitle(newAttributeDefinition);
-        }
-        else if (attribute == "Description" || attribute == "description") {
-            tasks[index].setDescription(newAttributeDefinition);
-        }
-        else if (attribute == "Due Date" || attribute == "due date" || attribute == "Due date") {
-            if (dueDateValidity(newAttributeDefinition)) {
 
-                tasks[index].setDueDate(newAttributeDefinition);
-            }
-            else {
-                std::cout << "Invalid input! Date format is incorrect!" << std::endl;
-            }
-        }
-        else if (attribute == "Priority" || attribute == "priority") {
-            std::istringstream priorityStream(newAttributeDefinition);
-            int priority;
-            priorityStream >> priority;
-            if (priority > 0 && priority <= 5) {
-
-                tasks[index].setPriority(priority);
-            }
-            else {
-                std::cout << "Invalid input!" << std::endl;
-            }
-        }
-        else if (attribute == "Recurrence" || attribute == "recurrence") {
-
-            if (newAttributeDefinition == "daily" || newAttributeDefinition == "monthly" || newAttributeDefinition == "yearly") {
-                tasks[index].setRecurring(true);
-                tasks[index].setRecurringOpt(newAttributeDefinition);
-            }
-            else if (newAttributeDefinition == "no" || newAttributeDefinition == "n") {
-                tasks[index].setRecurring(false);
-            }
-            else {
-                std::cout << "Invalid input! Choose one of four options provided!" << std::endl;
-            }
-
-        }
-        else if (attribute == "Dependence" || attribute == "dependence") {
-            for (int i : tasks[index].getDependencies()) {
-                tasks[i].removeDependant(index);
-                tasks[index].removeDependency(i);
-            }
-            std::vector<int> newDependencies;
-            int val;
-            std::istringstream dependencyStream(newAttributeDefinition);
-            while (dependencyStream >> val) {
-                newDependencies.push_back(val);
-            }
-
-            for (int i : newDependencies) {
-                if(i == index){
-                    std::cout << "Can't add '" << i << "', as it is this task's ID! It is already dependants on itself!" << std::endl;
-                }
-                else if (0 < i && i >= tasks.size()) {
-                    std::cout << "No such task with ID '" << i << "' exists!" << std::endl;
-
-                }
-                else {
-                    tasks[index].setDependency(i);
-                    tasks[i].setDependant(index);
-                }
-            }
-
-        }
-    } 
-    else {
-        std::cout << "Task index out of bounds!" << std::endl;
+    if (attribute == "Title" || attribute == "title") {
+        tasks[index].setTitle(newAttributeDefinition);
     }
-}
+    else if (attribute == "Description" || attribute == "description") {
+        tasks[index].setDescription(newAttributeDefinition);
+    }
+    else if (attribute == "Due Date" || attribute == "due date" || attribute == "Due date") {
+        if (dueDateValidity(newAttributeDefinition)) {
 
+            tasks[index].setDueDate(newAttributeDefinition);
+        }
+        else {
+            std::cout << "Invalid input! Date format is incorrect!" << std::endl;
+        }
+    }
+    else if (attribute == "Priority" || attribute == "priority") {
+        std::istringstream priorityStream(newAttributeDefinition);
+        int priority;
+        priorityStream >> priority;
+        if (priority > 0 && priority <= 5) {
+
+            tasks[index].setPriority(priority);
+        }
+        else {
+            std::cout << "Invalid input!" << std::endl;
+        }
+    }
+    else if (attribute == "Recurrence" || attribute == "recurrence") {
+
+        if (newAttributeDefinition == "daily" || newAttributeDefinition == "monthly" || newAttributeDefinition == "yearly") {
+            tasks[index].setRecurring(true);
+            tasks[index].setRecurringOpt(newAttributeDefinition);
+        }
+        else if (newAttributeDefinition == "no" || newAttributeDefinition == "n") {
+            tasks[index].setRecurring(false);
+        }
+        else {
+            std::cout << "Invalid input! Choose one of four options provided!" << std::endl;
+        }
+
+    }
+    else if (attribute == "Dependence" || attribute == "dependence") {
+        for (int i : tasks[index].getDependencies()) {
+            tasks[i].removeDependant(index);
+            tasks[index].removeDependency(i);
+        }
+        std::vector<int> newDependencies;
+        int val;
+        std::istringstream dependencyStream(newAttributeDefinition);
+        while (dependencyStream >> val) {
+            newDependencies.push_back(val);
+        }
+
+        for (int i : newDependencies) {
+            if(i == index){
+                std::cout << "Can't add '" << i << "', as it is this task's ID! It is already dependants on itself!" << std::endl;
+            }
+            else if (0 < i && i >= tasks.size()) {
+                std::cout << "No such task with ID '" << i << "' exists!" << std::endl;
+
+            }
+            else {
+                tasks[index].setDependency(i);
+                tasks[i].setDependant(index);
+            }
+        }
+
+    }
+} 
+
+
+/*
+    Removes a task from the task set.
+    Adjusts index and dependants and dependencies in relation to other tasks accordingly.
+*/
 void TaskScheduler::removeTask(int index) {
     if (index >= 0 && index < tasks.size()) {
 
@@ -124,21 +136,11 @@ void TaskScheduler::removeTask(int index) {
 
             tasks[depIndex].removeDependant(index);
 
-            for (int i : tasks[index].getDependencies()) {
-                std::cout << i << ", ";
-            }
-            std::cout << std::endl;
-
         }
 
         for (int depIndex : tasks[index].getDependants()) {
 
             tasks[depIndex].removeDependency(index);
-
-            for (int i : tasks[depIndex].getDependencies()) {
-                std::cout << i << ", ";
-            }
-            std::cout << std::endl;
 
         }
 
@@ -149,6 +151,7 @@ void TaskScheduler::removeTask(int index) {
             tasks[j].adjustDependantList(index);
             tasks[j].setTaskID(j);
         }
+        std::cout << "Task sucessfully removed!" << std::endl;
 
     }
     else {
@@ -156,6 +159,10 @@ void TaskScheduler::removeTask(int index) {
     }
 }
 
+
+/*
+    Lists all tasks
+*/
 void TaskScheduler::listTasks(std::vector<Task> taskVec) const {
     if (tasks.empty()) {
         std::cout << "No tasks found!" << std::endl;
@@ -168,6 +175,10 @@ void TaskScheduler::listTasks(std::vector<Task> taskVec) const {
     }
 }
 
+
+/*
+    Lists all tasks based on the priority (highest priority first).
+*/
 void TaskScheduler::listTasksByPriority() const
 {
     std::vector<Task> sortedByPriority = tasks;
@@ -179,6 +190,9 @@ void TaskScheduler::listTasksByPriority() const
 
 }
 
+/*
+    Shows every attribute of the task
+*/
 void TaskScheduler::showTask(int index) {
     if (index >= 0 && index < tasks.size()) {
         std::cout << "Title: " <<  tasks[index].getTitle() << std::endl;
@@ -225,51 +239,31 @@ void TaskScheduler::exportTasks(std::string filename) const {
     FileHandler::exportTasks(filename, tasks);
 }
 
+/*
+    Import tasks at any point
+*/
 void TaskScheduler::importTasks(const std::string& importFilename) {
     FileHandler::importTasks(importFilename, tasks);
 }
 
+/*
+    Initial import of the tasks
+*/
 void TaskScheduler::loadTasksFromFile() {
     FileHandler::importTasks(filename, tasks);
 }
 
+/*
+    Removes all tasks from the task set
+*/
 void TaskScheduler::removeAllTasks() {
     tasks.clear();
 }
 
-void TaskScheduler::removeWD(int index)
-{
-    for (int i : tasks[index].getDependants()) {
-        removeTask(i);
-    }
-}
-
-int getDaysInMonth(int year, int month) {
-    // Checks for leap year
-    if (month == 2) {
-        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
-            return 29;
-        }
-        else {
-            return 28;
-        }
-    }
-     
-    switch (month)
-    {
-    case 4:
-    case 6:
-    case 9:
-    case 11:
-        return 30;
-    default:
-        break;
-    }
-
-    return 31;
-}
-
-
+/*
+    Checks validity of provided due date.
+    Checks if the provided format is valid and then checks whether the due date is later than current date.
+*/
 bool TaskScheduler::dueDateValidity(const std::string& dueDateString) {
     std::regex pattern("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}");
 
@@ -328,6 +322,9 @@ bool TaskScheduler::dueDateValidity(const std::string& dueDateString) {
     return false;
 }
 
+/*
+    Function to check overall format of the task 
+*/
 bool TaskScheduler::checkFormat(const Task& task)
 {
     bool valid = true;
@@ -340,7 +337,7 @@ bool TaskScheduler::checkFormat(const Task& task)
         std::cout << "!! Task not added to the scheduler: Due date format is incorrect !!" << std::endl;
         valid = false;
     }
-    if (task.getRecurringOpt() != "daily" && task.getRecurringOpt() != "monthly" && task.getRecurringOpt() != "yearly") {
+    if (task.isRecurring() && task.getRecurringOpt() != "daily" && task.getRecurringOpt() != "monthly" && task.getRecurringOpt() != "yearly") {
         std::cout << "!!Task not added to the scheduler : Invalid recurrence option provided !!" << std::endl;
     }
     else if (1 < task.getPriority() && task.getPriority() > 5) {
@@ -351,85 +348,106 @@ bool TaskScheduler::checkFormat(const Task& task)
     return valid;
 }
 
+/*
+    Setter for the dependants list, push one element
+*/
 void TaskScheduler::setDependants(int taskId, int dependantId)
 {
     tasks[taskId].getDependants().push_back(dependantId);
 }
 
+/*
+    Getter method. Returns the set of tasks
+*/
 const std::vector<Task>& TaskScheduler::getTasks() const {
     return tasks;
 }
 
+/*
+    Getter method. Returns the set of tasks
+*/
 std::vector<Task>& TaskScheduler::getTasks() { 
     return tasks;
 }
 
+/*
+    Sets completion status of task.
+    Updates other tasks accordingly.
+    We don't do anything if the task is already completed and we set it to completed again.
+    If tasks is set to true, all the tasks dependant to it are also automatically set to true and dependencies are also updated accordingly.
+    If all dependants of a task are complete than the task it self is also complete.
+    Same goes for when we set task to incomplete.
+*/
 void TaskScheduler::setComplete(int taskId, bool complete)
 {
-    tasks[taskId].setCompleted(complete);
+    if (tasks[taskId].getCompleted() != complete) {
 
-    std::queue<Task> taskQueueDependency;
-    taskQueueDependency.push(tasks[taskId]);
-    std::vector<bool> visitedDependency(tasks.size(), false);
-    visitedDependency[taskId] = true;
+        tasks[taskId].setCompleted(complete);
 
-    while (!taskQueueDependency.empty()) {
-        Task task = taskQueueDependency.front();
-        taskQueueDependency.pop();
+        std::queue<Task> taskQueueDependency;
+        taskQueueDependency.push(tasks[taskId]);
+        std::vector<bool> visitedDependency(tasks.size(), false);
+        visitedDependency[taskId] = true;
 
-        for (int i : task.getDependencies()) {
-            if (!visitedDependency[i]) {
+        while (!taskQueueDependency.empty()) {
+            Task task = taskQueueDependency.front();
+            taskQueueDependency.pop();
 
-                visitedDependency[i] = true;
+            for (int i : task.getDependencies()) {
+                if (!visitedDependency[i]) {
 
-                if (complete) {
-                    bool isComplete = true;
-                    for (int j : tasks[i].getDependants()) {
-                        if (!tasks[j].getCompleted()) {
-                            isComplete = false;
-                            break;
+                    visitedDependency[i] = true;
+
+                    if (complete) {
+                        bool isComplete = true;
+                        for (int j : tasks[i].getDependants()) {
+                            if (!tasks[j].getCompleted()) {
+                                isComplete = false;
+                                break;
+                            }
+                        }
+
+                        if (isComplete) {
+                            tasks[i].setCompleted(true);
+                            taskQueueDependency.push(tasks[i]);
                         }
                     }
-
-                    if (isComplete) {
-                        tasks[i].setCompleted(true);
-                        taskQueueDependency.push(tasks[i]);
+                    else {
+                        if (tasks[i].getCompleted() != complete) {
+                            tasks[i].setCompleted(complete);
+                            taskQueueDependency.push(tasks[i]);
+                        }
                     }
-                }
-                else {
-                    if (tasks[i].getCompleted() != complete) {
-                        tasks[i].setCompleted(complete);
-                        taskQueueDependency.push(tasks[i]);
-                    }
-                }
                 
+                }
             }
         }
-    }
 
 
-    std::queue<Task> taskQueueDependant;
-    taskQueueDependant.push(tasks[taskId]);
-    std::vector<bool> visitedDependants(tasks.size(), false);
-    visitedDependants[taskId] = true;
+        std::queue<Task> taskQueueDependant;
+        taskQueueDependant.push(tasks[taskId]);
+        std::vector<bool> visitedDependants(tasks.size(), false);
+        visitedDependants[taskId] = true;
 
-    while (!taskQueueDependant.empty()) {
-        Task task = taskQueueDependant.front();
-        taskQueueDependant.pop();
+        while (!taskQueueDependant.empty()) {
+            Task task = taskQueueDependant.front();
+            taskQueueDependant.pop();
 
-        for (int i : task.getDependants()) {
-            if (!visitedDependants[i]) {
-                visitedDependants[i] = true;
-                if (tasks[i].getCompleted() != complete) {
-                    tasks[i].setCompleted(complete);
-                    taskQueueDependant.push(tasks[i]);
+            for (int i : task.getDependants()) {
+                if (!visitedDependants[i]) {
+                    visitedDependants[i] = true;
+                    if (tasks[i].getCompleted() != complete) {
+                        tasks[i].setCompleted(complete);
+                        taskQueueDependant.push(tasks[i]);
+                    }
                 }
-            }
             
+            }
         }
     }
     
 }
+
 
 Task& TaskScheduler::operator[](size_t index) {
     return tasks[index];

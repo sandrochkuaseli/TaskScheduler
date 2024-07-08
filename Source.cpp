@@ -3,7 +3,11 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <regex>
 
+/*
+    Print instructions on what the commands do
+*/
 void printInstructions() {
     std::cout << "Welcome to Task Scheduler!" << std::endl;
     std::cout << "Commands:" << std::endl;
@@ -11,7 +15,6 @@ void printInstructions() {
     std::cout << "- edit: Edit an existing task" << std::endl;
     std::cout << "- remove: Remove a task" << std::endl;
     std::cout << "- remove all: Remove all tasks" << std::endl;
-    std::cout << "- remove wd: Remove a task along with all its dependants" << std::endl;
     std::cout << "- list: List all tasks" << std::endl;
     std::cout << "- listP: List all tasks based on priority" << std::endl;
     std::cout << "- show: Show a task with all its attributes" << std::endl;
@@ -23,6 +26,46 @@ void printInstructions() {
     std::cout << "- quit: Quit the program" << std::endl;
 }
 
+/*
+    Checks if the given string only contains one single integer and nothing else
+*/
+bool isSingleInteger(const std::string& input) {
+    std::regex pattern(R"(^\s*\d+\s*$)");
+    if (!std::regex_match(input, pattern)) {
+        
+        std::cout << "Invalid input! Please provide single integer!" << std::endl;
+        return false;
+    }
+    return true;
+}
+
+/*
+    Checks validity of the provided index
+*/
+bool checkIndexValidity(int& index, TaskScheduler taskScheduler) {
+    std::string intLine;
+    std::getline(std::cin, intLine);
+    std::istringstream indexStream(intLine);
+    if (!isSingleInteger(intLine)) {
+        return false;
+    }
+    indexStream >> index;
+
+    if (index >= taskScheduler.getTasks().size() || index < 0) {
+        std::cout << "Invalid index! Out of bounds!" << std::endl;
+        return false;
+    }
+
+    return true;
+}
+
+
+/*
+    Main function.
+    Manages the flow of the whole program.
+    Reads the given command and performs actions accordingly.
+    Reminder system is also ran in the main function on a seperate thread, it terminates as we quit the application.
+*/
 int main() {
     TaskScheduler taskScheduler("tasks.txt");
     Reminder reminderSystem(taskScheduler);
@@ -42,6 +85,7 @@ int main() {
             int priority;
             bool recurring;
             std::vector<int> dependencies;
+
 
             while (true) {
                 std::cout << "Enter task title: ";
@@ -79,6 +123,10 @@ int main() {
                 std::string priorityStr;
                 std::getline(std::cin, priorityStr);
                 std::istringstream priorityStream(priorityStr);
+
+                if (!isSingleInteger(priorityStr)) {
+                    continue;
+                }
 
                 if (priorityStream >> priority) {
                     if (priority >= 1 && priority <= 5) {
@@ -158,10 +206,12 @@ int main() {
         }
         else if (command == "edit") {
             // Implement edit task functionality
-            int index;
+            int index{};
             std::cout << "Enter task index to edit: ";
-            std::cin >> index;
-            std::cin.ignore();
+            if (!checkIndexValidity(index, taskScheduler)) {
+                continue;
+            }
+            
             std::cout << "Choose one attribute to edit (Title, Description, Due date, Priority, Recurrence, Dependence): ";
             std::string attribute;
             std::getline(std::cin, attribute);
@@ -209,7 +259,8 @@ int main() {
 
             }
             else {
-                std::cout << "Edit not possible! Invalid task index or invalid attribute provided!" << std::endl;
+                std::cout << "Edit not possible! Invalid attribute provided!" << std::endl;
+                continue;
             }
 
             if (!newAttributeDefinition.empty()) {
@@ -223,16 +274,13 @@ int main() {
         }
         else if (command == "remove") {
             // Implement remove task functionality
-            int index;
             std::cout << "Enter task index to remove: ";
-
-            if (std::cin >> index) {
-                taskScheduler.removeTask(index);
-                
+            int index{};
+            if (!checkIndexValidity(index, taskScheduler)) {
+                continue;
             }
-            std::cin.ignore();
-
-
+            taskScheduler.removeTask(index);
+            
         }
         else if (command == "list") {
             // Implement list tasks functionality
@@ -255,13 +303,12 @@ int main() {
             std::string importFilename;
             std::cout << "Enter filename to import from: ";
             std::getline(std::cin, importFilename);
-
+            taskScheduler.removeAllTasks();
             taskScheduler.importTasks(importFilename);
 
         }
         else if (command == "quit") {
             std::cout << "Exiting program..." << std::endl;
-
             break;
 
         }
@@ -269,40 +316,35 @@ int main() {
             taskScheduler.removeAllTasks();
         }
         else if (command == "show") {
-            int index;
             std::cout << "Enter task index to show: ";
-            std::cin >> index;
-            std::cin.ignore();
+            int index{};
+            if (!checkIndexValidity(index, taskScheduler)) {
+                continue;
+            }
             taskScheduler.showTask(index);
-        }
-        else if (command == "remove wd") {
-            int index;
-            std::cout << "Enter task index to remove: ";
-            std::cin >> index;
-            std::cin.ignore();
-            taskScheduler.removeWD(index);
         }
         else if (command == "save") {
             taskScheduler.exportTasks("tasks.txt");
         }
         else if (command == "completed") {
             std::cout << "Enter task index you completed: ";
-            int index;
-            if (std::cin >> index) {
-
-                taskScheduler.setComplete(index, true);
+            int index{};
+            if (!checkIndexValidity(index, taskScheduler)) {
+                continue;
             }
-            std::cin.ignore();
+            taskScheduler.setComplete(index, true);
             
         }
         else if (command == "incomplete") {
-            std::cout << "Enter task index you completed: ";
-            int index;
-            if (std::cin >> index) {
-
-                taskScheduler.setComplete(index, false);
+            std::cout << "Enter task index to set to incomplete: ";
+            int index{};
+            if (!checkIndexValidity(index, taskScheduler)) {
+                continue;
             }
-            std::cin.ignore();
+            taskScheduler.setComplete(index, false);
+        }
+        else if (command == "help") {
+            printInstructions();
         }
         else {
             std::cout << "Invalid command. Type 'help' for instructions." << std::endl;

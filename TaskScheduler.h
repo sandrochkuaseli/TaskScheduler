@@ -5,6 +5,11 @@
 #include <vector>
 #include <string>
 
+
+/*
+    Main class that combines most of the other classes functionalities.
+    Handles almost every action with tasks.
+*/
 class TaskScheduler {
 private:
     std::vector<Task> tasks;
@@ -23,7 +28,6 @@ public:
     void importTasks(const std::string& importFilename);
     void loadTasksFromFile();
     void removeAllTasks();
-    void removeWD(int index);
     static bool checkFormat(const Task& task);
     static bool dueDateValidity(const std::string& dueDateString);
 
@@ -35,6 +39,31 @@ public:
 
     Task& operator[](size_t index);
     const Task& operator[](size_t index) const;
+
+    static int getDaysInMonth(int year, int month) {
+        // Checks for leap year
+        if (month == 2) {
+            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+                return 29;
+            }
+            else {
+                return 28;
+            }
+        }
+
+        switch (month)
+        {
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            return 30;
+        default:
+            break;
+        }
+
+        return 31;
+    }
 };
 
 #endif // TASK_SCHEDULER_H

@@ -5,51 +5,89 @@
 #include <sstream>
 
 
+/*
+Reminder class constructor
+*/
 Reminder::Reminder(TaskScheduler& taskScheduler) :
-    taskScheduler(taskScheduler), running(false) {}
+    taskScheduler(taskScheduler), running{ false } {}
+
 
 Reminder::~Reminder() {
     stop();
 }
 
+/*
+Start two threads, one checks every 59 seconds other check checks every 59 minutes
+*/
 void Reminder::start() {
-    if (!running) {
-        running = true;
+    if (!running.load()) {
+        running.store(true);
 
         reminderThreadMin = std::thread(&Reminder::runEveryMin, this);
         reminderThreadHour = std::thread(&Reminder::runEveryHour, this);
     }
 }
 
+
+
+/*
+    Terminate threads
+    We use cv and mtx to tell tasks to wake up for termination
+*/
 void Reminder::stop() {
-    if (running) {
-        running = false;
+    if (running.load()) {
+        {
+            std::lock_guard<std::mutex> lock(mtx);
+            running.store(false);
+
+        }
+
+        cv.notify_all();
+
         if (reminderThreadMin.joinable()) {
             reminderThreadMin.join();
+
         }
         if (reminderThreadHour.joinable()) {
             reminderThreadHour.join();
         }
+
     }
 }
+
+/*
+    Runs checksTasksAndRemindNow() every 59 seconds
+*/
 
 void Reminder::runEveryMin() {
-    while (running) {
+    std::unique_lock<std::mutex> lock(mtx);
+    while (running.load()) {
         checkTasksAndRemindNow();
-        std::this_thread::sleep_for(std::chrono::seconds(59));
+        if (cv.wait_for(lock, std::chrono::seconds(59), [this] { return !running.load(); })) {
+            break;
+        }
     }
 }
 
+/*
+    Runs checksTasksAndRemindLonger() every 59 minutes
+*/
 void Reminder::runEveryHour()
 {
-    while (running) {
+    std::unique_lock<std::mutex> lock(mtx);
+    while (running.load()) {
         checkTasksAndRemindLonger();
-        std::this_thread::sleep_for(std::chrono::minutes(59));
+        if (cv.wait_for(lock, std::chrono::minutes(59), [this] { return !running.load(); })) {
+            break;
+        }
     }
 }
 
 
-int countDaysToDate(std::string dueDateStr) {
+/*
+    Returns int which represents difference between current date and due date in hours
+*/
+int countHoursToDate(std::string dueDateStr) {
     auto now = std::chrono::system_clock::now();
     std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
 
@@ -82,32 +120,10 @@ int countDaysToDate(std::string dueDateStr) {
     return days;
 }
 
-int getDaysInMonth2(int year, int month) {
-    // Checks for leap year
-    if (month == 2) {
-        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
-            return 29;
-        }
-        else {
-            return 28;
-        }
-    }
-
-    switch (month)
-    {
-    case 4:
-    case 6:
-    case 9:
-    case 11:
-        return 30;
-    default:
-        break;
-    }
-
-    return 31;
-}
-
-
+/*
+    Reminds about tasks that are due at the moment
+    Renews due date according to recurring settings
+*/
 void Reminder::checkTasksAndRemindNow() {
     auto now = std::chrono::system_clock::now();
     std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
@@ -169,7 +185,7 @@ void Reminder::checkTasksAndRemindNow() {
                 dueDateTimeT += 3600 * 24;
             }
             else if(task.getRecurringOpt() == "monthly"){
-                dueDateTimeT += 3600 * 24 * getDaysInMonth2(year, month);
+                dueDateTimeT += 3600 * 24 * TaskScheduler::getDaysInMonth(year, month);
             }
             else if (task.getRecurringOpt() == "yearly") {
                 dueDateTimeT += 3600 * 24 * 365;
@@ -199,6 +215,9 @@ void Reminder::checkTasksAndRemindNow() {
 
 }
 
+/*
+    Reminds about tasks that are either past their due date or are due in the future (months, weeks, days)
+*/
 void Reminder::checkTasksAndRemindLonger() {
     auto now = std::chrono::system_clock::now();
     std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
@@ -212,8 +231,8 @@ void Reminder::checkTasksAndRemindLonger() {
 
     for (Task task : taskScheduler.getTasks()) {
         if (!task.getCompleted()) {
-            int daysToDate = countDaysToDate(task.getDueDate());
-
+            int hoursToDate = countHoursToDate(task.getDueDate());
+            int daysToDate = hoursToDate / 24;
             std::istringstream dueDateStream(task.getDueDate());
 
             int year, month, day, hour, minute;
@@ -221,18 +240,17 @@ void Reminder::checkTasksAndRemindLonger() {
 
             dueDateStream >> year >> dash1 >> month >> dash2 >> day >> hour >> colon >> minute;
 
-            //std::cout << "Hours to date: " << daysToDate << std::endl;
-            if (daysToDate < -1) {
+            //std::cout << "Hours to date: " << hoursToDate << std::endl;
+            if (hoursToDate < -1) {
                 std::cout << "\nReminder: Task '" << task.getTitle() << "' was due on " << task.getDueDate() << " and is still incomplete!" << std::endl;
                 std::cout << "> ";
             }
-            else if (daysToDate < 24 ){
+            else if (hoursToDate > 0 && hoursToDate < 24 ){
                 std::cout << "\nReminder: Task '" << task.getTitle() << "' is due soon!" << std::endl;
                 std::cout << "> ";
             }
-            else if (daysToDate > 24 && daysToDate < 48)
+            else if (hoursToDate > 24 && hoursToDate < 36)
             {
-
                 std::cout << "\nReminder: Task '" << task.getTitle() << "' is due tomorrow!" << std::endl;
                 std::cout << "> ";
             }

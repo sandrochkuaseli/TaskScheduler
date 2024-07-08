@@ -4,13 +4,17 @@
 #include "TaskScheduler.h"
 #include <chrono>
 #include <thread>
+#include <condition_variable>
+#include <mutex>
 
 class Reminder {
 private:
     TaskScheduler& taskScheduler;
-    bool running;
+    std::atomic<bool> running;
     std::thread reminderThreadMin;
     std::thread reminderThreadHour;
+    std::mutex mtx;
+    std::condition_variable cv;
 
 public:
     ~Reminder();

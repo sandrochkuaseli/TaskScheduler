@@ -4,6 +4,9 @@
 #include "Task.h"
 #include <vector>
 
+/*
+    Handles importing tasks from file and exporting tasks to a file
+*/
 class FileHandler {
 public:
     static void exportTasks(const std::string& filename, const std::vector<Task>& tasks);

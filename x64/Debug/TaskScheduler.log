@@ -1,2 +1,2 @@
-﻿  Reminder.cpp
-  TaskScheduler.vcxproj -> C:\Users\Sandroi\Desktop\TaskScheduler\x64\Debug\TaskScheduler.exe
+﻿  TaskScheduler.cpp
+LINK : fatal error LNK1168: cannot open C:\Users\Sandroi\Desktop\TaskScheduler\x64\Debug\TaskScheduler.exe for writing
