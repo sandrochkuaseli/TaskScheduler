@@ -1,0 +1,410 @@
+\doxysection{Task\+Scheduler/\+Source.cpp File Reference}
+\hypertarget{_source_8cpp}{}\label{_source_8cpp}\index{TaskScheduler/Source.cpp@{TaskScheduler/Source.cpp}}
+{\ttfamily \#include "{}Task\+Scheduler.\+h"{}}\newline
+{\ttfamily \#include "{}Reminder.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$regex$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_source_8cpp_a072fe29babd6f47d66cd39f15a7ecf4c}{print\+Instructions}} ()
+\item 
+bool \mbox{\hyperlink{_source_8cpp_a9da39fd0b60e24db1d50184eed845585}{is\+Single\+Integer}} (const std\+::string \&input)
+\item 
+bool \mbox{\hyperlink{_source_8cpp_ab1a8be0a28a02c0892a4059a5db3722a}{check\+Index\+Validity}} (int \&index, \mbox{\hyperlink{class_task_scheduler}{Task\+Scheduler}} task\+Scheduler)
+\item 
+int \mbox{\hyperlink{_source_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_source_8cpp_ab1a8be0a28a02c0892a4059a5db3722a}\index{Source.cpp@{Source.cpp}!checkIndexValidity@{checkIndexValidity}}
+\index{checkIndexValidity@{checkIndexValidity}!Source.cpp@{Source.cpp}}
+\doxysubsubsection{\texorpdfstring{checkIndexValidity()}{checkIndexValidity()}}
+{\footnotesize\ttfamily \label{_source_8cpp_ab1a8be0a28a02c0892a4059a5db3722a} 
+bool check\+Index\+Validity (\begin{DoxyParamCaption}\item[{int \&}]{index}{, }\item[{\mbox{\hyperlink{class_task_scheduler}{Task\+Scheduler}}}]{task\+Scheduler}{}\end{DoxyParamCaption})}
+
+Checks validity of the provided index 
+
+Definition at line \mbox{\hyperlink{_source_8cpp_source_l00045}{45}} of file \mbox{\hyperlink{_source_8cpp_source}{Source.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ std::string\ intLine;}
+\DoxyCodeLine{00047\ \ \ \ \ std::getline(std::cin,\ intLine);}
+\DoxyCodeLine{00048\ \ \ \ \ std::istringstream\ indexStream(intLine);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_source_8cpp_a9da39fd0b60e24db1d50184eed845585}{isSingleInteger}}(intLine))\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ indexStream\ >>\ index;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >=\ taskScheduler.\mbox{\hyperlink{class_task_scheduler_a89207cd0ec14e701a5fd4daa1a2d328a}{getTasks}}().size()\ ||\ index\ <\ 0)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ index!\ Out\ of\ bounds!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00060\ \}}
+
+\end{DoxyCode}
+\Hypertarget{_source_8cpp_a9da39fd0b60e24db1d50184eed845585}\index{Source.cpp@{Source.cpp}!isSingleInteger@{isSingleInteger}}
+\index{isSingleInteger@{isSingleInteger}!Source.cpp@{Source.cpp}}
+\doxysubsubsection{\texorpdfstring{isSingleInteger()}{isSingleInteger()}}
+{\footnotesize\ttfamily \label{_source_8cpp_a9da39fd0b60e24db1d50184eed845585} 
+bool is\+Single\+Integer (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input}{}\end{DoxyParamCaption})}
+
+Checks if the given string only contains one single integer and nothing else 
+
+Definition at line \mbox{\hyperlink{_source_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{_source_8cpp_source}{Source.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ std::regex\ pattern(R\textcolor{stringliteral}{"{}(\string^\(\backslash\)s*\(\backslash\)d+\(\backslash\)s*\$)"{});}}
+\DoxyCodeLine{00034\ \textcolor{stringliteral}{\ \ \ \ }\textcolor{keywordflow}{if}\ (!std::regex\_match(input,\ pattern))\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ input!\ Please\ provide\ single\ integer!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00040\ \}}
+
+\end{DoxyCode}
+\Hypertarget{_source_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{Source.cpp@{Source.cpp}!main@{main}}
+\index{main@{main}!Source.cpp@{Source.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{_source_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Main function. Manages the flow of the whole program. Reads the given command and performs actions accordingly. \doxylink{class_reminder}{Reminder} system is also ran in the main function on a seperate thread, it terminates as we quit the application. 
+
+Definition at line \mbox{\hyperlink{_source_8cpp_source_l00069}{69}} of file \mbox{\hyperlink{_source_8cpp_source}{Source.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{class_task_scheduler}{TaskScheduler}}\ taskScheduler(\textcolor{stringliteral}{"{}tasks.txt"{}});}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{class_reminder}{Reminder}}\ reminderSystem(taskScheduler);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{_source_8cpp_a072fe29babd6f47d66cd39f15a7ecf4c}{printInstructions}}();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ reminderSystem.start();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ std::string\ command;}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ std::getline(std::cin,\ command);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}add"{}})\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implement\ add\ task\ functionality}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ title,\ description,\ dueDate,\ reccOption;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ priority;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ recurring;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<int>\ dependencies;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ task\ title:\ "{}};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ title);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!title.empty())\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Title\ cannot\ be\ empty!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ task\ description:\ "{}};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ description);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!description.empty())\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Description\ cannot\ be\ empty!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ due\ date\ (YYYY-\/MM-\/DD\ HH:MM):\ "{}};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ dueDate);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dueDate.empty())\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Due\ date\ cannot\ be\ empty!"{}};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (taskScheduler.dueDateValidity(dueDate))\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Due\ date\ format\ is\ incorrect!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ priority\ (1-\/5):\ "{}};}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ priorityStr;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ priorityStr);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::istringstream\ priorityStream(priorityStr);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_source_8cpp_a9da39fd0b60e24db1d50184eed845585}{isSingleInteger}}(priorityStr))\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (priorityStream\ >>\ priority)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (priority\ >=\ 1\ \&\&\ priority\ <=\ 5)\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Priority\ must\ be\ a\ number\ between\ 1\ and\ 5!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Is\ this\ task\ recurring?\ (yes/no):\ "{}};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ recurringInput;}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ recurringInput);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (recurringInput\ ==\ \textcolor{stringliteral}{"{}yes"{}}\ ||\ recurringInput\ ==\ \textcolor{stringliteral}{"{}y"{}})\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ recurring\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Recurrence\ options\ (daily,\ monthly,\ yearly):\ "{}};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ reccOption);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reccOption.empty())\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Field\ can't\ be\ empty!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (reccOption\ ==\ \textcolor{stringliteral}{"{}daily"{}}\ ||\ reccOption\ ==\ \textcolor{stringliteral}{"{}monthly"{}}\ ||\ reccOption\ ==\ \textcolor{stringliteral}{"{}yearly"{}})\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ input!\ Please\ provide\ either\ 'daily',\ 'monthly',\ or\ 'yearly'\ !"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (recurringInput\ ==\ \textcolor{stringliteral}{"{}no"{}}\ ||\ recurringInput\ ==\ \textcolor{stringliteral}{"{}n"{}})\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ recurring\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ input\ for\ recurrence!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (taskScheduler.getTasks().size()\ >\ 0)\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Is\ this\ task\ dependant\ on\ other\ tasks?\ (yes/no):\ "{}};}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ dependencyCont;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ dependencyCont);}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dependencyCont\ ==\ \textcolor{stringliteral}{"{}yes"{}}\ ||\ dependencyCont\ ==\ \textcolor{stringliteral}{"{}y"{}})\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Write\ down\ ID's\ seperated\ by\ spaces:\ "{}};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ dependencyInput;}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ dependencyInput);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::istringstream\ dependenciesStream(dependencyInput);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dependecyID;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ valid\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (dependenciesStream\ >>\ dependecyID)\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dependecyID\ <\ 0\ ||\ dependecyID\ >=\ taskScheduler.getTasks().size())\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ dependency\ ID:\ "{}}\ <<\ dependecyID\ <<\ \textcolor{stringliteral}{"{}\ !"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ valid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dependencies.push\_back(dependecyID);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!valid)\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}First\ task\ can't\ be\ dependant\ as\ no\ other\ tasks\ are\ in\ the\ list!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ taskScheduler.getTasks().size();}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task}{Task}}\ newTask(title,\ description,\ dueDate,\ priority,\ recurring,\ reccOption,\ dependencies,\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ taskScheduler.addTask(newTask);}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}edit"{}})\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implement\ edit\ task\ functionality}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\{\};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ task\ index\ to\ edit:\ "{}};}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_source_8cpp_ab1a8be0a28a02c0892a4059a5db3722a}{checkIndexValidity}}(index,\ taskScheduler))\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Choose\ one\ attribute\ to\ edit\ (Title,\ Description,\ Due\ date,\ Priority,\ Recurrence,\ Dependence):\ "{}};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ attribute;}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ attribute);}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ newAttributeDefinition;}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Title"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}title"{}})\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Previous\ Title:\ "{}}\ <<\ taskScheduler.getTasks()[index].getTitle()\ <<\ std::endl;}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Provide\ new\ Title:\ "{}};}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ newAttributeDefinition);}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Description"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}description"{}})\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Previous\ Description:\ "{}}\ <<\ taskScheduler.getTasks()[index].getDescription()\ <<\ std::endl;}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Provide\ new\ Description:\ "{}};}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ newAttributeDefinition);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Due\ Date"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}due\ date"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}Due\ date"{}})\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Previous\ Due\ Date:\ "{}}\ <<\ taskScheduler.getTasks()[index].getDueDate()\ <<\ std::endl;}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Provide\ new\ Due\ Date\ (YYYY-\/MM-\/DD\ HH:MM):\ "{}};}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ newAttributeDefinition);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Priority"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}priority"{}})\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Previous\ Priority:\ "{}}\ <<\ taskScheduler.getTasks()[index].getPriority()\ <<\ std::endl;}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Provide\ new\ Priority\ (1-\/5):\ "{}};}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ newAttributeDefinition);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Recurrence"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}recurrence"{}})\ \{}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Previous\ Recurrence:\ "{}}\ <<\ (taskScheduler.getTasks()[index].isRecurring()\ ?\ \textcolor{stringliteral}{"{}Recurring"{}}\ :\ \textcolor{stringliteral}{"{}Not\ recurring"{}})\ <<\ std::endl;}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Provide\ new\ Recurrence.\ Options\ -\/\ daily,\ monthly,\ yearly,\ no.\ Is\ this\ task\ recurring?\ :\ "{}};}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ newAttributeDefinition);}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Dependence"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}dependence"{}})\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Previous\ Dependence\ List:\ "{}};}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ taskScheduler.getTasks()[index].getDependencies())\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ i\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (taskScheduler.getTasks()[index].getDependencies().empty())\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Empty!"{}};}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Provide\ new\ Dependence\ List.\ Write\ down\ ID's\ seperated\ by\ spaces\ (If\ not\ dependant\ on\ other\ tasks,\ type\ 'empty'):\ "{}};}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ newAttributeDefinition);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Edit\ not\ possible!\ Invalid\ attribute\ provided!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!newAttributeDefinition.empty())\ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ taskScheduler.editTask(index,\ attribute,\ newAttributeDefinition);}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Field\ cannot\ be\ left\ empty!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}remove"{}})\ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implement\ remove\ task\ functionality}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ task\ index\ to\ remove:\ "{}};}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\{\};}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_source_8cpp_ab1a8be0a28a02c0892a4059a5db3722a}{checkIndexValidity}}(index,\ taskScheduler))\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ taskScheduler.removeTask(index);}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}list"{}})\ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implement\ list\ tasks\ functionality}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ taskScheduler.listTasks(taskScheduler.getTasks());}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}listP"{}})\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ taskScheduler.listTasksByPriority();}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}export"{}})\ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implement\ export\ tasks\ functionality}}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ file\ name\ to\ export\ to\ (If\ file\ does\ not\ exist,\ it\ will\ be\ created):\ "{}};}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ filename;}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ filename);}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ taskScheduler.exportTasks(filename);}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}import"{}})\ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implement\ import\ tasks\ functionality}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ importFilename;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ filename\ to\ import\ from:\ "{}};}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(std::cin,\ importFilename);}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ taskScheduler.removeAllTasks();}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ taskScheduler.importTasks(importFilename);}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}quit"{}})\ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Exiting\ program..."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}remove\ all"{}})\ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ taskScheduler.removeAllTasks();}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}show"{}})\ \{}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ task\ index\ to\ show:\ "{}};}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\{\};}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_source_8cpp_ab1a8be0a28a02c0892a4059a5db3722a}{checkIndexValidity}}(index,\ taskScheduler))\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ taskScheduler.showTask(index);}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}save"{}})\ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ taskScheduler.exportTasks(\textcolor{stringliteral}{"{}tasks.txt"{}});}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}completed"{}})\ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ task\ index\ you\ completed:\ "{}};}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\{\};}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_source_8cpp_ab1a8be0a28a02c0892a4059a5db3722a}{checkIndexValidity}}(index,\ taskScheduler))\ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ taskScheduler.setComplete(index,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}incomplete"{}})\ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ task\ index\ to\ set\ to\ incomplete:\ "{}};}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\{\};}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_source_8cpp_ab1a8be0a28a02c0892a4059a5db3722a}{checkIndexValidity}}(index,\ taskScheduler))\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ taskScheduler.setComplete(index,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (command\ ==\ \textcolor{stringliteral}{"{}help"{}})\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_source_8cpp_a072fe29babd6f47d66cd39f15a7ecf4c}{printInstructions}}();}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ command.\ Type\ 'help'\ for\ instructions."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00352\ \ \ \ \ \}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ taskScheduler.exportTasks(\textcolor{stringliteral}{"{}tasks.txt"{}});}
+\DoxyCodeLine{00355\ \ \ \ \ reminderSystem.stop();}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00358\ \}}
+
+\end{DoxyCode}
+\Hypertarget{_source_8cpp_a072fe29babd6f47d66cd39f15a7ecf4c}\index{Source.cpp@{Source.cpp}!printInstructions@{printInstructions}}
+\index{printInstructions@{printInstructions}!Source.cpp@{Source.cpp}}
+\doxysubsubsection{\texorpdfstring{printInstructions()}{printInstructions()}}
+{\footnotesize\ttfamily \label{_source_8cpp_a072fe29babd6f47d66cd39f15a7ecf4c} 
+void print\+Instructions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Print instructions on what the commands do 
+
+Definition at line \mbox{\hyperlink{_source_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{_source_8cpp_source}{Source.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00012\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Welcome\ to\ Task\ Scheduler!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00013\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Commands:"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00014\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ add:\ Add\ a\ new\ task"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00015\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ edit:\ Edit\ an\ existing\ task"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00016\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ remove:\ Remove\ a\ task"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00017\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ remove\ all:\ Remove\ all\ tasks"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00018\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ list:\ List\ all\ tasks"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00019\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ listP:\ List\ all\ tasks\ based\ on\ priority"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00020\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ show:\ Show\ a\ task\ with\ all\ its\ attributes"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00021\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ save:\ Save\ to\ local\ primary\ 'tasks.txt'\ file"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00022\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ completed:\ Set\ task\ state\ to\ incomplete\ (All\ dependants'\ states\ are\ also\ set\ to\ complete)"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00023\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ incomplete:\ Set\ task\ state\ to\ incomplete\ (All\ dependants'\ states\ are\ also\ set\ to\ incomplete)"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00024\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ export:\ Export\ tasks\ to\ a\ file"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00025\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ import:\ Import\ tasks\ from\ a\ file\ (deletes\ previous\ tasks)"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00026\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/\ quit:\ Quit\ the\ program"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00027\ \}}
+
+\end{DoxyCode}

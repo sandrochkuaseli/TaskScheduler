@@ -18,12 +18,13 @@ void printInstructions() {
     std::cout << "- list: List all tasks" << std::endl;
     std::cout << "- listP: List all tasks based on priority" << std::endl;
     std::cout << "- show: Show a task with all its attributes" << std::endl;
-    std::cout << "- save: Save to local primary 'tasks.txt' file" << std::endl;
     std::cout << "- completed: Set task state to incomplete (All dependants' states are also set to complete)" << std::endl;
     std::cout << "- incomplete: Set task state to incomplete (All dependants' states are also set to incomplete)" << std::endl;
+    std::cout << "- save: Save to local primary 'tasks.txt' file" << std::endl;
     std::cout << "- export: Export tasks to a file" << std::endl;
     std::cout << "- import: Import tasks from a file (deletes previous tasks)" << std::endl;
     std::cout << "- quit: Quit the program" << std::endl;
+    std::cout << "- help: Print commands" << std::endl;
 }
 
 /**

@@ -1,0 +1,38 @@
+\doxysection{Reminder.\+h}
+\hypertarget{_reminder_8h_source}{}\label{_reminder_8h_source}\index{TaskScheduler/Reminder.h@{TaskScheduler/Reminder.h}}
+\mbox{\hyperlink{_reminder_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ REMINDER\_H}}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ REMINDER\_H}}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_task_scheduler_8h}{TaskScheduler.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00014}\mbox{\hyperlink{class_reminder}{00014}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_reminder}{Reminder}}\ \{}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00015}00015\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00016}\mbox{\hyperlink{class_reminder_afc381add7921aff7f5382326e1bab423}{00016}}\ \ \ \ \ \mbox{\hyperlink{class_task_scheduler}{TaskScheduler}}\&\ \mbox{\hyperlink{class_reminder_afc381add7921aff7f5382326e1bab423}{taskScheduler}};}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00017}\mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{00017}}\ \ \ \ \ std::atomic<bool>\ \mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}};}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00018}\mbox{\hyperlink{class_reminder_a9f4fc1d1d06610285783276299cbf8f8}{00018}}\ \ \ \ \ std::thread\ \mbox{\hyperlink{class_reminder_a9f4fc1d1d06610285783276299cbf8f8}{reminderThreadMin}};}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00019}\mbox{\hyperlink{class_reminder_ab5a7c7dcd45a6c85f2f56b4a4ecd608c}{00019}}\ \ \ \ \ std::thread\ \mbox{\hyperlink{class_reminder_ab5a7c7dcd45a6c85f2f56b4a4ecd608c}{reminderThreadHour}};}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00020}\mbox{\hyperlink{class_reminder_a22f69bcdd39775b2df352883cfae8e53}{00020}}\ \ \ \ \ std::mutex\ \mbox{\hyperlink{class_reminder_a22f69bcdd39775b2df352883cfae8e53}{mtx}};}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00021}\mbox{\hyperlink{class_reminder_a46e4debf3801757546d0292c529e1365}{00021}}\ \ \ \ \ std::condition\_variable\ \mbox{\hyperlink{class_reminder_a46e4debf3801757546d0292c529e1365}{cv}};}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00023}00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00024}00024\ \ \ \ \ \mbox{\hyperlink{class_reminder_a128f75d0d678e8e364e91cd2b6e632ed}{\string~Reminder}}();}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00025}00025\ \ \ \ \ \mbox{\hyperlink{class_reminder_aa554efe2ee479fdd196da7867e39c9c2}{Reminder}}(\mbox{\hyperlink{class_task_scheduler}{TaskScheduler}}\&\ \mbox{\hyperlink{class_reminder_afc381add7921aff7f5382326e1bab423}{taskScheduler}});}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00027}00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_reminder_a8054bff0eb5004d90db4be6a4bf26c5f}{start}}();}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00028}00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_reminder_aad90e4fbc94e37b00fd553b84ece19bc}{stop}}();}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00029}00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_reminder_aa04082b1ccf912127f2055c3d7913070}{runEveryMin}}();}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00030}00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_reminder_aad5ab7e8bfd7cee9daedc8718406ef3a}{runEveryHour}}();}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00031}00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_reminder_a9d627bc6b3af3fcace812dc2d2e8995d}{checkTasksAndRemindNow}}();}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00032}00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_reminder_a86c0063f405233e4604279c60ac21725}{checkTasksAndRemindLonger}}();}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00033}00033\ \};}
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_reminder_8h_source_l00036}00036\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !REMINDER\_H}}
+
+\end{DoxyCode}

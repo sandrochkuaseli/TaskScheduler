@@ -1,0 +1,155 @@
+\doxysection{File\+Handler Class Reference}
+\hypertarget{class_file_handler}{}\label{class_file_handler}\index{FileHandler@{FileHandler}}
+
+
+{\ttfamily \#include $<$File\+Handler.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_file_handler_a9b096ffe33e68b28a6af638118f75a65}{export\+Tasks}} (const std\+::string \&filename, const std\+::vector$<$ \mbox{\hyperlink{class_task}{Task}} $>$ \&tasks)
+\item 
+static void \mbox{\hyperlink{class_file_handler_a6a6a73f124008198e51f58115b47ca12}{import\+Tasks}} (const std\+::string \&filename, std\+::vector$<$ \mbox{\hyperlink{class_task}{Task}} $>$ \&tasks)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles importing tasks from file and exporting tasks to a file 
+
+Definition at line \mbox{\hyperlink{_file_handler_8h_source_l00010}{10}} of file \mbox{\hyperlink{_file_handler_8h_source}{File\+Handler.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_file_handler_a9b096ffe33e68b28a6af638118f75a65}\index{FileHandler@{FileHandler}!exportTasks@{exportTasks}}
+\index{exportTasks@{exportTasks}!FileHandler@{FileHandler}}
+\doxysubsubsection{\texorpdfstring{exportTasks()}{exportTasks()}}
+{\footnotesize\ttfamily \label{class_file_handler_a9b096ffe33e68b28a6af638118f75a65} 
+void File\+Handler\+::export\+Tasks (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{, }\item[{const std\+::vector$<$ \mbox{\hyperlink{class_task}{Task}} $>$ \&}]{tasks}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Exports set of tasks to a provided file. If file does not exist new file is created. 
+
+Definition at line \mbox{\hyperlink{_file_handler_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{_file_handler_8cpp_source}{File\+Handler.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00012\ \ \ \ \ std::ofstream\ file(filename,\ std::ios::trunc);}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordflow}{if}\ (file.is\_open())\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ task\ :\ tasks)\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ task.saveToFile(file);}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Tasks\ exported\ to\ "{}}\ <<\ filename\ <<\ \textcolor{stringliteral}{"{}\ successfully."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00019\ \ \ \ \ \}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Unable\ to\ open\ file:\ "{}}\ <<\ filename\ <<\ std::endl;}
+\DoxyCodeLine{00022\ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_file_handler_a6a6a73f124008198e51f58115b47ca12}\index{FileHandler@{FileHandler}!importTasks@{importTasks}}
+\index{importTasks@{importTasks}!FileHandler@{FileHandler}}
+\doxysubsubsection{\texorpdfstring{importTasks()}{importTasks()}}
+{\footnotesize\ttfamily \label{class_file_handler_a6a6a73f124008198e51f58115b47ca12} 
+void File\+Handler\+::import\+Tasks (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{, }\item[{std\+::vector$<$ \mbox{\hyperlink{class_task}{Task}} $>$ \&}]{tasks}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Imports tasks from a file. It is assumed that the format is correct mostly, as this format of tasks can only be exported from this Taskscheduler. 
+
+Definition at line \mbox{\hyperlink{_file_handler_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{_file_handler_8cpp_source}{File\+Handler.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ std::ifstream\ file(filename);}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{if}\ (file.is\_open())\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(file,\ line))\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ title\ =\ line;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ description;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(file,\ description);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ dueDate;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(file,\ dueDate);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ priority;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ priorityStr;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(file,\ priorityStr);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ std::istringstream\ priorityStream(priorityStr);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ priorityStream\ >>\ priority;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ recurring;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ recurringStr;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(file,\ recurringStr);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ std::istringstream\ recurringStream(recurringStr);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ recurringStream\ >>\ recurring;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ recurrOption;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(file,\ recurrOption);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<int>\ dependencies;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ dependencyStr;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(file,\ dependencyStr);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ std::istringstream\ dependenciesStream(dependencyStr);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dependencyInt;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (dependenciesStream\ >>\ dependencyInt)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dependencies.push\_back(dependencyInt);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<int>\ dependendants;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ dependendantsStr;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(file,\ dependendantsStr);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ std::istringstream\ dependendantsStream(dependendantsStr);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dependendantsInt;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (dependendantsStream\ >>\ dependendantsInt)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dependendants.push\_back(dependendantsInt);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ idString;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(file,\ idString);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ std::istringstream\ idStream(idString);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ idStream\ >>\ id;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ completed;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ completedStr;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ std::getline(file,\ completedStr);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ std::istringstream\ completedStream(completedStr);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ completedStream\ >>\ completed;}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task}{Task}}\ task(title,\ description,\ dueDate,\ priority,\ recurring,\ recurrOption,\ dependencies,\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ task.setTaskID(tasks.size());}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_scheduler_ac80bc2416e6cc930fb71efa19355be45}{TaskScheduler::checkFormat}}(task))\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ dependendants)\ \{}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task.setDependant(i);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task.setCompleted(completed);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tasks.push\_back(task);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(file,\ line))\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ ==\ \textcolor{stringliteral}{"{}-\/-\/-\/"{}})\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ file.close();}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Tasks\ imported\ from\ "{}}\ <<\ filename\ <<\ \textcolor{stringliteral}{"{}\ successfully."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Unable\ to\ open\ file:\ "{}}\ <<\ filename\ <<\ std::endl;}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Task\+Scheduler/\mbox{\hyperlink{_file_handler_8h}{File\+Handler.\+h}}\item 
+Task\+Scheduler/\mbox{\hyperlink{_file_handler_8cpp}{File\+Handler.\+cpp}}\end{DoxyCompactItemize}

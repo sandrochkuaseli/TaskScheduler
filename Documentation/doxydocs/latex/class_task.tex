@@ -1,0 +1,684 @@
+\doxysection{Task Class Reference}
+\hypertarget{class_task}{}\label{class_task}\index{Task@{Task}}
+
+
+{\ttfamily \#include $<$Task.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_task_adb5e42f5d97a0c5835e8cecf7c05fff5}{Task}} (const std\+::string \&\mbox{\hyperlink{class_task_a2bd361b513c89d2e574b10709ddd9150}{title}}, const std\+::string \&\mbox{\hyperlink{class_task_a14f67f96a806a46958b47f04a0a7550d}{description}}, const std\+::string \&\mbox{\hyperlink{class_task_a3697fa70ce37bfa04d83238744fbf07d}{due\+Date}}, int \mbox{\hyperlink{class_task_a69eb6d4ca426f1f0de3b2d495c710fb2}{priority}}, bool \mbox{\hyperlink{class_task_a1446623039bea27ed09926814f6472db}{recurring}}, std\+::string \&\mbox{\hyperlink{class_task_afb2c6aeb6e56c7febc8775ffd4f7d304}{recurring\+Option}}, std\+::vector$<$ int $>$ \&\mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}}, int id)
+\item 
+std\+::string \mbox{\hyperlink{class_task_a85c31b536e5c92719636e1c65b7b74de}{get\+Title}} () const
+\item 
+std\+::string \mbox{\hyperlink{class_task_aecbe79dd5334c9969320695b5a82e32a}{get\+Description}} () const
+\item 
+std\+::string \mbox{\hyperlink{class_task_acec67768c5b96c344fbe6cb53a54477a}{get\+Due\+Date}} () const
+\item 
+int \mbox{\hyperlink{class_task_adf87b0c5cebcf623ecf56cea17c6fede}{get\+Priority}} () const
+\item 
+bool \mbox{\hyperlink{class_task_aa7e68c95d8b78ae9676f5fb01c8ab5ac}{is\+Recurring}} () const
+\item 
+std\+::string \mbox{\hyperlink{class_task_aeb04da013f0cbc1e2a304ece50b4e30b}{get\+Recurring\+Opt}} () const
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_task_a42f06f3ab11ce6b6258c8b0a9ce5fda1}{get\+Dependencies}} () const
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_task_ad01c94af2113a5cb45357f73fc181b6d}{get\+Dependants}} () const
+\item 
+int \mbox{\hyperlink{class_task_a5f18a9e4547bf36a10f5a8ade368c7d0}{get\+Task\+ID}} () const
+\item 
+bool \mbox{\hyperlink{class_task_a4ae4f44f07ea10c5b93020ee1f307e50}{get\+Completed}} () const
+\item 
+void \mbox{\hyperlink{class_task_a29976325484105532f92087057e407c1}{set\+Title}} (const std\+::string \&new\+Title)
+\item 
+void \mbox{\hyperlink{class_task_aed251b50df62e4fe089604a74e6353bb}{set\+Description}} (const std\+::string \&new\+Description)
+\item 
+void \mbox{\hyperlink{class_task_a7f20a027e234645ca587ac24c44fc37a}{set\+Due\+Date}} (const std\+::string \&new\+Due\+Date)
+\item 
+void \mbox{\hyperlink{class_task_a5b5181bd0a85349befc277afc9c2510d}{set\+Priority}} (int new\+Priority)
+\item 
+void \mbox{\hyperlink{class_task_a2dfc447889b3770a972adf4b4e6d088d}{set\+Recurring}} (bool new\+Recurring)
+\item 
+void \mbox{\hyperlink{class_task_ad7b6575f04a5ab256766af22a0a7319a}{set\+Recurring\+Opt}} (std\+::string recurring\+Opt)
+\item 
+void \mbox{\hyperlink{class_task_a415178983298f0f09f10d7a5c61990f1}{set\+Dependency}} (int task\+Id)
+\item 
+void \mbox{\hyperlink{class_task_a39430919353e85af30d0ca56ce4c4e46}{set\+Task\+ID}} (int task\+Id)
+\item 
+void \mbox{\hyperlink{class_task_a0f8ea412f9adc3c087169af04c9f9ba5}{set\+Dependant}} (int task\+Id)
+\item 
+void \mbox{\hyperlink{class_task_a9527c555c1e407c6639e95977ddb0fcc}{set\+Completed}} (bool complete)
+\item 
+void \mbox{\hyperlink{class_task_afbec931f2f28bba4f753f4f692e4fc2b}{remove\+Dependency}} (int task\+Id)
+\item 
+void \mbox{\hyperlink{class_task_aa0a483169b710046be3eba6ee240f1e4}{remove\+Dependant}} (int task\+Id)
+\item 
+void \mbox{\hyperlink{class_task_a1374d3c3333f4a28a544b38b6ba37562}{adjust\+Dependency\+List}} (int task\+Id)
+\item 
+void \mbox{\hyperlink{class_task_a482b649a0f8407467d9a2ffea5fd00e4}{adjust\+Dependant\+List}} (int task\+Id)
+\item 
+void \mbox{\hyperlink{class_task_a0091b0bc3b0afce8ca25ad291373c703}{save\+To\+File}} (std\+::ofstream \&file) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_task_a2bd361b513c89d2e574b10709ddd9150}{title}}
+\item 
+std\+::string \mbox{\hyperlink{class_task_a14f67f96a806a46958b47f04a0a7550d}{description}}
+\item 
+std\+::string \mbox{\hyperlink{class_task_a3697fa70ce37bfa04d83238744fbf07d}{due\+Date}}
+\item 
+int \mbox{\hyperlink{class_task_a69eb6d4ca426f1f0de3b2d495c710fb2}{priority}}
+\item 
+bool \mbox{\hyperlink{class_task_a1446623039bea27ed09926814f6472db}{recurring}}
+\item 
+std\+::string \mbox{\hyperlink{class_task_afb2c6aeb6e56c7febc8775ffd4f7d304}{recurring\+Option}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_task_aa33d7b0659c512d492d098ff32f01c2c}{dependants}}
+\item 
+int \mbox{\hyperlink{class_task_affe5b96d27698e0572ee12d6b88c9271}{task\+ID}}
+\item 
+bool \mbox{\hyperlink{class_task_aea776103cd8853951c39512560d3d230}{completed}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Tasks class provides represents each task in the taskscheduler. It provides basic functionality. Mostly getters and setters. 
+
+Definition at line \mbox{\hyperlink{_task_8h_source_l00013}{13}} of file \mbox{\hyperlink{_task_8h_source}{Task.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_task_adb5e42f5d97a0c5835e8cecf7c05fff5}\index{Task@{Task}!Task@{Task}}
+\index{Task@{Task}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{Task()}{Task()}}
+{\footnotesize\ttfamily \label{class_task_adb5e42f5d97a0c5835e8cecf7c05fff5} 
+Task\+::\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{title}{, }\item[{const std\+::string \&}]{description}{, }\item[{const std\+::string \&}]{due\+Date}{, }\item[{int}]{priority}{, }\item[{bool}]{recurring}{, }\item[{std\+::string \&}]{recurring\+Option}{, }\item[{std\+::vector$<$ int $>$ \&}]{dependecies}{, }\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00003}{3}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00004\ \ \ \ \ :\ \mbox{\hyperlink{class_task_a2bd361b513c89d2e574b10709ddd9150}{title}}(\mbox{\hyperlink{class_task_a2bd361b513c89d2e574b10709ddd9150}{title}}),\ \mbox{\hyperlink{class_task_a14f67f96a806a46958b47f04a0a7550d}{description}}(\mbox{\hyperlink{class_task_a14f67f96a806a46958b47f04a0a7550d}{description}}),\ \mbox{\hyperlink{class_task_a3697fa70ce37bfa04d83238744fbf07d}{dueDate}}(\mbox{\hyperlink{class_task_a3697fa70ce37bfa04d83238744fbf07d}{dueDate}}),\ \mbox{\hyperlink{class_task_a69eb6d4ca426f1f0de3b2d495c710fb2}{priority}}(\mbox{\hyperlink{class_task_a69eb6d4ca426f1f0de3b2d495c710fb2}{priority}}),\ \mbox{\hyperlink{class_task_a1446623039bea27ed09926814f6472db}{recurring}}(\mbox{\hyperlink{class_task_a1446623039bea27ed09926814f6472db}{recurring}}),\ \mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}}(\mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}}),\ \mbox{\hyperlink{class_task_affe5b96d27698e0572ee12d6b88c9271}{taskID}}(\textcolor{keywordtype}{id}),\ \mbox{\hyperlink{class_task_afb2c6aeb6e56c7febc8775ffd4f7d304}{recurringOption}}(\mbox{\hyperlink{class_task_afb2c6aeb6e56c7febc8775ffd4f7d304}{recurringOption}})\ \{}
+\DoxyCodeLine{00005\ \ \ \ \ \mbox{\hyperlink{class_task_aea776103cd8853951c39512560d3d230}{completed}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00006\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_task_a482b649a0f8407467d9a2ffea5fd00e4}\index{Task@{Task}!adjustDependantList@{adjustDependantList}}
+\index{adjustDependantList@{adjustDependantList}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{adjustDependantList()}{adjustDependantList()}}
+{\footnotesize\ttfamily \label{class_task_a482b649a0f8407467d9a2ffea5fd00e4} 
+void Task\+::adjust\+Dependant\+List (\begin{DoxyParamCaption}\item[{int}]{task\+Id}{}\end{DoxyParamCaption})}
+
+Adjust the dependant list Used when some tasks change ID\textquotesingle{}s and we need to adjust the dependant list accordingly 
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00145}{145}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00146\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{class_task_aa33d7b0659c512d492d098ff32f01c2c}{dependants}}.size();\ i++)\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_aa33d7b0659c512d492d098ff32f01c2c}{dependants}}[i]\ >=\ taskId)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_aa33d7b0659c512d492d098ff32f01c2c}{dependants}}[i]\ -\/=\ 1;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a1374d3c3333f4a28a544b38b6ba37562}\index{Task@{Task}!adjustDependencyList@{adjustDependencyList}}
+\index{adjustDependencyList@{adjustDependencyList}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{adjustDependencyList()}{adjustDependencyList()}}
+{\footnotesize\ttfamily \label{class_task_a1374d3c3333f4a28a544b38b6ba37562} 
+void Task\+::adjust\+Dependency\+List (\begin{DoxyParamCaption}\item[{int}]{task\+Id}{}\end{DoxyParamCaption})}
+
+Adjust the dependency list Used when some tasks change ID\textquotesingle{}s and we need to adjust the dependency list accordingly 
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00132}{132}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}}.size();\ i++)\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}}[i]\ >=\ taskId)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}}[i]\ -\/=\ 1;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a4ae4f44f07ea10c5b93020ee1f307e50}\index{Task@{Task}!getCompleted@{getCompleted}}
+\index{getCompleted@{getCompleted}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{getCompleted()}{getCompleted()}}
+{\footnotesize\ttfamily \label{class_task_a4ae4f44f07ea10c5b93020ee1f307e50} 
+bool Task\+::get\+Completed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_aea776103cd8853951c39512560d3d230}{completed}};}
+\DoxyCodeLine{00051\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_ad01c94af2113a5cb45357f73fc181b6d}\index{Task@{Task}!getDependants@{getDependants}}
+\index{getDependants@{getDependants}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{getDependants()}{getDependants()}}
+{\footnotesize\ttfamily \label{class_task_ad01c94af2113a5cb45357f73fc181b6d} 
+std\+::vector$<$ int $>$ Task\+::get\+Dependants (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_aa33d7b0659c512d492d098ff32f01c2c}{dependants}};}
+\DoxyCodeLine{00041\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a42f06f3ab11ce6b6258c8b0a9ce5fda1}\index{Task@{Task}!getDependencies@{getDependencies}}
+\index{getDependencies@{getDependencies}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{getDependencies()}{getDependencies()}}
+{\footnotesize\ttfamily \label{class_task_a42f06f3ab11ce6b6258c8b0a9ce5fda1} 
+std\+::vector$<$ int $>$ Task\+::get\+Dependencies (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}};}
+\DoxyCodeLine{00036\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_aecbe79dd5334c9969320695b5a82e32a}\index{Task@{Task}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{getDescription()}{getDescription()}}
+{\footnotesize\ttfamily \label{class_task_aecbe79dd5334c9969320695b5a82e32a} 
+std\+::string Task\+::get\+Description (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_a14f67f96a806a46958b47f04a0a7550d}{description}};}
+\DoxyCodeLine{00014\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_acec67768c5b96c344fbe6cb53a54477a}\index{Task@{Task}!getDueDate@{getDueDate}}
+\index{getDueDate@{getDueDate}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{getDueDate()}{getDueDate()}}
+{\footnotesize\ttfamily \label{class_task_acec67768c5b96c344fbe6cb53a54477a} 
+std\+::string Task\+::get\+Due\+Date (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_a3697fa70ce37bfa04d83238744fbf07d}{dueDate}};}
+\DoxyCodeLine{00018\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_adf87b0c5cebcf623ecf56cea17c6fede}\index{Task@{Task}!getPriority@{getPriority}}
+\index{getPriority@{getPriority}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{getPriority()}{getPriority()}}
+{\footnotesize\ttfamily \label{class_task_adf87b0c5cebcf623ecf56cea17c6fede} 
+int Task\+::get\+Priority (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_a69eb6d4ca426f1f0de3b2d495c710fb2}{priority}};}
+\DoxyCodeLine{00022\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_aeb04da013f0cbc1e2a304ece50b4e30b}\index{Task@{Task}!getRecurringOpt@{getRecurringOpt}}
+\index{getRecurringOpt@{getRecurringOpt}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{getRecurringOpt()}{getRecurringOpt()}}
+{\footnotesize\ttfamily \label{class_task_aeb04da013f0cbc1e2a304ece50b4e30b} 
+std\+::string Task\+::get\+Recurring\+Opt (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_task_afb2c6aeb6e56c7febc8775ffd4f7d304}{recurringOption}}.empty()\ ?\ \textcolor{stringliteral}{"{}None"{}}\ :\ \mbox{\hyperlink{class_task_afb2c6aeb6e56c7febc8775ffd4f7d304}{recurringOption}});}
+\DoxyCodeLine{00031\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a5f18a9e4547bf36a10f5a8ade368c7d0}\index{Task@{Task}!getTaskID@{getTaskID}}
+\index{getTaskID@{getTaskID}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{getTaskID()}{getTaskID()}}
+{\footnotesize\ttfamily \label{class_task_a5f18a9e4547bf36a10f5a8ade368c7d0} 
+int Task\+::get\+Task\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_affe5b96d27698e0572ee12d6b88c9271}{taskID}};}
+\DoxyCodeLine{00046\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a85c31b536e5c92719636e1c65b7b74de}\index{Task@{Task}!getTitle@{getTitle}}
+\index{getTitle@{getTitle}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{getTitle()}{getTitle()}}
+{\footnotesize\ttfamily \label{class_task_a85c31b536e5c92719636e1c65b7b74de} 
+std\+::string Task\+::get\+Title (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00008}{8}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_a2bd361b513c89d2e574b10709ddd9150}{title}};}
+\DoxyCodeLine{00010\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_aa7e68c95d8b78ae9676f5fb01c8ab5ac}\index{Task@{Task}!isRecurring@{isRecurring}}
+\index{isRecurring@{isRecurring}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{isRecurring()}{isRecurring()}}
+{\footnotesize\ttfamily \label{class_task_aa7e68c95d8b78ae9676f5fb01c8ab5ac} 
+bool Task\+::is\+Recurring (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_a1446623039bea27ed09926814f6472db}{recurring}};}
+\DoxyCodeLine{00026\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_aa0a483169b710046be3eba6ee240f1e4}\index{Task@{Task}!removeDependant@{removeDependant}}
+\index{removeDependant@{removeDependant}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{removeDependant()}{removeDependant()}}
+{\footnotesize\ttfamily \label{class_task_aa0a483169b710046be3eba6ee240f1e4} 
+void Task\+::remove\+Dependant (\begin{DoxyParamCaption}\item[{int}]{task\+Id}{}\end{DoxyParamCaption})}
+
+Remove id from dependant list 
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00119}{119}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{class_task_aa33d7b0659c512d492d098ff32f01c2c}{dependants}}.size();\ j++)\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_aa33d7b0659c512d492d098ff32f01c2c}{dependants}}[j]\ ==\ taskId)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_aa33d7b0659c512d492d098ff32f01c2c}{dependants}}.erase(\mbox{\hyperlink{class_task_aa33d7b0659c512d492d098ff32f01c2c}{dependants}}.begin()\ +\ j);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_afbec931f2f28bba4f753f4f692e4fc2b}\index{Task@{Task}!removeDependency@{removeDependency}}
+\index{removeDependency@{removeDependency}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{removeDependency()}{removeDependency()}}
+{\footnotesize\ttfamily \label{class_task_afbec931f2f28bba4f753f4f692e4fc2b} 
+void Task\+::remove\+Dependency (\begin{DoxyParamCaption}\item[{int}]{task\+Id}{}\end{DoxyParamCaption})}
+
+Remove id from dependency list 
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00106}{106}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}}.size();\ j++)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}}[j]\ ==\ taskId)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}}.erase(\mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}}.begin()\ +\ j);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a0091b0bc3b0afce8ca25ad291373c703}\index{Task@{Task}!saveToFile@{saveToFile}}
+\index{saveToFile@{saveToFile}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{saveToFile()}{saveToFile()}}
+{\footnotesize\ttfamily \label{class_task_a0091b0bc3b0afce8ca25ad291373c703} 
+void Task\+::save\+To\+File (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{file}{}\end{DoxyParamCaption}) const}
+
+Write a single task to file 
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00157}{157}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ file\ <<\ \mbox{\hyperlink{class_task_a2bd361b513c89d2e574b10709ddd9150}{title}}\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00159\ \ \ \ \ file\ <<\ \mbox{\hyperlink{class_task_a14f67f96a806a46958b47f04a0a7550d}{description}}\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00160\ \ \ \ \ file\ <<\ \mbox{\hyperlink{class_task_a3697fa70ce37bfa04d83238744fbf07d}{dueDate}}\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00161\ \ \ \ \ file\ <<\ \mbox{\hyperlink{class_task_a69eb6d4ca426f1f0de3b2d495c710fb2}{priority}}\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00162\ \ \ \ \ file\ <<\ \mbox{\hyperlink{class_task_a1446623039bea27ed09926814f6472db}{recurring}}\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00163\ \ \ \ \ file\ <<\ \mbox{\hyperlink{class_task_afb2c6aeb6e56c7febc8775ffd4f7d304}{recurringOption}}\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ \mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}})\ \{}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ file\ <<\ i\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ file\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ \mbox{\hyperlink{class_task_aa33d7b0659c512d492d098ff32f01c2c}{dependants}})\ \{}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ file\ <<\ i\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00172\ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ file\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00174\ \ \ \ \ file\ <<\ \mbox{\hyperlink{class_task_affe5b96d27698e0572ee12d6b88c9271}{taskID}}\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00175\ \ \ \ \ file\ <<\ \mbox{\hyperlink{class_task_aea776103cd8853951c39512560d3d230}{completed}}\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00176\ \ \ \ \ file\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00177\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a9527c555c1e407c6639e95977ddb0fcc}\index{Task@{Task}!setCompleted@{setCompleted}}
+\index{setCompleted@{setCompleted}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{setCompleted()}{setCompleted()}}
+{\footnotesize\ttfamily \label{class_task_a9527c555c1e407c6639e95977ddb0fcc} 
+void Task\+::set\+Completed (\begin{DoxyParamCaption}\item[{bool}]{complete}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00098}{98}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{class_task_aea776103cd8853951c39512560d3d230}{completed}}\ =\ complete;}
+\DoxyCodeLine{00101\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a0f8ea412f9adc3c087169af04c9f9ba5}\index{Task@{Task}!setDependant@{setDependant}}
+\index{setDependant@{setDependant}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{setDependant()}{setDependant()}}
+{\footnotesize\ttfamily \label{class_task_a0f8ea412f9adc3c087169af04c9f9ba5} 
+void Task\+::set\+Dependant (\begin{DoxyParamCaption}\item[{int}]{task\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00093}{93}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{class_task_aa33d7b0659c512d492d098ff32f01c2c}{dependants}}.push\_back(taskId);}
+\DoxyCodeLine{00096\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a415178983298f0f09f10d7a5c61990f1}\index{Task@{Task}!setDependency@{setDependency}}
+\index{setDependency@{setDependency}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{setDependency()}{setDependency()}}
+{\footnotesize\ttfamily \label{class_task_a415178983298f0f09f10d7a5c61990f1} 
+void Task\+::set\+Dependency (\begin{DoxyParamCaption}\item[{int}]{task\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00083}{83}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00084\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{class_task_a1ae71837913f323be8ff8315da243cc8}{dependecies}}.push\_back(taskId);}
+\DoxyCodeLine{00086\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_aed251b50df62e4fe089604a74e6353bb}\index{Task@{Task}!setDescription@{setDescription}}
+\index{setDescription@{setDescription}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{setDescription()}{setDescription()}}
+{\footnotesize\ttfamily \label{class_task_aed251b50df62e4fe089604a74e6353bb} 
+void Task\+::set\+Description (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{new\+Description}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00058}{58}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00059\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{class_task_a14f67f96a806a46958b47f04a0a7550d}{description}}\ =\ newDescription;}
+\DoxyCodeLine{00061\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a7f20a027e234645ca587ac24c44fc37a}\index{Task@{Task}!setDueDate@{setDueDate}}
+\index{setDueDate@{setDueDate}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{setDueDate()}{setDueDate()}}
+{\footnotesize\ttfamily \label{class_task_a7f20a027e234645ca587ac24c44fc37a} 
+void Task\+::set\+Due\+Date (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{new\+Due\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00063}{63}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{class_task_a3697fa70ce37bfa04d83238744fbf07d}{dueDate}}\ =\ newDueDate;}
+\DoxyCodeLine{00066\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a5b5181bd0a85349befc277afc9c2510d}\index{Task@{Task}!setPriority@{setPriority}}
+\index{setPriority@{setPriority}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{setPriority()}{setPriority()}}
+{\footnotesize\ttfamily \label{class_task_a5b5181bd0a85349befc277afc9c2510d} 
+void Task\+::set\+Priority (\begin{DoxyParamCaption}\item[{int}]{new\+Priority}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00068}{68}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{class_task_a69eb6d4ca426f1f0de3b2d495c710fb2}{priority}}\ =\ newPriority;}
+\DoxyCodeLine{00071\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a2dfc447889b3770a972adf4b4e6d088d}\index{Task@{Task}!setRecurring@{setRecurring}}
+\index{setRecurring@{setRecurring}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{setRecurring()}{setRecurring()}}
+{\footnotesize\ttfamily \label{class_task_a2dfc447889b3770a972adf4b4e6d088d} 
+void Task\+::set\+Recurring (\begin{DoxyParamCaption}\item[{bool}]{new\+Recurring}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00073}{73}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{class_task_a1446623039bea27ed09926814f6472db}{recurring}}\ =\ newRecurring;}
+\DoxyCodeLine{00076\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_ad7b6575f04a5ab256766af22a0a7319a}\index{Task@{Task}!setRecurringOpt@{setRecurringOpt}}
+\index{setRecurringOpt@{setRecurringOpt}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{setRecurringOpt()}{setRecurringOpt()}}
+{\footnotesize\ttfamily \label{class_task_ad7b6575f04a5ab256766af22a0a7319a} 
+void Task\+::set\+Recurring\+Opt (\begin{DoxyParamCaption}\item[{std\+::string}]{recurring\+Opt}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00078}{78}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{class_task_afb2c6aeb6e56c7febc8775ffd4f7d304}{recurringOption}}\ =\ recurringOpt;}
+\DoxyCodeLine{00081\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a39430919353e85af30d0ca56ce4c4e46}\index{Task@{Task}!setTaskID@{setTaskID}}
+\index{setTaskID@{setTaskID}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{setTaskID()}{setTaskID()}}
+{\footnotesize\ttfamily \label{class_task_a39430919353e85af30d0ca56ce4c4e46} 
+void Task\+::set\+Task\+ID (\begin{DoxyParamCaption}\item[{int}]{task\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00088}{88}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00089\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{class_task_affe5b96d27698e0572ee12d6b88c9271}{taskID}}\ =\ taskId;}
+\DoxyCodeLine{00091\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_task_a29976325484105532f92087057e407c1}\index{Task@{Task}!setTitle@{setTitle}}
+\index{setTitle@{setTitle}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{setTitle()}{setTitle()}}
+{\footnotesize\ttfamily \label{class_task_a29976325484105532f92087057e407c1} 
+void Task\+::set\+Title (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{new\+Title}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{_task_8cpp_source}{Task.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_task_a2bd361b513c89d2e574b10709ddd9150}{title}}\ =\ newTitle;}
+\DoxyCodeLine{00056\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_task_aea776103cd8853951c39512560d3d230}\index{Task@{Task}!completed@{completed}}
+\index{completed@{completed}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{completed}{completed}}
+{\footnotesize\ttfamily \label{class_task_aea776103cd8853951c39512560d3d230} 
+bool Task\+::completed\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8h_source_l00024}{24}} of file \mbox{\hyperlink{_task_8h_source}{Task.\+h}}.
+
+\Hypertarget{class_task_aa33d7b0659c512d492d098ff32f01c2c}\index{Task@{Task}!dependants@{dependants}}
+\index{dependants@{dependants}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{dependants}{dependants}}
+{\footnotesize\ttfamily \label{class_task_aa33d7b0659c512d492d098ff32f01c2c} 
+std\+::vector$<$int$>$ Task\+::dependants\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8h_source_l00022}{22}} of file \mbox{\hyperlink{_task_8h_source}{Task.\+h}}.
+
+\Hypertarget{class_task_a1ae71837913f323be8ff8315da243cc8}\index{Task@{Task}!dependecies@{dependecies}}
+\index{dependecies@{dependecies}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{dependecies}{dependecies}}
+{\footnotesize\ttfamily \label{class_task_a1ae71837913f323be8ff8315da243cc8} 
+std\+::vector$<$int$>$ Task\+::dependecies\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8h_source_l00021}{21}} of file \mbox{\hyperlink{_task_8h_source}{Task.\+h}}.
+
+\Hypertarget{class_task_a14f67f96a806a46958b47f04a0a7550d}\index{Task@{Task}!description@{description}}
+\index{description@{description}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{description}{description}}
+{\footnotesize\ttfamily \label{class_task_a14f67f96a806a46958b47f04a0a7550d} 
+std\+::string Task\+::description\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8h_source_l00016}{16}} of file \mbox{\hyperlink{_task_8h_source}{Task.\+h}}.
+
+\Hypertarget{class_task_a3697fa70ce37bfa04d83238744fbf07d}\index{Task@{Task}!dueDate@{dueDate}}
+\index{dueDate@{dueDate}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{dueDate}{dueDate}}
+{\footnotesize\ttfamily \label{class_task_a3697fa70ce37bfa04d83238744fbf07d} 
+std\+::string Task\+::due\+Date\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8h_source_l00017}{17}} of file \mbox{\hyperlink{_task_8h_source}{Task.\+h}}.
+
+\Hypertarget{class_task_a69eb6d4ca426f1f0de3b2d495c710fb2}\index{Task@{Task}!priority@{priority}}
+\index{priority@{priority}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{priority}{priority}}
+{\footnotesize\ttfamily \label{class_task_a69eb6d4ca426f1f0de3b2d495c710fb2} 
+int Task\+::priority\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8h_source_l00018}{18}} of file \mbox{\hyperlink{_task_8h_source}{Task.\+h}}.
+
+\Hypertarget{class_task_a1446623039bea27ed09926814f6472db}\index{Task@{Task}!recurring@{recurring}}
+\index{recurring@{recurring}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{recurring}{recurring}}
+{\footnotesize\ttfamily \label{class_task_a1446623039bea27ed09926814f6472db} 
+bool Task\+::recurring\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8h_source_l00019}{19}} of file \mbox{\hyperlink{_task_8h_source}{Task.\+h}}.
+
+\Hypertarget{class_task_afb2c6aeb6e56c7febc8775ffd4f7d304}\index{Task@{Task}!recurringOption@{recurringOption}}
+\index{recurringOption@{recurringOption}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{recurringOption}{recurringOption}}
+{\footnotesize\ttfamily \label{class_task_afb2c6aeb6e56c7febc8775ffd4f7d304} 
+std\+::string Task\+::recurring\+Option\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8h_source_l00020}{20}} of file \mbox{\hyperlink{_task_8h_source}{Task.\+h}}.
+
+\Hypertarget{class_task_affe5b96d27698e0572ee12d6b88c9271}\index{Task@{Task}!taskID@{taskID}}
+\index{taskID@{taskID}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{taskID}{taskID}}
+{\footnotesize\ttfamily \label{class_task_affe5b96d27698e0572ee12d6b88c9271} 
+int Task\+::task\+ID\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8h_source_l00023}{23}} of file \mbox{\hyperlink{_task_8h_source}{Task.\+h}}.
+
+\Hypertarget{class_task_a2bd361b513c89d2e574b10709ddd9150}\index{Task@{Task}!title@{title}}
+\index{title@{title}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{title}{title}}
+{\footnotesize\ttfamily \label{class_task_a2bd361b513c89d2e574b10709ddd9150} 
+std\+::string Task\+::title\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{_task_8h_source_l00015}{15}} of file \mbox{\hyperlink{_task_8h_source}{Task.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Task\+Scheduler/\mbox{\hyperlink{_task_8h}{Task.\+h}}\item 
+Task\+Scheduler/\mbox{\hyperlink{_task_8cpp}{Task.\+cpp}}\end{DoxyCompactItemize}

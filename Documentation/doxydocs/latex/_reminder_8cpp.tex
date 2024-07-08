@@ -1,0 +1,61 @@
+\doxysection{Task\+Scheduler/\+Reminder.cpp File Reference}
+\hypertarget{_reminder_8cpp}{}\label{_reminder_8cpp}\index{TaskScheduler/Reminder.cpp@{TaskScheduler/Reminder.cpp}}
+{\ttfamily \#include "{}Reminder.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_reminder_8cpp_a43842e30ac1bc81d5f92ccac7f9bb3f8}{count\+Hours\+To\+Date}} (std\+::string due\+Date\+Str)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_reminder_8cpp_a43842e30ac1bc81d5f92ccac7f9bb3f8}\index{Reminder.cpp@{Reminder.cpp}!countHoursToDate@{countHoursToDate}}
+\index{countHoursToDate@{countHoursToDate}!Reminder.cpp@{Reminder.cpp}}
+\doxysubsubsection{\texorpdfstring{countHoursToDate()}{countHoursToDate()}}
+{\footnotesize\ttfamily \label{_reminder_8cpp_a43842e30ac1bc81d5f92ccac7f9bb3f8} 
+int count\+Hours\+To\+Date (\begin{DoxyParamCaption}\item[{std\+::string}]{due\+Date\+Str}{}\end{DoxyParamCaption})}
+
+Returns int which represents difference between current date and due date in hours 
+
+Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00090}{90}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{auto}\ now\ =\ std::chrono::system\_clock::now();}
+\DoxyCodeLine{00092\ \ \ \ \ std::time\_t\ currentTime\ =\ std::chrono::system\_clock::to\_time\_t(now);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ std::tm\ localTime;}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ }\textcolor{comment}{//\ For\ Microsoft\ Visual\ Studio}}
+\DoxyCodeLine{00096\ \ \ \ \ localtime\_s(\&localTime,\ \&currentTime);}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ other\ compilers}}
+\DoxyCodeLine{00098\ \ \ \ \ localtime\_r(\&currentTime,\ \&localTime);}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ localTime.tm\_hour\ =\ 0;}
+\DoxyCodeLine{00102\ \ \ \ \ localTime.tm\_min\ =\ 0;}
+\DoxyCodeLine{00103\ \ \ \ \ localTime.tm\_sec\ =\ 0;}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{auto}\ currentDate\ =\ std::chrono::system\_clock::from\_time\_t(std::mktime(\&localTime));}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ std::tm\ futureTime\ =\ \{\};}
+\DoxyCodeLine{00108\ \ \ \ \ std::istringstream\ dueDateStream(dueDateStr);}
+\DoxyCodeLine{00109\ \ \ \ \ dueDateStream\ >>\ std::get\_time(\&futureTime,\ \textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M"{}});}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ futureTime.tm\_hour\ =\ 0;}
+\DoxyCodeLine{00112\ \ \ \ \ futureTime.tm\_min\ =\ 0;}
+\DoxyCodeLine{00113\ \ \ \ \ futureTime.tm\_sec\ =\ 0;}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{auto}\ futureDate\ =\ std::chrono::system\_clock::from\_time\_t(std::mktime(\&futureTime));}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{auto}\ diff\ =\ (std::chrono::duration\_cast<std::chrono::hours>(futureDate\ -\/\ currentDate).count());}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{int}\ days\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(diff);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{return}\ days;}
+\DoxyCodeLine{00121\ \}}
+
+\end{DoxyCode}
