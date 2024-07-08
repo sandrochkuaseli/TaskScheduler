@@ -7,17 +7,17 @@
 #include <ctime>
 #include <queue>
 
-/*
-    Constructor
-    Imports tasks from local 'tasks.txt' file
-*/
+/**
+  * Constructor
+  * Imports tasks from local 'tasks.txt' file
+  */
 TaskScheduler::TaskScheduler(const std::string& filename) : filename(filename) {
     loadTasksFromFile();
 }
 
-/*
-    Handles addition of tasks from command line
-*/
+/**
+  * Handles addition of tasks from command line
+  */
 void TaskScheduler::addTask(const Task& task) {
     bool correctFormat = true;
     
@@ -49,9 +49,9 @@ void TaskScheduler::addTask(const Task& task) {
 }
 
 
-/*
-    Edits one of the attributes
-*/
+/**
+  * Edits one of the attributes
+  */
 void TaskScheduler::editTask(int index, std::string attribute, std::string newAttributeDefinition) {
 
     if (attribute == "Title" || attribute == "title") {
@@ -125,10 +125,10 @@ void TaskScheduler::editTask(int index, std::string attribute, std::string newAt
 } 
 
 
-/*
-    Removes a task from the task set.
-    Adjusts index and dependants and dependencies in relation to other tasks accordingly.
-*/
+/**
+  * Removes a task from the task set.
+  * Adjusts index and dependants and dependencies in relation to other tasks accordingly.
+  */
 void TaskScheduler::removeTask(int index) {
     if (index >= 0 && index < tasks.size()) {
 
@@ -160,9 +160,9 @@ void TaskScheduler::removeTask(int index) {
 }
 
 
-/*
-    Lists all tasks
-*/
+/**
+  *  Lists all tasks
+  */
 void TaskScheduler::listTasks(std::vector<Task> taskVec) const {
     if (tasks.empty()) {
         std::cout << "No tasks found!" << std::endl;
@@ -176,9 +176,9 @@ void TaskScheduler::listTasks(std::vector<Task> taskVec) const {
 }
 
 
-/*
-    Lists all tasks based on the priority (highest priority first).
-*/
+/**
+  * Lists all tasks based on the priority (highest priority first).
+  */
 void TaskScheduler::listTasksByPriority() const
 {
     std::vector<Task> sortedByPriority = tasks;
@@ -190,9 +190,9 @@ void TaskScheduler::listTasksByPriority() const
 
 }
 
-/*
-    Shows every attribute of the task
-*/
+/**
+  *  Shows every attribute of the task
+  */
 void TaskScheduler::showTask(int index) {
     if (index >= 0 && index < tasks.size()) {
         std::cout << "Title: " <<  tasks[index].getTitle() << std::endl;
@@ -239,31 +239,31 @@ void TaskScheduler::exportTasks(std::string filename) const {
     FileHandler::exportTasks(filename, tasks);
 }
 
-/*
-    Import tasks at any point
-*/
+/**
+  * Import tasks at any point
+  */
 void TaskScheduler::importTasks(const std::string& importFilename) {
     FileHandler::importTasks(importFilename, tasks);
 }
 
-/*
-    Initial import of the tasks
-*/
+/**
+  * Initial import of the tasks
+  */
 void TaskScheduler::loadTasksFromFile() {
     FileHandler::importTasks(filename, tasks);
 }
 
-/*
-    Removes all tasks from the task set
-*/
+/**
+  * Removes all tasks from the task set
+  */
 void TaskScheduler::removeAllTasks() {
     tasks.clear();
 }
 
-/*
-    Checks validity of provided due date.
-    Checks if the provided format is valid and then checks whether the due date is later than current date.
-*/
+/**
+  * Checks validity of provided due date.
+  * Checks if the provided format is valid and then checks whether the due date is later than current date.
+  */
 bool TaskScheduler::dueDateValidity(const std::string& dueDateString) {
     std::regex pattern("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}");
 
@@ -322,9 +322,9 @@ bool TaskScheduler::dueDateValidity(const std::string& dueDateString) {
     return false;
 }
 
-/*
-    Function to check overall format of the task 
-*/
+/**
+  * Function to check overall format of the task 
+  */
 bool TaskScheduler::checkFormat(const Task& task)
 {
     bool valid = true;
@@ -348,36 +348,36 @@ bool TaskScheduler::checkFormat(const Task& task)
     return valid;
 }
 
-/*
-    Setter for the dependants list, push one element
-*/
+/**
+  * Setter for the dependants list, push one element
+  */
 void TaskScheduler::setDependants(int taskId, int dependantId)
 {
     tasks[taskId].getDependants().push_back(dependantId);
 }
 
-/*
-    Getter method. Returns the set of tasks
-*/
+/**
+  * Getter method. Returns the set of tasks
+  */
 const std::vector<Task>& TaskScheduler::getTasks() const {
     return tasks;
 }
 
-/*
-    Getter method. Returns the set of tasks
-*/
+/**
+  * Getter method. Returns the set of tasks
+  */
 std::vector<Task>& TaskScheduler::getTasks() { 
     return tasks;
 }
 
-/*
-    Sets completion status of task.
-    Updates other tasks accordingly.
-    We don't do anything if the task is already completed and we set it to completed again.
-    If tasks is set to true, all the tasks dependant to it are also automatically set to true and dependencies are also updated accordingly.
-    If all dependants of a task are complete than the task it self is also complete.
-    Same goes for when we set task to incomplete.
-*/
+/**
+  * Sets completion status of task.
+  * Updates other tasks accordingly.
+  * We don't do anything if the task is already completed and we set it to completed again.
+  * If tasks is set to true, all the tasks dependant to it are also automatically set to true and dependencies are also updated accordingly.
+  * If all dependants of a task are complete than the task it self is also complete.
+  * Same goes for when we set task to incomplete.
+  */
 void TaskScheduler::setComplete(int taskId, bool complete)
 {
     if (tasks[taskId].getCompleted() != complete) {

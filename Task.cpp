@@ -100,9 +100,9 @@ void Task::setCompleted(bool complete)
     completed = complete;
 }
 
-/*
-    Remove id from dependency list
-*/
+/**
+  * Remove id from dependency list
+  */
 void Task::removeDependency(int taskId)
 {
     for (int j = 0; j < dependecies.size(); j++) {
@@ -113,9 +113,9 @@ void Task::removeDependency(int taskId)
     }
 }
 
-/*
-    Remove id from dependant list
-*/
+/**
+  * Remove id from dependant list
+  */
 void Task::removeDependant(int taskId) {
     for (int j = 0; j < dependants.size(); j++) {
         if (dependants[j] == taskId) {
@@ -125,10 +125,10 @@ void Task::removeDependant(int taskId) {
     }
 }
 
-/*
-    Adjust the dependency list
-    Used when some tasks change ID's and we need to adjust the dependency list accordingly
-*/
+/**
+  * Adjust the dependency list
+  * Used when some tasks change ID's and we need to adjust the dependency list accordingly
+  */
 void Task::adjustDependencyList(int taskId)
 {
     for (int i = 0; i < dependecies.size(); i++) {
@@ -138,10 +138,10 @@ void Task::adjustDependencyList(int taskId)
     }
 }
 
-/*
-    Adjust the dependant list
-    Used when some tasks change ID's and we need to adjust the dependant list accordingly
-*/
+/**
+  * Adjust the dependant list
+  * Used when some tasks change ID's and we need to adjust the dependant list accordingly
+  */
 void Task::adjustDependantList(int taskId)
 {
     for (int i = 0; i < dependants.size(); i++) {
@@ -151,9 +151,9 @@ void Task::adjustDependantList(int taskId)
     }
 }
 
-/*
-    Write a single task to file
-*/
+/**
+  * Write a single task to file
+  */
 void Task::saveToFile(std::ofstream& file) const {
     file << title << '\n';
     file << description << '\n';

@@ -7,6 +7,10 @@
 #include <condition_variable>
 #include <mutex>
 
+/**
+  * Reminder handles the task of notifying the user about upcoming tasks.
+  * Runs in the background on two threads.
+  */
 class Reminder {
 private:
     TaskScheduler& taskScheduler;

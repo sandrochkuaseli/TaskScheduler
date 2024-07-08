@@ -5,9 +5,9 @@
 #include <sstream>
 #include <regex>
 
-/*
-    Print instructions on what the commands do
-*/
+/**
+  * Print instructions on what the commands do
+  */
 void printInstructions() {
     std::cout << "Welcome to Task Scheduler!" << std::endl;
     std::cout << "Commands:" << std::endl;
@@ -26,9 +26,9 @@ void printInstructions() {
     std::cout << "- quit: Quit the program" << std::endl;
 }
 
-/*
-    Checks if the given string only contains one single integer and nothing else
-*/
+/**
+  * Checks if the given string only contains one single integer and nothing else
+  */
 bool isSingleInteger(const std::string& input) {
     std::regex pattern(R"(^\s*\d+\s*$)");
     if (!std::regex_match(input, pattern)) {
@@ -39,9 +39,9 @@ bool isSingleInteger(const std::string& input) {
     return true;
 }
 
-/*
-    Checks validity of the provided index
-*/
+/**
+  * Checks validity of the provided index
+  */
 bool checkIndexValidity(int& index, TaskScheduler taskScheduler) {
     std::string intLine;
     std::getline(std::cin, intLine);
@@ -60,12 +60,12 @@ bool checkIndexValidity(int& index, TaskScheduler taskScheduler) {
 }
 
 
-/*
-    Main function.
-    Manages the flow of the whole program.
-    Reads the given command and performs actions accordingly.
-    Reminder system is also ran in the main function on a seperate thread, it terminates as we quit the application.
-*/
+/**
+  * Main function.
+  * Manages the flow of the whole program.
+  * Reads the given command and performs actions accordingly.
+  * Reminder system is also ran in the main function on a seperate thread, it terminates as we quit the application.
+  */
 int main() {
     TaskScheduler taskScheduler("tasks.txt");
     Reminder reminderSystem(taskScheduler);

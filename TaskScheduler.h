@@ -6,10 +6,10 @@
 #include <string>
 
 
-/*
-    Main class that combines most of the other classes functionalities.
-    Handles almost every action with tasks.
-*/
+/**
+  * Main class that combines most of the other classes functionalities.
+  * Handles almost every action with tasks.
+  */
 class TaskScheduler {
 private:
     std::vector<Task> tasks;

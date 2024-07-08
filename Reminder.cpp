@@ -5,9 +5,9 @@
 #include <sstream>
 
 
-/*
-Reminder class constructor
-*/
+/**
+  * Reminder class constructor
+  */
 Reminder::Reminder(TaskScheduler& taskScheduler) :
     taskScheduler(taskScheduler), running{ false } {}
 
@@ -16,9 +16,9 @@ Reminder::~Reminder() {
     stop();
 }
 
-/*
-Start two threads, one checks every 59 seconds other check checks every 59 minutes
-*/
+/**
+  * Start two threads, one checks every 59 seconds other check checks every 59 minutes
+  */
 void Reminder::start() {
     if (!running.load()) {
         running.store(true);
@@ -30,10 +30,10 @@ void Reminder::start() {
 
 
 
-/*
-    Terminate threads
-    We use cv and mtx to tell tasks to wake up for termination
-*/
+/**
+  * Terminate threads
+  * We use cv and mtx to tell tasks to wake up for termination
+  */
 void Reminder::stop() {
     if (running.load()) {
         {
@@ -55,9 +55,9 @@ void Reminder::stop() {
     }
 }
 
-/*
-    Runs checksTasksAndRemindNow() every 59 seconds
-*/
+/**
+  * Runs checksTasksAndRemindNow() every 59 seconds
+  */
 
 void Reminder::runEveryMin() {
     std::unique_lock<std::mutex> lock(mtx);
@@ -69,9 +69,9 @@ void Reminder::runEveryMin() {
     }
 }
 
-/*
-    Runs checksTasksAndRemindLonger() every 59 minutes
-*/
+/**
+  * Runs checksTasksAndRemindLonger() every 59 minutes
+  */
 void Reminder::runEveryHour()
 {
     std::unique_lock<std::mutex> lock(mtx);
@@ -84,9 +84,9 @@ void Reminder::runEveryHour()
 }
 
 
-/*
-    Returns int which represents difference between current date and due date in hours
-*/
+/**
+  * Returns int which represents difference between current date and due date in hours
+  */
 int countHoursToDate(std::string dueDateStr) {
     auto now = std::chrono::system_clock::now();
     std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
@@ -120,10 +120,10 @@ int countHoursToDate(std::string dueDateStr) {
     return days;
 }
 
-/*
-    Reminds about tasks that are due at the moment
-    Renews due date according to recurring settings
-*/
+/**
+  * Reminds about tasks that are due at the moment
+  * Renews due date according to recurring settings
+  */
 void Reminder::checkTasksAndRemindNow() {
     auto now = std::chrono::system_clock::now();
     std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
@@ -215,9 +215,9 @@ void Reminder::checkTasksAndRemindNow() {
 
 }
 
-/*
-    Reminds about tasks that are either past their due date or are due in the future (months, weeks, days)
-*/
+/**
+  * Reminds about tasks that are either past their due date or are due in the future (months, weeks, days)
+  */
 void Reminder::checkTasksAndRemindLonger() {
     auto now = std::chrono::system_clock::now();
     std::time_t currentTime = std::chrono::system_clock::to_time_t(now);

@@ -4,10 +4,10 @@
 #include <iostream>
 #include <sstream>
 
-/*
-    Exports set of tasks to a provided file.
-    If file does not exist new file is created.
-*/
+/**
+  * Exports set of tasks to a provided file.
+  * If file does not exist new file is created.
+  */
 void FileHandler::exportTasks(const std::string& filename, const std::vector<Task>& tasks) {
     std::ofstream file(filename, std::ios::trunc);
     if (file.is_open()) {
@@ -22,10 +22,10 @@ void FileHandler::exportTasks(const std::string& filename, const std::vector<Tas
     }
 }
 
-/*
-    Imports tasks from a file.
-    It is assumed that the format is correct mostly, as this format of tasks can only be exported from this Taskscheduler.
-*/
+/**
+  * Imports tasks from a file.
+  * It is assumed that the format is correct mostly, as this format of tasks can only be exported from this Taskscheduler.
+  */
 void FileHandler::importTasks(const std::string& filename, std::vector<Task>& tasks) {
     std::ifstream file(filename);
     if (file.is_open()) {
