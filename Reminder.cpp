@@ -122,6 +122,7 @@ int countHoursToDate(std::string dueDateStr) {
 
 /**
   * Reminds about tasks that are due at the moment
+  * Renews due date if the due date is now and the task is still incomplete
   * Renews due date according to recurring settings
   */
 void Reminder::checkTasksAndRemindNow() {
@@ -240,7 +241,6 @@ void Reminder::checkTasksAndRemindLonger() {
 
             dueDateStream >> year >> dash1 >> month >> dash2 >> day >> hour >> colon >> minute;
 
-            //std::cout << "Hours to date: " << hoursToDate << std::endl;
             if (hoursToDate < -1) {
                 std::cout << "\nReminder: Task '" << task.getTitle() << "' was due on " << task.getDueDate() << " and is still incomplete!" << std::endl;
                 std::cout << "> ";

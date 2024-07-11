@@ -17,6 +17,7 @@ TaskScheduler::TaskScheduler(const std::string& filename) : filename(filename) {
 
 /**
   * Handles addition of tasks from command line
+  * In case task is in incorrect format, error message is outputed 
   */
 void TaskScheduler::addTask(const Task& task) {
     bool correctFormat = true;
@@ -51,6 +52,7 @@ void TaskScheduler::addTask(const Task& task) {
 
 /**
   * Edits one of the attributes
+  * In case of invalid input user is informed by a message ( message format depends on attribure )
   */
 void TaskScheduler::editTask(int index, std::string attribute, std::string newAttributeDefinition) {
 
@@ -128,6 +130,7 @@ void TaskScheduler::editTask(int index, std::string attribute, std::string newAt
 /**
   * Removes a task from the task set.
   * Adjusts index and dependants and dependencies in relation to other tasks accordingly.
+  * If index is invalid error message is printed
   */
 void TaskScheduler::removeTask(int index) {
     if (index >= 0 && index < tasks.size()) {
@@ -162,6 +165,7 @@ void TaskScheduler::removeTask(int index) {
 
 /**
   *  Lists all tasks
+  * If no tasks are currently in the list user is informed of it
   */
 void TaskScheduler::listTasks(std::vector<Task> taskVec) const {
     if (tasks.empty()) {
@@ -235,6 +239,9 @@ void TaskScheduler::showTask(int index) {
     }
 }
 
+/**
+  * Export tasks to a file 
+  */
 void TaskScheduler::exportTasks(std::string filename) const {
     FileHandler::exportTasks(filename, tasks);
 }
@@ -263,6 +270,7 @@ void TaskScheduler::removeAllTasks() {
 /**
   * Checks validity of provided due date.
   * Checks if the provided format is valid and then checks whether the due date is later than current date.
+  * Reutrns true if provided due date string is valid meaning it's is correct format and it is not behind in time
   */
 bool TaskScheduler::dueDateValidity(const std::string& dueDateString) {
     std::regex pattern("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}");
@@ -324,6 +332,7 @@ bool TaskScheduler::dueDateValidity(const std::string& dueDateString) {
 
 /**
   * Function to check overall format of the task 
+  * Returns true if all the checks about task's validity are passed
   */
 bool TaskScheduler::checkFormat(const Task& task)
 {

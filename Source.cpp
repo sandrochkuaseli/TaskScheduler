@@ -29,6 +29,8 @@ void printInstructions() {
 
 /**
   * Checks if the given string only contains one single integer and nothing else
+  * Returns true if given string matches the prescribed regex patter
+  * Otherwise prints error message
   */
 bool isSingleInteger(const std::string& input) {
     std::regex pattern(R"(^\s*\d+\s*$)");
@@ -42,6 +44,8 @@ bool isSingleInteger(const std::string& input) {
 
 /**
   * Checks validity of the provided index
+  * Returns true if provided index is valid (is a single integer and is in bounds)
+  * Otherwise user is presented with an error message
   */
 bool checkIndexValidity(int& index, TaskScheduler taskScheduler) {
     std::string intLine;
@@ -289,6 +293,7 @@ int main() {
 
         }
         else if (command == "listP") {
+            // Implement list tasks by priority functionality
             taskScheduler.listTasksByPriority();
         }
         else if (command == "export") {
@@ -309,14 +314,17 @@ int main() {
 
         }
         else if (command == "quit") {
+            // Implement quit functionality
             std::cout << "Exiting program..." << std::endl;
             break;
 
         }
         else if (command == "remove all") {
+            // Implement remove all tasks functionality
             taskScheduler.removeAllTasks();
         }
         else if (command == "show") {
+            // Implement show tasks functionality
             std::cout << "Enter task index to show: ";
             int index{};
             if (!checkIndexValidity(index, taskScheduler)) {
@@ -325,9 +333,11 @@ int main() {
             taskScheduler.showTask(index);
         }
         else if (command == "save") {
+            // Implement save task list functionality
             taskScheduler.exportTasks("tasks.txt");
         }
         else if (command == "completed") {
+            // Implement set completed functionality
             std::cout << "Enter task index you completed: ";
             int index{};
             if (!checkIndexValidity(index, taskScheduler)) {
@@ -337,6 +347,7 @@ int main() {
             
         }
         else if (command == "incomplete") {
+            // Implement set task to incomplete functionality
             std::cout << "Enter task index to set to incomplete: ";
             int index{};
             if (!checkIndexValidity(index, taskScheduler)) {
@@ -345,6 +356,7 @@ int main() {
             taskScheduler.setComplete(index, false);
         }
         else if (command == "help") {
+            // Implement providing help commands functionality
             printInstructions();
         }
         else {

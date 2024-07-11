@@ -7,6 +7,7 @@
 /**
   * Exports set of tasks to a provided file.
   * If file does not exist new file is created.
+  * If file by the provided filename is not found then is informed by a message ( does not ussualy happen as if file is not found we create it)
   */
 void FileHandler::exportTasks(const std::string& filename, const std::vector<Task>& tasks) {
     std::ofstream file(filename, std::ios::trunc);
@@ -24,7 +25,9 @@ void FileHandler::exportTasks(const std::string& filename, const std::vector<Tas
 
 /**
   * Imports tasks from a file.
+  * Goes line by line through the file to attain all the attributes of a task.
   * It is assumed that the format is correct mostly, as this format of tasks can only be exported from this Taskscheduler.
+  * If file by the provided filename is not found then is informed by a message
   */
 void FileHandler::importTasks(const std::string& filename, std::vector<Task>& tasks) {
     std::ifstream file(filename);

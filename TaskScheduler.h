@@ -39,7 +39,11 @@ public:
 
     Task& operator[](size_t index);
     const Task& operator[](size_t index) const;
-
+    
+    /**
+      * Input year and month
+      * Returns days in that month of the year ( takes into account the leap year )
+      */
     static int getDaysInMonth(int year, int month) {
         // Checks for leap year
         if (month == 2) {
