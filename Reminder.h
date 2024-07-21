@@ -1,3 +1,8 @@
+/** /file Reminder.h
+  * Reminder class header file.
+  * Contains function declarations.
+  */
+
 #ifndef REMINDER_H
 #define REMINDER_H
 

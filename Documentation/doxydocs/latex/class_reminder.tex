@@ -41,9 +41,9 @@ std\+::condition\+\_\+variable \mbox{\hyperlink{class_reminder_a46e4debf38017575
 
 
 \doxysubsection{Detailed Description}
-\doxylink{class_reminder}{Reminder} handles the task of notifying the user about upcoming tasks. Runs in the background on two threads. 
+/file \doxylink{_reminder_8h}{Reminder.\+h} \doxylink{class_reminder}{Reminder} class header file. Contains function declarations. \doxylink{class_reminder}{Reminder} handles the task of notifying the user about upcoming tasks. Runs in the background on two threads. 
 
-Definition at line \mbox{\hyperlink{_reminder_8h_source_l00014}{14}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
+Definition at line \mbox{\hyperlink{_reminder_8h_source_l00019}{19}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
 
 
 
@@ -56,13 +56,13 @@ Reminder\+::\texorpdfstring{$\sim$}{\string~}\+Reminder (\begin{DoxyParamCaption
 
 
 
-Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
+Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_reminder_aad90e4fbc94e37b00fd553b84ece19bc}{stop}}();}
-\DoxyCodeLine{00017\ \}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_reminder_aad90e4fbc94e37b00fd553b84ece19bc}{stop}}();}
+\DoxyCodeLine{00023\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_reminder_aa554efe2ee479fdd196da7867e39c9c2}\index{Reminder@{Reminder}!Reminder@{Reminder}}
@@ -71,14 +71,14 @@ Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00015}{15}} of file \
 {\footnotesize\ttfamily \label{class_reminder_aa554efe2ee479fdd196da7867e39c9c2} 
 Reminder\+::\+Reminder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_task_scheduler}{Task\+Scheduler}} \&}]{task\+Scheduler}{}\end{DoxyParamCaption})}
 
-\doxylink{class_reminder}{Reminder} class constructor 
+/file \doxylink{_reminder_8cpp}{Reminder.\+cpp} \doxylink{class_reminder}{Reminder} class source file. Contains all the function definitions. \doxylink{class_reminder}{Reminder} class constructor 
 
-Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
+Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :}
-\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_reminder_afc381add7921aff7f5382326e1bab423}{taskScheduler}}(\mbox{\hyperlink{class_reminder_afc381add7921aff7f5382326e1bab423}{taskScheduler}}),\ \mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}\{\ \textcolor{keyword}{false}\ \}\ \{\}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_reminder_afc381add7921aff7f5382326e1bab423}{taskScheduler}}(\mbox{\hyperlink{class_reminder_afc381add7921aff7f5382326e1bab423}{taskScheduler}}),\ \mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}\{\ \textcolor{keyword}{false}\ \}\ \{\}}
 
 \end{DoxyCode}
 
@@ -92,65 +92,65 @@ void Reminder\+::check\+Tasks\+And\+Remind\+Longer (\begin{DoxyParamCaption}{}{}
 
 Reminds about tasks that are either past their due date or are due in the future (months, weeks, days) 
 
-Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00222}{222}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
+Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00231}{231}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keyword}{auto}\ now\ =\ std::chrono::system\_clock::now();}
-\DoxyCodeLine{00224\ \ \ \ \ std::time\_t\ currentTime\ =\ std::chrono::system\_clock::to\_time\_t(now);}
-\DoxyCodeLine{00225\ }
-\DoxyCodeLine{00226\ \ \ \ \ std::tm\ localTime;}
-\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ }\textcolor{comment}{//\ For\ Microsoft\ Visual\ Studio}}
-\DoxyCodeLine{00228\ \ \ \ \ localtime\_s(\&localTime,\ \&currentTime);}
-\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ other\ compilers}}
-\DoxyCodeLine{00230\ \ \ \ \ localtime\_r(\&currentTime,\ \&localTime);}
-\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#endif }}
-\DoxyCodeLine{00232\ }
-\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_task}{Task}}\ task\ :\ \mbox{\hyperlink{class_reminder_afc381add7921aff7f5382326e1bab423}{taskScheduler}}.getTasks())\ \{}
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!task.getCompleted())\ \{}
-\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hoursToDate\ =\ \mbox{\hyperlink{_reminder_8cpp_a43842e30ac1bc81d5f92ccac7f9bb3f8}{countHoursToDate}}(task.getDueDate());}
-\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ daysToDate\ =\ hoursToDate\ /\ 24;}
-\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ std::istringstream\ dueDateStream(task.getDueDate());}
-\DoxyCodeLine{00238\ }
-\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ year,\ month,\ day,\ hour,\ minute;}
-\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ dash1,\ dash2,\ colon;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{auto}\ now\ =\ std::chrono::system\_clock::now();}
+\DoxyCodeLine{00233\ \ \ \ \ std::time\_t\ currentTime\ =\ std::chrono::system\_clock::to\_time\_t(now);}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ std::tm\ localTime;}
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ }\textcolor{comment}{//\ For\ Microsoft\ Visual\ Studio}}
+\DoxyCodeLine{00237\ \ \ \ \ localtime\_s(\&localTime,\ \&currentTime);}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ other\ compilers}}
+\DoxyCodeLine{00239\ \ \ \ \ localtime\_r(\&currentTime,\ \&localTime);}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#endif }}
 \DoxyCodeLine{00241\ }
-\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ dueDateStream\ >>\ year\ >>\ dash1\ >>\ month\ >>\ dash2\ >>\ day\ >>\ hour\ >>\ colon\ >>\ minute;}
-\DoxyCodeLine{00243\ }
-\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hoursToDate\ <\ -\/1)\ \{}
-\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ was\ due\ on\ "{}}\ <<\ task.getDueDate()\ <<\ \textcolor{stringliteral}{"{}\ and\ is\ still\ incomplete!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
-\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (hoursToDate\ >\ 0\ \&\&\ hoursToDate\ <\ 24\ )\{}
-\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ soon!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
-\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (hoursToDate\ >\ 24\ \&\&\ hoursToDate\ <\ 36)}
-\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ tomorrow!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_task}{Task}}\ task\ :\ \mbox{\hyperlink{class_reminder_afc381add7921aff7f5382326e1bab423}{taskScheduler}}.getTasks())\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!task.getCompleted())\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hoursToDate\ =\ \mbox{\hyperlink{_reminder_8cpp_a43842e30ac1bc81d5f92ccac7f9bb3f8}{countHoursToDate}}(task.getDueDate());}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ daysToDate\ =\ hoursToDate\ /\ 24;}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ std::istringstream\ dueDateStream(task.getDueDate());}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ year,\ month,\ day,\ hour,\ minute;}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ dash1,\ dash2,\ colon;}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ dueDateStream\ >>\ year\ >>\ dash1\ >>\ month\ >>\ dash2\ >>\ day\ >>\ hour\ >>\ colon\ >>\ minute;}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hoursToDate\ <\ -\/1)\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ was\ due\ on\ "{}}\ <<\ task.getDueDate()\ <<\ \textcolor{stringliteral}{"{}\ and\ is\ still\ incomplete!"{}}\ <<\ std::endl;}
 \DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
 \DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (daysToDate\ <\ 8\ \&\&\ daysToDate\ >\ 1)\ \{}
-\DoxyCodeLine{00258\ }
-\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ in\ "{}}\ <<\ daysToDate\ <<\ \textcolor{stringliteral}{"{}\ days!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
-\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (daysToDate\ ==\ 30\ )\ \{}
-\DoxyCodeLine{00263\ }
-\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ in\ 1\ month!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
-\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (daysToDate\ \%\ 30\ ==\ 0\ \&\&\ daysToDate\ !=\ 0)\ \{}
-\DoxyCodeLine{00268\ }
-\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ in\ "{}}\ <<\ daysToDate\ /\ 30\ <<\ \textcolor{stringliteral}{"{}\ months!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
-\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00273\ }
-\DoxyCodeLine{00274\ \ \ \ \ \}}
-\DoxyCodeLine{00275\ }
-\DoxyCodeLine{00276\ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (hoursToDate\ >\ 0\ \&\&\ hoursToDate\ <\ 24\ )\{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ soon!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (hoursToDate\ >\ 24\ \&\&\ hoursToDate\ <\ 36)}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ tomorrow!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (daysToDate\ <\ 8\ \&\&\ daysToDate\ >\ 1)\ \{}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ in\ "{}}\ <<\ daysToDate\ <<\ \textcolor{stringliteral}{"{}\ days!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (daysToDate\ ==\ 30\ )\ \{}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ in\ 1\ month!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (daysToDate\ \%\ 30\ ==\ 0\ \&\&\ daysToDate\ !=\ 0)\ \{}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ in\ "{}}\ <<\ daysToDate\ /\ 30\ <<\ \textcolor{stringliteral}{"{}\ months!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_reminder_a9d627bc6b3af3fcace812dc2d2e8995d}\index{Reminder@{Reminder}!checkTasksAndRemindNow@{checkTasksAndRemindNow}}
@@ -161,100 +161,100 @@ void Reminder\+::check\+Tasks\+And\+Remind\+Now (\begin{DoxyParamCaption}{}{}\en
 
 Reminds about tasks that are due at the moment Renews due date if the due date is now and the task is still incomplete Renews due date according to recurring settings 
 
-Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00128}{128}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
+Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00137}{137}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{auto}\ now\ =\ std::chrono::system\_clock::now();}
-\DoxyCodeLine{00130\ \ \ \ \ std::time\_t\ currentTime\ =\ std::chrono::system\_clock::to\_time\_t(now);}
-\DoxyCodeLine{00131\ }
-\DoxyCodeLine{00132\ \ \ \ \ std::tm\ localTime;}
-\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ }\textcolor{comment}{//\ For\ Microsoft\ Visual\ Studio}}
-\DoxyCodeLine{00134\ \ \ \ \ localtime\_s(\&localTime,\ \&currentTime);}
-\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ other\ compilers}}
-\DoxyCodeLine{00136\ \ \ \ \ localtime\_r(\&currentTime,\ \&localTime);}
-\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#endif }}
-\DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_task}{Task}}\&\ task\ :\ \mbox{\hyperlink{class_reminder_afc381add7921aff7f5382326e1bab423}{taskScheduler}}.getTasks())\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{auto}\ now\ =\ std::chrono::system\_clock::now();}
+\DoxyCodeLine{00139\ \ \ \ \ std::time\_t\ currentTime\ =\ std::chrono::system\_clock::to\_time\_t(now);}
 \DoxyCodeLine{00140\ }
-\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ std::istringstream\ dueDateStream(task.getDueDate());}
-\DoxyCodeLine{00142\ }
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ localTime.tm\_sec\ =\ 0;}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ std::time\_t\ currentTimeT\ =\ std::mktime(\&localTime);}
-\DoxyCodeLine{00145\ }
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ std::tm\ dueDateTime\ =\ \{\};}
-\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ year,\ month,\ day,\ hour,\ minute;}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ dash1,\ dash2,\ colon;}
+\DoxyCodeLine{00141\ \ \ \ \ std::tm\ localTime;}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ }\textcolor{comment}{//\ For\ Microsoft\ Visual\ Studio}}
+\DoxyCodeLine{00143\ \ \ \ \ localtime\_s(\&localTime,\ \&currentTime);}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ other\ compilers}}
+\DoxyCodeLine{00145\ \ \ \ \ localtime\_r(\&currentTime,\ \&localTime);}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_task}{Task}}\&\ task\ :\ \mbox{\hyperlink{class_reminder_afc381add7921aff7f5382326e1bab423}{taskScheduler}}.getTasks())\ \{}
 \DoxyCodeLine{00149\ }
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ dueDateStream\ >>\ year\ >>\ dash1\ >>\ month\ >>\ dash2\ >>\ day\ >>\ hour\ >>\ colon\ >>\ minute;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ std::istringstream\ dueDateStream(task.getDueDate());}
 \DoxyCodeLine{00151\ }
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ dueDateTime.tm\_year\ =\ year\ -\/\ 1900;}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ dueDateTime.tm\_mon\ =\ month\ -\/\ 1;\ \ \ }
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ dueDateTime.tm\_mday\ =\ day;}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ dueDateTime.tm\_hour\ =\ hour\ -\/\ 1;}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ dueDateTime.tm\_min\ =\ minute;}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ dueDateTime.tm\_sec\ =\ 0;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ localTime.tm\_sec\ =\ 0;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ std::time\_t\ currentTimeT\ =\ std::mktime(\&localTime);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ std::tm\ dueDateTime\ =\ \{\};}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ year,\ month,\ day,\ hour,\ minute;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ dash1,\ dash2,\ colon;}
 \DoxyCodeLine{00158\ }
-\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ std::time\_t\ dueDateTimeT\ =\ std::mktime(\&dueDateTime);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ dueDateStream\ >>\ year\ >>\ dash1\ >>\ month\ >>\ dash2\ >>\ day\ >>\ hour\ >>\ colon\ >>\ minute;}
 \DoxyCodeLine{00160\ }
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(currentTimeT\ ==\ dueDateTimeT\ \&\&\ !task.getCompleted())\{}
-\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ now!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Reminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ has\ not\ yet\ been\ completed!\ Reminding\ again\ in\ 1\ hour!\ (Due\ date\ will\ be\ adjusted)\ "{}}\ <<\ std::endl;}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ dueDateTimeT\ +=\ 3600;}
-\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ std::tm\ newDueDateTime;}
-\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ }\textcolor{comment}{//\ For\ Microsoft\ Visual\ Studio}}
-\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ localtime\_s(\&newDueDateTime,\ \&dueDateTimeT);}
-\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ other\ compilers}}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ localtime\_r(\&dueDateTimeT,\ \&newDueDateTime);}
-\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#endif }}
-\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ std::ostringstream\ oss;}
-\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ oss\ <<\ std::put\_time(\&newDueDateTime,\ \textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M"{}});}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ newdueStr\ =\ oss.str();}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ task.setDueDate(newdueStr);}
-\DoxyCodeLine{00177\ }
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}New\ Due\ Date\ Time:\ "{}}\ <<\ newdueStr\ <<\ std::endl;}
-\DoxyCodeLine{00179\ }
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
-\DoxyCodeLine{00181\ }
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (currentTimeT\ ==\ dueDateTimeT\ \&\&\ task.getCompleted()\ \&\&\ task.isRecurring())\ \{}
-\DoxyCodeLine{00183\ }
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (task.getRecurringOpt()\ ==\ \textcolor{stringliteral}{"{}daily"{}})\ \{}
-\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dueDateTimeT\ +=\ 3600\ *\ 24;}
-\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(task.getRecurringOpt()\ ==\ \textcolor{stringliteral}{"{}monthly"{}})\{}
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dueDateTimeT\ +=\ 3600\ *\ 24\ *\ \mbox{\hyperlink{class_task_scheduler_a5b832aeaaa56a1d7e4281df05dab98f1}{TaskScheduler::getDaysInMonth}}(year,\ month);}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (task.getRecurringOpt()\ ==\ \textcolor{stringliteral}{"{}yearly"{}})\ \{}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dueDateTimeT\ +=\ 3600\ *\ 24\ *\ 365;}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00194\ }
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ now!\ It\ has\ already\ been\ completed\ but\ it\ is\ a\ "{}}\ <<\ task.getRecurringOpt()\ <<\ \textcolor{stringliteral}{"{}\ recurring\ task!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Setting\ task\ to\ incomplete!\ Respective,\ dependants\ and\ dependecies\ are\ also\ set\ to\ incomplete!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ std::tm\ newDueDateTime;}
-\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ }\textcolor{comment}{//\ For\ Microsoft\ Visual\ Studio}}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ localtime\_s(\&newDueDateTime,\ \&dueDateTimeT);}
-\DoxyCodeLine{00201\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ other\ compilers}}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ localtime\_r(\&dueDateTimeT,\ \&newDueDateTime);}
-\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#endif }}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ std::ostringstream\ oss;}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ oss\ <<\ std::put\_time(\&newDueDateTime,\ \textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M"{}});}
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ newdueStr\ =\ oss.str();}
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ task.setDueDate(newdueStr);}
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ task.setCompleted(\textcolor{keyword}{false});}
-\DoxyCodeLine{00209\ }
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}New\ Due\ Date\ Time:\ "{}}\ <<\ newdueStr\ <<\ std::endl;}
-\DoxyCodeLine{00211\ }
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00214\ }
-\DoxyCodeLine{00215\ \ \ \ \ \}}
-\DoxyCodeLine{00216\ }
-\DoxyCodeLine{00217\ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ dueDateTime.tm\_year\ =\ year\ -\/\ 1900;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ dueDateTime.tm\_mon\ =\ month\ -\/\ 1;\ \ \ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ dueDateTime.tm\_mday\ =\ day;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ dueDateTime.tm\_hour\ =\ hour\ -\/\ 1;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ dueDateTime.tm\_min\ =\ minute;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ dueDateTime.tm\_sec\ =\ 0;}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ std::time\_t\ dueDateTimeT\ =\ std::mktime(\&dueDateTime);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(currentTimeT\ ==\ dueDateTimeT\ \&\&\ !task.getCompleted())\{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ now!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Reminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ has\ not\ yet\ been\ completed!\ Reminding\ again\ in\ 1\ hour!\ (Due\ date\ will\ be\ adjusted)\ "{}}\ <<\ std::endl;}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ dueDateTimeT\ +=\ 3600;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ std::tm\ newDueDateTime;}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ }\textcolor{comment}{//\ For\ Microsoft\ Visual\ Studio}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ localtime\_s(\&newDueDateTime,\ \&dueDateTimeT);}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ other\ compilers}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ localtime\_r(\&dueDateTimeT,\ \&newDueDateTime);}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ std::ostringstream\ oss;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ oss\ <<\ std::put\_time(\&newDueDateTime,\ \textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M"{}});}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ newdueStr\ =\ oss.str();}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ task.setDueDate(newdueStr);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}New\ Due\ Date\ Time:\ "{}}\ <<\ newdueStr\ <<\ std::endl;}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (currentTimeT\ ==\ dueDateTimeT\ \&\&\ task.getCompleted()\ \&\&\ task.isRecurring())\ \{}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (task.getRecurringOpt()\ ==\ \textcolor{stringliteral}{"{}daily"{}})\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dueDateTimeT\ +=\ 3600\ *\ 24;}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(task.getRecurringOpt()\ ==\ \textcolor{stringliteral}{"{}monthly"{}})\{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dueDateTimeT\ +=\ 3600\ *\ 24\ *\ \mbox{\hyperlink{class_task_scheduler_a5b832aeaaa56a1d7e4281df05dab98f1}{TaskScheduler::getDaysInMonth}}(year,\ month);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (task.getRecurringOpt()\ ==\ \textcolor{stringliteral}{"{}yearly"{}})\ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dueDateTimeT\ +=\ 3600\ *\ 24\ *\ 365;}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nReminder:\ Task\ '"{}}\ <<\ task.getTitle()\ <<\ \textcolor{stringliteral}{"{}'\ is\ due\ now!\ It\ has\ already\ been\ completed\ but\ it\ is\ a\ "{}}\ <<\ task.getRecurringOpt()\ <<\ \textcolor{stringliteral}{"{}\ recurring\ task!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Setting\ task\ to\ incomplete!\ Respective,\ dependants\ and\ dependecies\ are\ also\ set\ to\ incomplete!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ std::tm\ newDueDateTime;}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ }\textcolor{comment}{//\ For\ Microsoft\ Visual\ Studio}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ localtime\_s(\&newDueDateTime,\ \&dueDateTimeT);}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ other\ compilers}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ localtime\_r(\&dueDateTimeT,\ \&newDueDateTime);}
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ std::ostringstream\ oss;}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ oss\ <<\ std::put\_time(\&newDueDateTime,\ \textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M"{}});}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ newdueStr\ =\ oss.str();}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ task.setDueDate(newdueStr);}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ task.setCompleted(\textcolor{keyword}{false});}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}New\ Due\ Date\ Time:\ "{}}\ <<\ newdueStr\ <<\ std::endl;}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}>\ "{}};}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_reminder_aad5ab7e8bfd7cee9daedc8718406ef3a}\index{Reminder@{Reminder}!runEveryHour@{runEveryHour}}
@@ -265,19 +265,19 @@ void Reminder\+::run\+Every\+Hour (\begin{DoxyParamCaption}{}{}\end{DoxyParamCap
 
 Runs checks\+Tasks\+And\+Remind\+Longer() every 59 minutes 
 
-Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00075}{75}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
+Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00081}{81}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00076\ \{}
-\DoxyCodeLine{00077\ \ \ \ \ std::unique\_lock<std::mutex>\ lock(\mbox{\hyperlink{class_reminder_a22f69bcdd39775b2df352883cfae8e53}{mtx}});}
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}.load())\ \{}
-\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a86c0063f405233e4604279c60ac21725}{checkTasksAndRemindLonger}}();}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_reminder_a46e4debf3801757546d0292c529e1365}{cv}}.wait\_for(lock,\ std::chrono::minutes(59),\ [\textcolor{keyword}{this}]\ \{\ return\ !running.load();\ \}))\ \{}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00083\ \ \ \ \ \}}
-\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00082\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ std::unique\_lock<std::mutex>\ lock(\mbox{\hyperlink{class_reminder_a22f69bcdd39775b2df352883cfae8e53}{mtx}});}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}.load())\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a86c0063f405233e4604279c60ac21725}{checkTasksAndRemindLonger}}();}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_reminder_a46e4debf3801757546d0292c529e1365}{cv}}.wait\_for(lock,\ std::chrono::minutes(59),\ [\textcolor{keyword}{this}]\ \{\ return\ !running.load();\ \}))\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_reminder_aa04082b1ccf912127f2055c3d7913070}\index{Reminder@{Reminder}!runEveryMin@{runEveryMin}}
@@ -288,19 +288,19 @@ void Reminder\+::run\+Every\+Min (\begin{DoxyParamCaption}{}{}\end{DoxyParamCapt
 
 Runs checks\+Tasks\+And\+Remind\+Now() every 59 seconds 
 
-Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00062}{62}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
+Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00068}{68}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00063\ \ \ \ \ std::unique\_lock<std::mutex>\ lock(\mbox{\hyperlink{class_reminder_a22f69bcdd39775b2df352883cfae8e53}{mtx}});}
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}.load())\ \{}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a9d627bc6b3af3fcace812dc2d2e8995d}{checkTasksAndRemindNow}}();}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_reminder_a46e4debf3801757546d0292c529e1365}{cv}}.wait\_for(lock,\ std::chrono::seconds(59),\ [\textcolor{keyword}{this}]\ \{\ return\ !running.load();\ \}))\ \{}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00069\ \ \ \ \ \}}
-\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ std::unique\_lock<std::mutex>\ lock(\mbox{\hyperlink{class_reminder_a22f69bcdd39775b2df352883cfae8e53}{mtx}});}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}.load())\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a9d627bc6b3af3fcace812dc2d2e8995d}{checkTasksAndRemindNow}}();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_reminder_a46e4debf3801757546d0292c529e1365}{cv}}.wait\_for(lock,\ std::chrono::seconds(59),\ [\textcolor{keyword}{this}]\ \{\ return\ !running.load();\ \}))\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_reminder_a8054bff0eb5004d90db4be6a4bf26c5f}\index{Reminder@{Reminder}!start@{start}}
@@ -311,18 +311,18 @@ void Reminder\+::start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 Start two threads, one checks every 59 seconds other check checks every 59 minutes 
 
-Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
+Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}.load())\ \{}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}.store(\textcolor{keyword}{true});}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a9f4fc1d1d06610285783276299cbf8f8}{reminderThreadMin}}\ =\ std::thread(\&\mbox{\hyperlink{class_reminder_aa04082b1ccf912127f2055c3d7913070}{Reminder::runEveryMin}},\ \textcolor{keyword}{this});}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_ab5a7c7dcd45a6c85f2f56b4a4ecd608c}{reminderThreadHour}}\ =\ std::thread(\&\mbox{\hyperlink{class_reminder_aad5ab7e8bfd7cee9daedc8718406ef3a}{Reminder::runEveryHour}},\ \textcolor{keyword}{this});}
-\DoxyCodeLine{00028\ \ \ \ \ \}}
-\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}.load())\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}.store(\textcolor{keyword}{true});}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a9f4fc1d1d06610285783276299cbf8f8}{reminderThreadMin}}\ =\ std::thread(\&\mbox{\hyperlink{class_reminder_aa04082b1ccf912127f2055c3d7913070}{Reminder::runEveryMin}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_ab5a7c7dcd45a6c85f2f56b4a4ecd608c}{reminderThreadHour}}\ =\ std::thread(\&\mbox{\hyperlink{class_reminder_aad5ab7e8bfd7cee9daedc8718406ef3a}{Reminder::runEveryHour}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_reminder_aad90e4fbc94e37b00fd553b84ece19bc}\index{Reminder@{Reminder}!stop@{stop}}
@@ -333,30 +333,30 @@ void Reminder\+::stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 Terminate threads We use cv and mtx to tell tasks to wake up for termination 
 
-Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
+Definition at line \mbox{\hyperlink{_reminder_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{_reminder_8cpp_source}{Reminder.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}.load())\ \{}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\mbox{\hyperlink{class_reminder_a22f69bcdd39775b2df352883cfae8e53}{mtx}});}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}.store(\textcolor{keyword}{false});}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a46e4debf3801757546d0292c529e1365}{cv}}.notify\_all();}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_reminder_a9f4fc1d1d06610285783276299cbf8f8}{reminderThreadMin}}.joinable())\ \{}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a9f4fc1d1d06610285783276299cbf8f8}{reminderThreadMin}}.join();}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_reminder_ab5a7c7dcd45a6c85f2f56b4a4ecd608c}{reminderThreadHour}}.joinable())\ \{}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_ab5a7c7dcd45a6c85f2f56b4a4ecd608c}{reminderThreadHour}}.join();}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \ \ \ \ \}}
-\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}.load())\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\mbox{\hyperlink{class_reminder_a22f69bcdd39775b2df352883cfae8e53}{mtx}});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}{running}}.store(\textcolor{keyword}{false});}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a46e4debf3801757546d0292c529e1365}{cv}}.notify\_all();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_reminder_a9f4fc1d1d06610285783276299cbf8f8}{reminderThreadMin}}.joinable())\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_a9f4fc1d1d06610285783276299cbf8f8}{reminderThreadMin}}.join();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_reminder_ab5a7c7dcd45a6c85f2f56b4a4ecd608c}{reminderThreadHour}}.joinable())\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_reminder_ab5a7c7dcd45a6c85f2f56b4a4ecd608c}{reminderThreadHour}}.join();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \}}
 
 \end{DoxyCode}
 
@@ -370,7 +370,7 @@ std\+::condition\+\_\+variable Reminder\+::cv\hspace{0.3cm}{\ttfamily [private]}
 
 
 
-Definition at line \mbox{\hyperlink{_reminder_8h_source_l00021}{21}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
+Definition at line \mbox{\hyperlink{_reminder_8h_source_l00026}{26}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
 
 \Hypertarget{class_reminder_a22f69bcdd39775b2df352883cfae8e53}\index{Reminder@{Reminder}!mtx@{mtx}}
 \index{mtx@{mtx}!Reminder@{Reminder}}
@@ -380,7 +380,7 @@ std\+::mutex Reminder\+::mtx\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
-Definition at line \mbox{\hyperlink{_reminder_8h_source_l00020}{20}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
+Definition at line \mbox{\hyperlink{_reminder_8h_source_l00025}{25}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
 
 \Hypertarget{class_reminder_ab5a7c7dcd45a6c85f2f56b4a4ecd608c}\index{Reminder@{Reminder}!reminderThreadHour@{reminderThreadHour}}
 \index{reminderThreadHour@{reminderThreadHour}!Reminder@{Reminder}}
@@ -390,7 +390,7 @@ std\+::thread Reminder\+::reminder\+Thread\+Hour\hspace{0.3cm}{\ttfamily [privat
 
 
 
-Definition at line \mbox{\hyperlink{_reminder_8h_source_l00019}{19}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
+Definition at line \mbox{\hyperlink{_reminder_8h_source_l00024}{24}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
 
 \Hypertarget{class_reminder_a9f4fc1d1d06610285783276299cbf8f8}\index{Reminder@{Reminder}!reminderThreadMin@{reminderThreadMin}}
 \index{reminderThreadMin@{reminderThreadMin}!Reminder@{Reminder}}
@@ -400,7 +400,7 @@ std\+::thread Reminder\+::reminder\+Thread\+Min\hspace{0.3cm}{\ttfamily [private
 
 
 
-Definition at line \mbox{\hyperlink{_reminder_8h_source_l00018}{18}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
+Definition at line \mbox{\hyperlink{_reminder_8h_source_l00023}{23}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
 
 \Hypertarget{class_reminder_a28b2dbdabe867a2ebe30ba09c96fe3bd}\index{Reminder@{Reminder}!running@{running}}
 \index{running@{running}!Reminder@{Reminder}}
@@ -410,7 +410,7 @@ std\+::atomic$<$bool$>$ Reminder\+::running\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
-Definition at line \mbox{\hyperlink{_reminder_8h_source_l00017}{17}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
+Definition at line \mbox{\hyperlink{_reminder_8h_source_l00022}{22}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
 
 \Hypertarget{class_reminder_afc381add7921aff7f5382326e1bab423}\index{Reminder@{Reminder}!taskScheduler@{taskScheduler}}
 \index{taskScheduler@{taskScheduler}!Reminder@{Reminder}}
@@ -420,7 +420,7 @@ Definition at line \mbox{\hyperlink{_reminder_8h_source_l00017}{17}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{_reminder_8h_source_l00016}{16}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
+Definition at line \mbox{\hyperlink{_reminder_8h_source_l00021}{21}} of file \mbox{\hyperlink{_reminder_8h_source}{Reminder.\+h}}.
 
 
 

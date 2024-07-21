@@ -1,3 +1,9 @@
+/** /file Reminder.cpp
+  * Reminder class source file.
+  * Contains all the function definitions.
+  */
+
+
 #include "Reminder.h"
 #include <iostream>
 #include <ctime>
@@ -86,6 +92,9 @@ void Reminder::runEveryHour()
 
 /**
   * Returns int which represents difference between current date and due date in hours
+  * 
+  * @param[in] dueDateStr dueDateStr is passed to the function which is in valid format YYYY-MM-DD HH:MM and then it is parsed to calculate time in hours to current time
+  * @return Returns hours left to current date from given date
   */
 int countHoursToDate(std::string dueDateStr) {
     auto now = std::chrono::system_clock::now();

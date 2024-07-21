@@ -117,41 +117,48 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns int which represents difference between current date and due date in hours </p>
+<p>Returns int which represents difference between current date and due date in hours</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dueDateStr</td><td>dueDateStr is passed to the function which is in valid format YYYY-MM-DD HH:MM and then it is parsed to calculate time in hours to current time </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns hours left to current date from given date </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00090">90</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   90</span>                                           {</div>
-<div class="line"><span class="lineno">   91</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">   92</span>    std::time_t currentTime = std::chrono::system_clock::to_time_t(now);</div>
-<div class="line"><span class="lineno">   93</span> </div>
-<div class="line"><span class="lineno">   94</span>    std::tm localTime;</div>
-<div class="line"><span class="lineno">   95</span><span class="preprocessor">#if defined(_MSC_VER) </span><span class="comment">// For Microsoft Visual Studio</span></div>
-<div class="line"><span class="lineno">   96</span>    localtime_s(&amp;localTime, &amp;currentTime);</div>
-<div class="line"><span class="lineno">   97</span><span class="preprocessor">#else </span><span class="comment">// For other compilers</span></div>
-<div class="line"><span class="lineno">   98</span>    localtime_r(&amp;currentTime, &amp;localTime);</div>
-<div class="line"><span class="lineno">   99</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">  100</span> </div>
-<div class="line"><span class="lineno">  101</span>    localTime.tm_hour = 0;</div>
-<div class="line"><span class="lineno">  102</span>    localTime.tm_min = 0;</div>
-<div class="line"><span class="lineno">  103</span>    localTime.tm_sec = 0;</div>
-<div class="line"><span class="lineno">  104</span> </div>
-<div class="line"><span class="lineno">  105</span>    <span class="keyword">auto</span> currentDate = std::chrono::system_clock::from_time_t(std::mktime(&amp;localTime));</div>
-<div class="line"><span class="lineno">  106</span> </div>
-<div class="line"><span class="lineno">  107</span>    std::tm futureTime = {};</div>
-<div class="line"><span class="lineno">  108</span>    std::istringstream dueDateStream(dueDateStr);</div>
-<div class="line"><span class="lineno">  109</span>    dueDateStream &gt;&gt; std::get_time(&amp;futureTime, <span class="stringliteral">&quot;%Y-%m-%d %H:%M&quot;</span>);</div>
-<div class="line"><span class="lineno">  110</span> </div>
-<div class="line"><span class="lineno">  111</span>    futureTime.tm_hour = 0;</div>
-<div class="line"><span class="lineno">  112</span>    futureTime.tm_min = 0;</div>
-<div class="line"><span class="lineno">  113</span>    futureTime.tm_sec = 0;</div>
-<div class="line"><span class="lineno">  114</span> </div>
-<div class="line"><span class="lineno">  115</span>    <span class="keyword">auto</span> futureDate = std::chrono::system_clock::from_time_t(std::mktime(&amp;futureTime));</div>
-<div class="line"><span class="lineno">  116</span> </div>
-<div class="line"><span class="lineno">  117</span>    <span class="keyword">auto</span> diff = (std::chrono::duration_cast&lt;std::chrono::hours&gt;(futureDate - currentDate).count());</div>
-<div class="line"><span class="lineno">  118</span>    <span class="keywordtype">int</span> days = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(diff);</div>
+<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00099">99</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   99</span>                                           {</div>
+<div class="line"><span class="lineno">  100</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">  101</span>    std::time_t currentTime = std::chrono::system_clock::to_time_t(now);</div>
+<div class="line"><span class="lineno">  102</span> </div>
+<div class="line"><span class="lineno">  103</span>    std::tm localTime;</div>
+<div class="line"><span class="lineno">  104</span><span class="preprocessor">#if defined(_MSC_VER) </span><span class="comment">// For Microsoft Visual Studio</span></div>
+<div class="line"><span class="lineno">  105</span>    localtime_s(&amp;localTime, &amp;currentTime);</div>
+<div class="line"><span class="lineno">  106</span><span class="preprocessor">#else </span><span class="comment">// For other compilers</span></div>
+<div class="line"><span class="lineno">  107</span>    localtime_r(&amp;currentTime, &amp;localTime);</div>
+<div class="line"><span class="lineno">  108</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">  109</span> </div>
+<div class="line"><span class="lineno">  110</span>    localTime.tm_hour = 0;</div>
+<div class="line"><span class="lineno">  111</span>    localTime.tm_min = 0;</div>
+<div class="line"><span class="lineno">  112</span>    localTime.tm_sec = 0;</div>
+<div class="line"><span class="lineno">  113</span> </div>
+<div class="line"><span class="lineno">  114</span>    <span class="keyword">auto</span> currentDate = std::chrono::system_clock::from_time_t(std::mktime(&amp;localTime));</div>
+<div class="line"><span class="lineno">  115</span> </div>
+<div class="line"><span class="lineno">  116</span>    std::tm futureTime = {};</div>
+<div class="line"><span class="lineno">  117</span>    std::istringstream dueDateStream(dueDateStr);</div>
+<div class="line"><span class="lineno">  118</span>    dueDateStream &gt;&gt; std::get_time(&amp;futureTime, <span class="stringliteral">&quot;%Y-%m-%d %H:%M&quot;</span>);</div>
 <div class="line"><span class="lineno">  119</span> </div>
-<div class="line"><span class="lineno">  120</span>    <span class="keywordflow">return</span> days;</div>
-<div class="line"><span class="lineno">  121</span>}</div>
+<div class="line"><span class="lineno">  120</span>    futureTime.tm_hour = 0;</div>
+<div class="line"><span class="lineno">  121</span>    futureTime.tm_min = 0;</div>
+<div class="line"><span class="lineno">  122</span>    futureTime.tm_sec = 0;</div>
+<div class="line"><span class="lineno">  123</span> </div>
+<div class="line"><span class="lineno">  124</span>    <span class="keyword">auto</span> futureDate = std::chrono::system_clock::from_time_t(std::mktime(&amp;futureTime));</div>
+<div class="line"><span class="lineno">  125</span> </div>
+<div class="line"><span class="lineno">  126</span>    <span class="keyword">auto</span> diff = (std::chrono::duration_cast&lt;std::chrono::hours&gt;(futureDate - currentDate).count());</div>
+<div class="line"><span class="lineno">  127</span>    <span class="keywordtype">int</span> days = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(diff);</div>
+<div class="line"><span class="lineno">  128</span> </div>
+<div class="line"><span class="lineno">  129</span>    <span class="keywordflow">return</span> days;</div>
+<div class="line"><span class="lineno">  130</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

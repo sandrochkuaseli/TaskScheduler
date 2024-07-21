@@ -1,3 +1,8 @@
+/** /file TasksScheduler.cpp
+  * Taskscheduler source file.
+  * Contains function definitions.
+  */
+
 #include "TaskScheduler.h"
 #include "FileHandler.h"
 #include <iostream>
@@ -18,6 +23,8 @@ TaskScheduler::TaskScheduler(const std::string& filename) : filename(filename) {
 /**
   * Handles addition of tasks from command line
   * In case task is in incorrect format, error message is outputed 
+  * 
+  * @param[out] task Reference to a task we add to the taskscheduler
   */
 void TaskScheduler::addTask(const Task& task) {
     bool correctFormat = true;
@@ -53,6 +60,10 @@ void TaskScheduler::addTask(const Task& task) {
 /**
   * Edits one of the attributes
   * In case of invalid input user is informed by a message ( message format depends on attribure )
+  * 
+  * @param[in] index Index of the task which we want to edit
+  * @param[in] attribute Attribute of the task which we want to modify
+  * @param[in] newAttributeDefinition new value of the attribute
   */
 void TaskScheduler::editTask(int index, std::string attribute, std::string newAttributeDefinition) {
 
@@ -131,6 +142,8 @@ void TaskScheduler::editTask(int index, std::string attribute, std::string newAt
   * Removes a task from the task set.
   * Adjusts index and dependants and dependencies in relation to other tasks accordingly.
   * If index is invalid error message is printed
+  * 
+  * @param[in] index Index of the task to remove
   */
 void TaskScheduler::removeTask(int index) {
     if (index >= 0 && index < tasks.size()) {
@@ -166,6 +179,8 @@ void TaskScheduler::removeTask(int index) {
 /**
   *  Lists all tasks
   * If no tasks are currently in the list user is informed of it
+  * 
+  * @param[in] taskVec Vector of tasks we want to display
   */
 void TaskScheduler::listTasks(std::vector<Task> taskVec) const {
     if (tasks.empty()) {
@@ -173,7 +188,7 @@ void TaskScheduler::listTasks(std::vector<Task> taskVec) const {
     }
     else {
         for (size_t i = 0; i < taskVec.size(); ++i) {
-            std::cout <<"ID: " << taskVec[i].getTaskID() << " - Title: " << taskVec[i].getTitle() << " - Due: " << taskVec[i].getDueDate()
+            std::cout << "N." << i << " - " << "ID: " << taskVec[i].getTaskID() << " - Title: " << taskVec[i].getTitle() << " - Due: " << taskVec[i].getDueDate()
                 << " - Priority: " << taskVec[i].getPriority() << " - " << (taskVec[i].getCompleted() ? "COMPLETED!" : "INCOMPLETE!" ) << std::endl;
         }
     }
@@ -196,6 +211,8 @@ void TaskScheduler::listTasksByPriority() const
 
 /**
   *  Shows every attribute of the task
+  * 
+  * @param[in] index Index of the task to show
   */
 void TaskScheduler::showTask(int index) {
     if (index >= 0 && index < tasks.size()) {
@@ -240,7 +257,9 @@ void TaskScheduler::showTask(int index) {
 }
 
 /**
-  * Export tasks to a file 
+  * Export tasks to a file
+  * 
+  * @param[in] filename A name of a file to export to
   */
 void TaskScheduler::exportTasks(std::string filename) const {
     FileHandler::exportTasks(filename, tasks);
@@ -248,6 +267,8 @@ void TaskScheduler::exportTasks(std::string filename) const {
 
 /**
   * Import tasks at any point
+  * 
+  * @param[out] importFilename A name of a file to import from
   */
 void TaskScheduler::importTasks(const std::string& importFilename) {
     FileHandler::importTasks(importFilename, tasks);
@@ -271,6 +292,8 @@ void TaskScheduler::removeAllTasks() {
   * Checks validity of provided due date.
   * Checks if the provided format is valid and then checks whether the due date is later than current date.
   * Reutrns true if provided due date string is valid meaning it's is correct format and it is not behind in time
+  * 
+  * @param[out] dueDateString 
   */
 bool TaskScheduler::dueDateValidity(const std::string& dueDateString) {
     std::regex pattern("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}");

@@ -1,3 +1,8 @@
+/** /file FileHandler.h
+  * Filehandler class header file.
+  * Contains function declarations.
+  */
+
 #ifndef FILE_HANDLER_H
 #define FILE_HANDLER_H
 

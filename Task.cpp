@@ -1,3 +1,8 @@
+/** /file Task.cpp
+  * Task class source file.
+  * Contains function definitions.
+  */
+
 #include "Task.h"
 
 Task::Task(const std::string& title, const std::string& description, const std::string& dueDate, int priority, bool recurring, std::string& recurringOption, std::vector<int>& dependecies, int id)

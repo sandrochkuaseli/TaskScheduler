@@ -1,3 +1,7 @@
+/** /file Source.cpp
+  * Source main file that combines all the other file to provide the described functionilty.
+  */
+
 #include "TaskScheduler.h"
 #include "Reminder.h"
 #include <iostream>
@@ -31,6 +35,9 @@ void printInstructions() {
   * Checks if the given string only contains one single integer and nothing else
   * Returns true if given string matches the prescribed regex patter
   * Otherwise prints error message
+  * 
+  * @param[in] input This is an input string which is checked if it only one character
+  * @return Returns true or false
   */
 bool isSingleInteger(const std::string& input) {
     std::regex pattern(R"(^\s*\d+\s*$)");
@@ -46,6 +53,10 @@ bool isSingleInteger(const std::string& input) {
   * Checks validity of the provided index
   * Returns true if provided index is valid (is a single integer and is in bounds)
   * Otherwise user is presented with an error message
+  * 
+  * @param[in] index Index is an integer passed to the function which will be assigned a value. (it is declared before the function call)
+  * @param[in] taskScheduler It is used to check the validity of task index based on task list size
+  * @return Returns true or false
   */
 bool checkIndexValidity(int& index, TaskScheduler taskScheduler) {
     std::string intLine;

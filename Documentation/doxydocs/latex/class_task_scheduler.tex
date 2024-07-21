@@ -60,9 +60,9 @@ std\+::string \mbox{\hyperlink{class_task_scheduler_a1199e42c90f7da82ac6fee1461f
 
 
 \doxysubsection{Detailed Description}
-Main class that combines most of the other classes functionalities. Handles almost every action with tasks. 
+/file \doxylink{_task_scheduler_8h}{Task\+Scheduler.\+h} \doxylink{class_task_scheduler}{Task\+Scheduler} class header file. Main class that combines most of the other classes functionalities. Handles almost every action with tasks. 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8h_source_l00013}{13}} of file \mbox{\hyperlink{_task_scheduler_8h_source}{Task\+Scheduler.\+h}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8h_source_l00015}{15}} of file \mbox{\hyperlink{_task_scheduler_8h_source}{Task\+Scheduler.\+h}}.
 
 
 
@@ -73,15 +73,15 @@ Definition at line \mbox{\hyperlink{_task_scheduler_8h_source_l00013}{13}} of fi
 {\footnotesize\ttfamily \label{class_task_scheduler_a5013b807254ad6c987b095ce2486cb24} 
 Task\+Scheduler\+::\+Task\+Scheduler (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{}\end{DoxyParamCaption})}
 
-Constructor Imports tasks from local \textquotesingle{}tasks.\+txt\textquotesingle{} file 
+/file Tasks\+Scheduler.\+cpp Taskscheduler source file. Contains function definitions. Constructor Imports tasks from local \textquotesingle{}tasks.\+txt\textquotesingle{} file 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_task_scheduler_a1199e42c90f7da82ac6fee1461feecf9}{filename}}(\mbox{\hyperlink{class_task_scheduler_a1199e42c90f7da82ac6fee1461feecf9}{filename}})\ \{}
-\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_a6e96a20326b096d0ebde24f1aab2c16f}{loadTasksFromFile}}();}
-\DoxyCodeLine{00016\ \}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_task_scheduler_a1199e42c90f7da82ac6fee1461feecf9}{filename}}(\mbox{\hyperlink{class_task_scheduler_a1199e42c90f7da82ac6fee1461feecf9}{filename}})\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_a6e96a20326b096d0ebde24f1aab2c16f}{loadTasksFromFile}}();}
+\DoxyCodeLine{00021\ \}}
 
 \end{DoxyCode}
 
@@ -93,41 +93,48 @@ Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00014}{14}} of 
 {\footnotesize\ttfamily \label{class_task_scheduler_a8ab41df3ed4f3b13fed0b8bd08e0f580} 
 void Task\+Scheduler\+::add\+Task (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_task}{Task}} \&}]{task}{}\end{DoxyParamCaption})}
 
-Handles addition of tasks from command line In case task is in incorrect format, error message is outputed 
+Handles addition of tasks from command line In case task is in incorrect format, error message is outputed
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em task} & Reference to a task we add to the taskscheduler \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ correctFormat\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00024\ \ \ \ \ }
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_scheduler_ac80bc2416e6cc930fb71efa19355be45}{checkFormat}}(task))\ \{}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.push\_back(task);}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!task.\mbox{\hyperlink{class_task_a42f06f3ab11ce6b6258c8b0a9ce5fda1}{getDependencies}}().empty())\ \{}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ task.getDependencies())\ \{}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (0\ <\ i\ \&\&\ i\ >\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size())\ \{}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}No\ such\ task\ with\ ID\ '"{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}'\ exists!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ correctFormat\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].setDependant(task.\mbox{\hyperlink{class_task_a5f18a9e4547bf36a10f5a8ade368c7d0}{getTaskID}}());}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!correctFormat)\ \{}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.pop\_back();}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}!!\ Task\ not\ added\ to\ the\ scheduler:\ Dependancy\ list\ includes\ task\ that\ does\ not\ exist\ !!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00047\ \ \ \ \ \}}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{bool}\ correctFormat\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00031\ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_scheduler_ac80bc2416e6cc930fb71efa19355be45}{checkFormat}}(task))\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.push\_back(task);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!task.\mbox{\hyperlink{class_task_a42f06f3ab11ce6b6258c8b0a9ce5fda1}{getDependencies}}().empty())\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ task.getDependencies())\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (0\ <\ i\ \&\&\ i\ >\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size())\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}No\ such\ task\ with\ ID\ '"{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}'\ exists!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ correctFormat\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].setDependant(task.\mbox{\hyperlink{class_task_a5f18a9e4547bf36a10f5a8ade368c7d0}{getTaskID}}());}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!correctFormat)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.pop\_back();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}!!\ Task\ not\ added\ to\ the\ scheduler:\ Dependancy\ list\ includes\ task\ that\ does\ not\ exist\ !!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_ac80bc2416e6cc930fb71efa19355be45}\index{TaskScheduler@{TaskScheduler}!checkFormat@{checkFormat}}
@@ -138,31 +145,31 @@ bool Task\+Scheduler\+::check\+Format (\begin{DoxyParamCaption}\item[{const \mbo
 
 Function to check overall format of the task Returns true if all the checks about task\textquotesingle{}s validity are passed 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00337}{337}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00360}{360}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00338\ \{}
-\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keywordtype}{bool}\ valid\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00340\ \ \ \ \ \textcolor{comment}{//\ Title\ not\ more\ than\ 200\ char}}
-\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordflow}{if}\ (task.\mbox{\hyperlink{class_task_a85c31b536e5c92719636e1c65b7b74de}{getTitle}}().length()\ >\ 200)\ \{}
-\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}!!\ Task\ not\ added\ to\ the\ scheduler:\ Title\ exceeds\ the\ character\ limit\ !!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ valid\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00344\ \ \ \ \ \}}
-\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_task_scheduler_ac5b9fb2c8993ec2a08f7f728008ad330}{dueDateValidity}}(task.\mbox{\hyperlink{class_task_acec67768c5b96c344fbe6cb53a54477a}{getDueDate}}()))\ \{}
-\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}!!\ Task\ not\ added\ to\ the\ scheduler:\ Due\ date\ format\ is\ incorrect\ !!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ valid\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00348\ \ \ \ \ \}}
-\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordflow}{if}\ (task.\mbox{\hyperlink{class_task_aa7e68c95d8b78ae9676f5fb01c8ab5ac}{isRecurring}}()\ \&\&\ task.\mbox{\hyperlink{class_task_aeb04da013f0cbc1e2a304ece50b4e30b}{getRecurringOpt}}()\ !=\ \textcolor{stringliteral}{"{}daily"{}}\ \&\&\ task.\mbox{\hyperlink{class_task_aeb04da013f0cbc1e2a304ece50b4e30b}{getRecurringOpt}}()\ !=\ \textcolor{stringliteral}{"{}monthly"{}}\ \&\&\ task.\mbox{\hyperlink{class_task_aeb04da013f0cbc1e2a304ece50b4e30b}{getRecurringOpt}}()\ !=\ \textcolor{stringliteral}{"{}yearly"{}})\ \{}
-\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}!!Task\ not\ added\ to\ the\ scheduler\ :\ Invalid\ recurrence\ option\ provided\ !!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00351\ \ \ \ \ \}}
-\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (1\ <\ task.\mbox{\hyperlink{class_task_adf87b0c5cebcf623ecf56cea17c6fede}{getPriority}}()\ \&\&\ task.\mbox{\hyperlink{class_task_adf87b0c5cebcf623ecf56cea17c6fede}{getPriority}}()\ >\ 5)\ \{}
-\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}!!\ Task\ not\ added\ to\ the\ scheduler:\ Priority\ out\ of\ bounds\ !!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ valid\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00355\ \ \ \ \ \}}
-\DoxyCodeLine{00356\ }
-\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keywordflow}{return}\ valid;}
-\DoxyCodeLine{00358\ \}}
+\DoxyCodeLine{00361\ \{}
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keywordtype}{bool}\ valid\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{comment}{//\ Title\ not\ more\ than\ 200\ char}}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keywordflow}{if}\ (task.\mbox{\hyperlink{class_task_a85c31b536e5c92719636e1c65b7b74de}{getTitle}}().length()\ >\ 200)\ \{}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}!!\ Task\ not\ added\ to\ the\ scheduler:\ Title\ exceeds\ the\ character\ limit\ !!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ valid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00367\ \ \ \ \ \}}
+\DoxyCodeLine{00368\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_task_scheduler_ac5b9fb2c8993ec2a08f7f728008ad330}{dueDateValidity}}(task.\mbox{\hyperlink{class_task_acec67768c5b96c344fbe6cb53a54477a}{getDueDate}}()))\ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}!!\ Task\ not\ added\ to\ the\ scheduler:\ Due\ date\ format\ is\ incorrect\ !!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ valid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00371\ \ \ \ \ \}}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordflow}{if}\ (task.\mbox{\hyperlink{class_task_aa7e68c95d8b78ae9676f5fb01c8ab5ac}{isRecurring}}()\ \&\&\ task.\mbox{\hyperlink{class_task_aeb04da013f0cbc1e2a304ece50b4e30b}{getRecurringOpt}}()\ !=\ \textcolor{stringliteral}{"{}daily"{}}\ \&\&\ task.\mbox{\hyperlink{class_task_aeb04da013f0cbc1e2a304ece50b4e30b}{getRecurringOpt}}()\ !=\ \textcolor{stringliteral}{"{}monthly"{}}\ \&\&\ task.\mbox{\hyperlink{class_task_aeb04da013f0cbc1e2a304ece50b4e30b}{getRecurringOpt}}()\ !=\ \textcolor{stringliteral}{"{}yearly"{}})\ \{}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}!!Task\ not\ added\ to\ the\ scheduler\ :\ Invalid\ recurrence\ option\ provided\ !!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00374\ \ \ \ \ \}}
+\DoxyCodeLine{00375\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (1\ <\ task.\mbox{\hyperlink{class_task_adf87b0c5cebcf623ecf56cea17c6fede}{getPriority}}()\ \&\&\ task.\mbox{\hyperlink{class_task_adf87b0c5cebcf623ecf56cea17c6fede}{getPriority}}()\ >\ 5)\ \{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}!!\ Task\ not\ added\ to\ the\ scheduler:\ Priority\ out\ of\ bounds\ !!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ valid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00378\ \ \ \ \ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \textcolor{keywordflow}{return}\ valid;}
+\DoxyCodeLine{00381\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_ac5b9fb2c8993ec2a08f7f728008ad330}\index{TaskScheduler@{TaskScheduler}!dueDateValidity@{dueDateValidity}}
@@ -171,69 +178,76 @@ Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00337}{337}} of
 {\footnotesize\ttfamily \label{class_task_scheduler_ac5b9fb2c8993ec2a08f7f728008ad330} 
 bool Task\+Scheduler\+::due\+Date\+Validity (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{due\+Date\+String}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-Checks validity of provided due date. Checks if the provided format is valid and then checks whether the due date is later than current date. Reutrns true if provided due date string is valid meaning it\textquotesingle{}s is correct format and it is not behind in time 
+Checks validity of provided due date. Checks if the provided format is valid and then checks whether the due date is later than current date. Reutrns true if provided due date string is valid meaning it\textquotesingle{}s is correct format and it is not behind in time
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00275}{275}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em due\+Date\+String} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00298}{298}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00276\ \ \ \ \ std::regex\ pattern(\textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)d\{4\}-\/\(\backslash\)\(\backslash\)d\{2\}-\/\(\backslash\)\(\backslash\)d\{2\}\ \(\backslash\)\(\backslash\)d\{2\}:\(\backslash\)\(\backslash\)d\{2\}"{}});}
-\DoxyCodeLine{00277\ }
-\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keywordflow}{if}\ (std::regex\_match(dueDateString,\ pattern))\ \{}
-\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ year,\ month,\ day,\ hour,\ minute;}
-\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ dash1,\ dash2,\ colon;}
-\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ std::istringstream\ dueDateStream(dueDateString);}
-\DoxyCodeLine{00283\ }
-\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ dueDateStream\ >>\ year\ >>\ dash1\ >>\ month\ >>\ dash2\ >>\ day\ >>\ hour\ >>\ colon\ >>\ minute;}
-\DoxyCodeLine{00285\ }
-\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ now\ =\ std::chrono::system\_clock::now();}
-\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ std::time\_t\ currentTime\ =\ std::chrono::system\_clock::to\_time\_t(now);}
-\DoxyCodeLine{00288\ }
-\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ std::tm\ localTime;}
-\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ }\textcolor{comment}{//\ For\ Microsoft\ Visual\ Studio}}
-\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ localtime\_s(\&localTime,\ \&currentTime);}
-\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ other\ compilers}}
-\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ localtime\_r(\&currentTime,\ \&localTime);}
-\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#endif }}
-\DoxyCodeLine{00295\ }
-\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (12\ <\ month\ ||\ \mbox{\hyperlink{class_task_scheduler_a5b832aeaaa56a1d7e4281df05dab98f1}{getDaysInMonth}}(year,\ month)\ <\ day\ ||\ 24\ <\ hour\ ||\ 59\ <\ minute)\ \{}
-\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00299\ \ \ \ \ std::regex\ pattern(\textcolor{stringliteral}{"{}\(\backslash\)\(\backslash\)d\{4\}-\/\(\backslash\)\(\backslash\)d\{2\}-\/\(\backslash\)\(\backslash\)d\{2\}\ \(\backslash\)\(\backslash\)d\{2\}:\(\backslash\)\(\backslash\)d\{2\}"{}});}
 \DoxyCodeLine{00300\ }
-\DoxyCodeLine{00301\ }
-\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (localTime.tm\_year\ +\ 1900\ >\ year)\ \{}
-\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (localTime.tm\_year\ +\ 1900\ ==\ year)\ \{}
-\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (localTime.tm\_mon\ >\ month\ )\ \{}
-\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (localTime.tm\_mon\ ==\ month)\ \{}
-\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (localTime.tm\_mday\ >\ day)\ \{}
-\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (localTime.tm\_mday\ ==\ day)\ \{}
-\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (localTime.tm\_hour\ >\ hour\ )\ \{}
-\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (localTime.tm\_hour\ ==\ hour)\ \{}
-\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (localTime.tm\_min\ >=\ minute\ )\ \{}
-\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00327\ }
-\DoxyCodeLine{00328\ \ \ \ \ \}}
-\DoxyCodeLine{00329\ }
-\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00331\ \}}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordflow}{if}\ (std::regex\_match(dueDateString,\ pattern))\ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ year,\ month,\ day,\ hour,\ minute;}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ dash1,\ dash2,\ colon;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ std::istringstream\ dueDateStream(dueDateString);}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ dueDateStream\ >>\ year\ >>\ dash1\ >>\ month\ >>\ dash2\ >>\ day\ >>\ hour\ >>\ colon\ >>\ minute;}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ now\ =\ std::chrono::system\_clock::now();}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ std::time\_t\ currentTime\ =\ std::chrono::system\_clock::to\_time\_t(now);}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ std::tm\ localTime;}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ }\textcolor{comment}{//\ For\ Microsoft\ Visual\ Studio}}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ localtime\_s(\&localTime,\ \&currentTime);}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ For\ other\ compilers}}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ localtime\_r(\&currentTime,\ \&localTime);}
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\#endif }}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (12\ <\ month\ ||\ \mbox{\hyperlink{class_task_scheduler_a5b832aeaaa56a1d7e4281df05dab98f1}{getDaysInMonth}}(year,\ month)\ <\ day\ ||\ 24\ <\ hour\ ||\ 59\ <\ minute)\ \{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (localTime.tm\_year\ +\ 1900\ >\ year)\ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (localTime.tm\_year\ +\ 1900\ ==\ year)\ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (localTime.tm\_mon\ >\ month\ )\ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (localTime.tm\_mon\ ==\ month)\ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (localTime.tm\_mday\ >\ day)\ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (localTime.tm\_mday\ ==\ day)\ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (localTime.tm\_hour\ >\ hour\ )\ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (localTime.tm\_hour\ ==\ hour)\ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (localTime.tm\_min\ >=\ minute\ )\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \ \ \ \ \}}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00354\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_a633dd8bd287b093e5185306a902244cf}\index{TaskScheduler@{TaskScheduler}!editTask@{editTask}}
@@ -242,83 +256,94 @@ Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00275}{275}} of
 {\footnotesize\ttfamily \label{class_task_scheduler_a633dd8bd287b093e5185306a902244cf} 
 void Task\+Scheduler\+::edit\+Task (\begin{DoxyParamCaption}\item[{int}]{index}{, }\item[{std\+::string}]{attribute}{, }\item[{std\+::string}]{new\+Attribute\+Definition}{}\end{DoxyParamCaption})}
 
-Edits one of the attributes In case of invalid input user is informed by a message ( message format depends on attribure ) 
+Edits one of the attributes In case of invalid input user is informed by a message ( message format depends on attribure )
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00057}{57}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em index} & Index of the task which we want to edit \\
+\hline
+\mbox{\texttt{ in}}  & {\em attribute} & Attribute of the task which we want to modify \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+Attribute\+Definition} & new value of the attribute \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00068}{68}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Title"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}title"{}})\ \{}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setTitle(newAttributeDefinition);}
-\DoxyCodeLine{00061\ \ \ \ \ \}}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Description"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}description"{}})\ \{}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setDescription(newAttributeDefinition);}
-\DoxyCodeLine{00064\ \ \ \ \ \}}
-\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Due\ Date"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}due\ date"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}Due\ date"{}})\ \{}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_scheduler_ac5b9fb2c8993ec2a08f7f728008ad330}{dueDateValidity}}(newAttributeDefinition))\ \{}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setDueDate(newAttributeDefinition);}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ input!\ Date\ format\ is\ incorrect!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00073\ \ \ \ \ \}}
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Priority"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}priority"{}})\ \{}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ std::istringstream\ priorityStream(newAttributeDefinition);}
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ priority;}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ priorityStream\ >>\ priority;}
-\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (priority\ >\ 0\ \&\&\ priority\ <=\ 5)\ \{}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setPriority(priority);}
-\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ input!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00085\ \ \ \ \ \}}
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Recurrence"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}recurrence"{}})\ \{}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (newAttributeDefinition\ ==\ \textcolor{stringliteral}{"{}daily"{}}\ ||\ newAttributeDefinition\ ==\ \textcolor{stringliteral}{"{}monthly"{}}\ ||\ newAttributeDefinition\ ==\ \textcolor{stringliteral}{"{}yearly"{}})\ \{}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setRecurring(\textcolor{keyword}{true});}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setRecurringOpt(newAttributeDefinition);}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (newAttributeDefinition\ ==\ \textcolor{stringliteral}{"{}no"{}}\ ||\ newAttributeDefinition\ ==\ \textcolor{stringliteral}{"{}n"{}})\ \{}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setRecurring(\textcolor{keyword}{false});}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ input!\ Choose\ one\ of\ four\ options\ provided!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Title"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}title"{}})\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setTitle(newAttributeDefinition);}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Description"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}description"{}})\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setDescription(newAttributeDefinition);}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Due\ Date"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}due\ date"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}Due\ date"{}})\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_scheduler_ac5b9fb2c8993ec2a08f7f728008ad330}{dueDateValidity}}(newAttributeDefinition))\ \{}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setDueDate(newAttributeDefinition);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ input!\ Date\ format\ is\ incorrect!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Priority"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}priority"{}})\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ std::istringstream\ priorityStream(newAttributeDefinition);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ priority;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ priorityStream\ >>\ priority;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (priority\ >\ 0\ \&\&\ priority\ <=\ 5)\ \{}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setPriority(priority);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ input!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Recurrence"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}recurrence"{}})\ \{}
 \DoxyCodeLine{00098\ }
-\DoxyCodeLine{00099\ \ \ \ \ \}}
-\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Dependence"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}dependence"{}})\ \{}
-\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependencies())\ \{}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].removeDependant(index);}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].removeDependency(i);}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ std::vector<int>\ newDependencies;}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ val;}
-\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ std::istringstream\ dependencyStream(newAttributeDefinition);}
-\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (dependencyStream\ >>\ val)\ \{}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ newDependencies.push\_back(val);}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ newDependencies)\ \{}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ index)\{}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Can't\ add\ '"{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}',\ as\ it\ is\ this\ task's\ ID!\ It\ is\ already\ dependants\ on\ itself!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (0\ <\ i\ \&\&\ i\ >=\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size())\ \{}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}No\ such\ task\ with\ ID\ '"{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}'\ exists!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00118\ }
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setDependency(i);}
-\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].setDependant(index);}
-\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ \ \ \ \ \}}
-\DoxyCodeLine{00127\ \}\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (newAttributeDefinition\ ==\ \textcolor{stringliteral}{"{}daily"{}}\ ||\ newAttributeDefinition\ ==\ \textcolor{stringliteral}{"{}monthly"{}}\ ||\ newAttributeDefinition\ ==\ \textcolor{stringliteral}{"{}yearly"{}})\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setRecurring(\textcolor{keyword}{true});}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setRecurringOpt(newAttributeDefinition);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (newAttributeDefinition\ ==\ \textcolor{stringliteral}{"{}no"{}}\ ||\ newAttributeDefinition\ ==\ \textcolor{stringliteral}{"{}n"{}})\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setRecurring(\textcolor{keyword}{false});}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ input!\ Choose\ one\ of\ four\ options\ provided!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (attribute\ ==\ \textcolor{stringliteral}{"{}Dependence"{}}\ ||\ attribute\ ==\ \textcolor{stringliteral}{"{}dependence"{}})\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependencies())\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].removeDependant(index);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].removeDependency(i);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ std::vector<int>\ newDependencies;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ val;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ std::istringstream\ dependencyStream(newAttributeDefinition);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (dependencyStream\ >>\ val)\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ newDependencies.push\_back(val);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ newDependencies)\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ index)\{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Can't\ add\ '"{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}',\ as\ it\ is\ this\ task's\ ID!\ It\ is\ already\ dependants\ on\ itself!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (0\ <\ i\ \&\&\ i\ >=\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size())\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}No\ such\ task\ with\ ID\ '"{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}'\ exists!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].setDependency(i);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].setDependant(index);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \}\ }
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_ac91c5137b2c3982f541546d1110108dc}\index{TaskScheduler@{TaskScheduler}!exportTasks@{exportTasks}}
@@ -327,15 +352,22 @@ Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00057}{57}} of 
 {\footnotesize\ttfamily \label{class_task_scheduler_ac91c5137b2c3982f541546d1110108dc} 
 void Task\+Scheduler\+::export\+Tasks (\begin{DoxyParamCaption}\item[{std\+::string}]{filename}{}\end{DoxyParamCaption}) const}
 
-Export tasks to a file 
+Export tasks to a file
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00245}{245}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em filename} & A name of a file to export to \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00264}{264}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00246\ \ \ \ \ \mbox{\hyperlink{class_file_handler_a9b096ffe33e68b28a6af638118f75a65}{FileHandler::exportTasks}}(\mbox{\hyperlink{class_task_scheduler_a1199e42c90f7da82ac6fee1461feecf9}{filename}},\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}});}
-\DoxyCodeLine{00247\ \}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \mbox{\hyperlink{class_file_handler_a9b096ffe33e68b28a6af638118f75a65}{FileHandler::exportTasks}}(\mbox{\hyperlink{class_task_scheduler_a1199e42c90f7da82ac6fee1461feecf9}{filename}},\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}});}
+\DoxyCodeLine{00266\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_a5b832aeaaa56a1d7e4281df05dab98f1}\index{TaskScheduler@{TaskScheduler}!getDaysInMonth@{getDaysInMonth}}
@@ -346,34 +378,34 @@ static int Task\+Scheduler\+::get\+Days\+In\+Month (\begin{DoxyParamCaption}\ite
 
 Input year and month Returns days in that month of the year ( takes into account the leap year ) 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8h_source_l00047}{47}} of file \mbox{\hyperlink{_task_scheduler_8h_source}{Task\+Scheduler.\+h}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8h_source_l00049}{49}} of file \mbox{\hyperlink{_task_scheduler_8h_source}{Task\+Scheduler.\+h}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Checks\ for\ leap\ year}}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (month\ ==\ 2)\ \{}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((year\ \%\ 4\ ==\ 0\ \&\&\ year\ \%\ 100\ !=\ 0)\ ||\ (year\ \%\ 400\ ==\ 0))\ \{}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 29;}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 28;}
-\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (month)}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 6:}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 9:}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 11:}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 30;}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 31;}
-\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Checks\ for\ leap\ year}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (month\ ==\ 2)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((year\ \%\ 4\ ==\ 0\ \&\&\ year\ \%\ 100\ !=\ 0)\ ||\ (year\ \%\ 400\ ==\ 0))\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 29;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 28;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (month)}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 6:}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 9:}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 11:}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 30;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 31;}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_a98f1925d4c7ba0b3498419dd9634ff97}\index{TaskScheduler@{TaskScheduler}!getTasks@{getTasks}}
@@ -384,13 +416,13 @@ std\+::vector$<$ \mbox{\hyperlink{class_task}{Task}} $>$ \& Task\+Scheduler\+::g
 
 Getter method. Returns the set of tasks 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00378}{378}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00401}{401}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ }
-\DoxyCodeLine{00379\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}};}
-\DoxyCodeLine{00380\ \}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ }
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}};}
+\DoxyCodeLine{00403\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_a89207cd0ec14e701a5fd4daa1a2d328a}\index{TaskScheduler@{TaskScheduler}!getTasks@{getTasks}}
@@ -401,13 +433,13 @@ const std\+::vector$<$ \mbox{\hyperlink{class_task}{Task}} $>$ \& Task\+Schedule
 
 Getter method. Returns the set of tasks 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00371}{371}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00394}{394}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}};}
-\DoxyCodeLine{00373\ \}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}};}
+\DoxyCodeLine{00396\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_a0a559281f46aa7d2deda08d7756fcc89}\index{TaskScheduler@{TaskScheduler}!importTasks@{importTasks}}
@@ -416,15 +448,22 @@ Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00371}{371}} of
 {\footnotesize\ttfamily \label{class_task_scheduler_a0a559281f46aa7d2deda08d7756fcc89} 
 void Task\+Scheduler\+::import\+Tasks (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{import\+Filename}{}\end{DoxyParamCaption})}
 
-Import tasks at any point 
+Import tasks at any point
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00252}{252}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em import\+Filename} & A name of a file to import from \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00273}{273}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00253\ \ \ \ \ \mbox{\hyperlink{class_file_handler_a6a6a73f124008198e51f58115b47ca12}{FileHandler::importTasks}}(importFilename,\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}});}
-\DoxyCodeLine{00254\ \}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{class_file_handler_a6a6a73f124008198e51f58115b47ca12}{FileHandler::importTasks}}(importFilename,\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}});}
+\DoxyCodeLine{00275\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_a3abe1812648b821b04f5c7d1bee22ec9}\index{TaskScheduler@{TaskScheduler}!listTasks@{listTasks}}
@@ -433,23 +472,30 @@ Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00252}{252}} of
 {\footnotesize\ttfamily \label{class_task_scheduler_a3abe1812648b821b04f5c7d1bee22ec9} 
 void Task\+Scheduler\+::list\+Tasks (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_task}{Task}} $>$}]{task\+Vec}{}\end{DoxyParamCaption}) const}
 
-Lists all tasks If no tasks are currently in the list user is informed of it 
+Lists all tasks If no tasks are currently in the list user is informed of it
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00170}{170}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em task\+Vec} & Vector of tasks we want to display \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00185}{185}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.empty())\ \{}
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}No\ tasks\ found!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00173\ \ \ \ \ \}}
-\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ taskVec.size();\ ++i)\ \{}
-\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\textcolor{stringliteral}{"{}ID:\ "{}}\ <<\ taskVec[i].getTaskID()\ <<\ \textcolor{stringliteral}{"{}\ -\/\ Title:\ "{}}\ <<\ taskVec[i].getTitle()\ <<\ \textcolor{stringliteral}{"{}\ -\/\ Due:\ "{}}\ <<\ taskVec[i].getDueDate()}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ -\/\ Priority:\ "{}}\ <<\ taskVec[i].getPriority()\ <<\ \textcolor{stringliteral}{"{}\ -\/\ "{}}\ <<\ (taskVec[i].getCompleted()\ ?\ \textcolor{stringliteral}{"{}COMPLETED!"{}}\ :\ \textcolor{stringliteral}{"{}INCOMPLETE!"{}}\ )\ <<\ std::endl;}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00179\ \ \ \ \ \}}
-\DoxyCodeLine{00180\ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.empty())\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}No\ tasks\ found!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ taskVec.size();\ ++i)\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}N."{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}\ -\/\ "{}}\ <<\ \textcolor{stringliteral}{"{}ID:\ "{}}\ <<\ taskVec[i].getTaskID()\ <<\ \textcolor{stringliteral}{"{}\ -\/\ Title:\ "{}}\ <<\ taskVec[i].getTitle()\ <<\ \textcolor{stringliteral}{"{}\ -\/\ Due:\ "{}}\ <<\ taskVec[i].getDueDate()}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ -\/\ Priority:\ "{}}\ <<\ taskVec[i].getPriority()\ <<\ \textcolor{stringliteral}{"{}\ -\/\ "{}}\ <<\ (taskVec[i].getCompleted()\ ?\ \textcolor{stringliteral}{"{}COMPLETED!"{}}\ :\ \textcolor{stringliteral}{"{}INCOMPLETE!"{}}\ )\ <<\ std::endl;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_abd5ddc18c34ca7314f6f7ca31fe47216}\index{TaskScheduler@{TaskScheduler}!listTasksByPriority@{listTasksByPriority}}
@@ -460,19 +506,19 @@ void Task\+Scheduler\+::list\+Tasks\+By\+Priority (\begin{DoxyParamCaption}{}{}\
 
 Lists all tasks based on the priority (highest priority first). 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00186}{186}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00201}{201}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00187\ \{}
-\DoxyCodeLine{00188\ \ \ \ \ std::vector<Task>\ sortedByPriority\ =\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}};}
-\DoxyCodeLine{00189\ \ \ \ \ std::sort(sortedByPriority.begin(),\ sortedByPriority.end(),\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_task}{Task}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_task}{Task}}\&\ b)\ \{}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ return\ a.getPriority()\ >\ b.getPriority();}
-\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \});}
-\DoxyCodeLine{00192\ }
-\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_a3abe1812648b821b04f5c7d1bee22ec9}{listTasks}}(sortedByPriority);}
-\DoxyCodeLine{00194\ }
-\DoxyCodeLine{00195\ \}}
+\DoxyCodeLine{00202\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ std::vector<Task>\ sortedByPriority\ =\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}};}
+\DoxyCodeLine{00204\ \ \ \ \ std::sort(sortedByPriority.begin(),\ sortedByPriority.end(),\ [](\textcolor{keyword}{const}\ \mbox{\hyperlink{class_task}{Task}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_task}{Task}}\&\ b)\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ return\ a.getPriority()\ >\ b.getPriority();}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_a3abe1812648b821b04f5c7d1bee22ec9}{listTasks}}(sortedByPriority);}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_a6e96a20326b096d0ebde24f1aab2c16f}\index{TaskScheduler@{TaskScheduler}!loadTasksFromFile@{loadTasksFromFile}}
@@ -483,13 +529,13 @@ void Task\+Scheduler\+::load\+Tasks\+From\+File (\begin{DoxyParamCaption}{}{}\en
 
 Initial import of the tasks 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00259}{259}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00280}{280}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00260\ \ \ \ \ \mbox{\hyperlink{class_file_handler_a6a6a73f124008198e51f58115b47ca12}{FileHandler::importTasks}}(\mbox{\hyperlink{class_task_scheduler_a1199e42c90f7da82ac6fee1461feecf9}{filename}},\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}});}
-\DoxyCodeLine{00261\ \}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \mbox{\hyperlink{class_file_handler_a6a6a73f124008198e51f58115b47ca12}{FileHandler::importTasks}}(\mbox{\hyperlink{class_task_scheduler_a1199e42c90f7da82ac6fee1461feecf9}{filename}},\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}});}
+\DoxyCodeLine{00282\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_a362f033276b37cb62ce3b9e12f3b5e02}\index{TaskScheduler@{TaskScheduler}!operator\mbox{[}\mbox{]}@{operator[]}}
@@ -500,13 +546,13 @@ Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00259}{259}} of
 
 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00461}{461}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00484}{484}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index];}
-\DoxyCodeLine{00463\ \}}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00485\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index];}
+\DoxyCodeLine{00486\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_a7b5f7411728c00adab2b3f9e25a1c43e}\index{TaskScheduler@{TaskScheduler}!operator\mbox{[}\mbox{]}@{operator[]}}
@@ -517,13 +563,13 @@ const \mbox{\hyperlink{class_task}{Task}} \& Task\+Scheduler\+::operator\mbox{[}
 
 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00465}{465}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00488}{488}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00466\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index];}
-\DoxyCodeLine{00467\ \}}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00489\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index];}
+\DoxyCodeLine{00490\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_ab6fb543163c51950600475d645405670}\index{TaskScheduler@{TaskScheduler}!removeAllTasks@{removeAllTasks}}
@@ -534,13 +580,13 @@ void Task\+Scheduler\+::remove\+All\+Tasks (\begin{DoxyParamCaption}{}{}\end{Dox
 
 Removes all tasks from the task set 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00266}{266}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00287}{287}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00267\ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.clear();}
-\DoxyCodeLine{00268\ \}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.clear();}
+\DoxyCodeLine{00289\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_af2e31a59269a587530ba34d430223bc4}\index{TaskScheduler@{TaskScheduler}!removeTask@{removeTask}}
@@ -549,41 +595,48 @@ Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00266}{266}} of
 {\footnotesize\ttfamily \label{class_task_scheduler_af2e31a59269a587530ba34d430223bc4} 
 void Task\+Scheduler\+::remove\+Task (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})}
 
-Removes a task from the task set. Adjusts index and dependants and dependencies in relation to other tasks accordingly. If index is invalid error message is printed 
+Removes a task from the task set. Adjusts index and dependants and dependencies in relation to other tasks accordingly. If index is invalid error message is printed
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00135}{135}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em index} & Index of the task to remove \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00148}{148}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >=\ 0\ \&\&\ index\ <\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size())\ \{}
-\DoxyCodeLine{00137\ }
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ depIndex\ :\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependencies())\ \{}
-\DoxyCodeLine{00139\ }
-\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[depIndex].removeDependant(index);}
-\DoxyCodeLine{00141\ }
-\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00143\ }
-\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ depIndex\ :\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependants())\ \{}
-\DoxyCodeLine{00145\ }
-\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[depIndex].removeDependency(index);}
-\DoxyCodeLine{00147\ }
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00149\ }
-\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.erase(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.begin()\ +\ index);}
-\DoxyCodeLine{00151\ }
-\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ index;\ j\ <\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size();\ j++)\ \{}
-\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[j].adjustDependencyList(index);}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[j].adjustDependantList(index);}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[j].setTaskID(j);}
-\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Task\ sucessfully\ removed!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >=\ 0\ \&\&\ index\ <\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size())\ \{}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ depIndex\ :\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependencies())\ \{}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[depIndex].removeDependant(index);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ depIndex\ :\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependants())\ \{}
 \DoxyCodeLine{00158\ }
-\DoxyCodeLine{00159\ \ \ \ \ \}}
-\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ task\ index."{}}\ <<\ std::endl;}
-\DoxyCodeLine{00162\ \ \ \ \ \}}
-\DoxyCodeLine{00163\ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[depIndex].removeDependency(index);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.erase(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.begin()\ +\ index);}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ index;\ j\ <\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size();\ j++)\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[j].adjustDependencyList(index);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[j].adjustDependantList(index);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[j].setTaskID(j);}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Task\ sucessfully\ removed!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ task\ index."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_a2d0c6158e1693cb50d26ab3a1fa6018d}\index{TaskScheduler@{TaskScheduler}!setComplete@{setComplete}}
@@ -594,78 +647,78 @@ void Task\+Scheduler\+::set\+Complete (\begin{DoxyParamCaption}\item[{int}]{task
 
 Sets completion status of task. Updates other tasks accordingly. We don\textquotesingle{}t do anything if the task is already completed and we set it to completed again. If tasks is set to true, all the tasks dependant to it are also automatically set to true and dependencies are also updated accordingly. If all dependants of a task are complete than the task it self is also complete. Same goes for when we set task to incomplete. 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00390}{390}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00413}{413}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00391\ \{}
-\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[taskId].getCompleted()\ !=\ complete)\ \{}
-\DoxyCodeLine{00393\ }
-\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[taskId].setCompleted(complete);}
-\DoxyCodeLine{00395\ }
-\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ std::queue<Task>\ taskQueueDependency;}
-\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ taskQueueDependency.push(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[taskId]);}
-\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ std::vector<bool>\ visitedDependency(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size(),\ \textcolor{keyword}{false});}
-\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ visitedDependency[taskId]\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00400\ }
-\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!taskQueueDependency.empty())\ \{}
-\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task}{Task}}\ task\ =\ taskQueueDependency.front();}
-\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ taskQueueDependency.pop();}
-\DoxyCodeLine{00404\ }
-\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ task.getDependencies())\ \{}
-\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!visitedDependency[i])\ \{}
-\DoxyCodeLine{00407\ }
-\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ visitedDependency[i]\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00409\ }
-\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (complete)\ \{}
-\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isComplete\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ :\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].getDependants())\ \{}
-\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[j].getCompleted())\ \{}
-\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isComplete\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00414\ \{}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[taskId].getCompleted()\ !=\ complete)\ \{}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[taskId].setCompleted(complete);}
 \DoxyCodeLine{00418\ }
-\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isComplete)\ \{}
-\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].\mbox{\hyperlink{class_task_a9527c555c1e407c6639e95977ddb0fcc}{setCompleted}}(\textcolor{keyword}{true});}
-\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ taskQueueDependency.push(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i]);}
-\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].getCompleted()\ !=\ complete)\ \{}
-\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].setCompleted(complete);}
-\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ taskQueueDependency.push(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i]);}
-\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00434\ }
-\DoxyCodeLine{00435\ }
-\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ std::queue<Task>\ taskQueueDependant;}
-\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ taskQueueDependant.push(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[taskId]);}
-\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ std::vector<bool>\ visitedDependants(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size(),\ \textcolor{keyword}{false});}
-\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ visitedDependants[taskId]\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00440\ }
-\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!taskQueueDependant.empty())\ \{}
-\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task}{Task}}\ task\ =\ taskQueueDependant.front();}
-\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ taskQueueDependant.pop();}
-\DoxyCodeLine{00444\ }
-\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ task.getDependants())\ \{}
-\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!visitedDependants[i])\ \{}
-\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ visitedDependants[i]\ =\ \textcolor{keyword}{true};}
-\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].getCompleted()\ !=\ complete)\ \{}
-\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].\mbox{\hyperlink{class_task_a9527c555c1e407c6639e95977ddb0fcc}{setCompleted}}(complete);}
-\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ taskQueueDependant.push(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i]);}
-\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00456\ \ \ \ \ \}}
-\DoxyCodeLine{00457\ \ \ \ \ }
-\DoxyCodeLine{00458\ \}}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ std::queue<Task>\ taskQueueDependency;}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ taskQueueDependency.push(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[taskId]);}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ std::vector<bool>\ visitedDependency(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size(),\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ visitedDependency[taskId]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!taskQueueDependency.empty())\ \{}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task}{Task}}\ task\ =\ taskQueueDependency.front();}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ taskQueueDependency.pop();}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ task.getDependencies())\ \{}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!visitedDependency[i])\ \{}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ visitedDependency[i]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (complete)\ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isComplete\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ :\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].getDependants())\ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[j].getCompleted())\ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isComplete\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isComplete)\ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].\mbox{\hyperlink{class_task_a9527c555c1e407c6639e95977ddb0fcc}{setCompleted}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ taskQueueDependency.push(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i]);}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].getCompleted()\ !=\ complete)\ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].setCompleted(complete);}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ taskQueueDependency.push(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i]);}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00457\ }
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ std::queue<Task>\ taskQueueDependant;}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ taskQueueDependant.push(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[taskId]);}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ std::vector<bool>\ visitedDependants(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size(),\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ visitedDependants[taskId]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!taskQueueDependant.empty())\ \{}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task}{Task}}\ task\ =\ taskQueueDependant.front();}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ taskQueueDependant.pop();}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ task.getDependants())\ \{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!visitedDependants[i])\ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ visitedDependants[i]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].getCompleted()\ !=\ complete)\ \{}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i].\mbox{\hyperlink{class_task_a9527c555c1e407c6639e95977ddb0fcc}{setCompleted}}(complete);}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ taskQueueDependant.push(\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[i]);}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00479\ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \ \ \ \ }
+\DoxyCodeLine{00481\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_aabd2b6975cd0fac56b5e3efb121e3ea6}\index{TaskScheduler@{TaskScheduler}!setDependants@{setDependants}}
@@ -676,13 +729,13 @@ void Task\+Scheduler\+::set\+Dependants (\begin{DoxyParamCaption}\item[{int}]{ta
 
 Setter for the dependants list, push one element 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00363}{363}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00386}{386}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00364\ \{}
-\DoxyCodeLine{00365\ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[taskId].getDependants().push\_back(dependantId);}
-\DoxyCodeLine{00366\ \}}
+\DoxyCodeLine{00387\ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[taskId].getDependants().push\_back(dependantId);}
+\DoxyCodeLine{00389\ \}}
 
 \end{DoxyCode}
 \Hypertarget{class_task_scheduler_abd34a45e5c550f82277f3482e9ca2f25}\index{TaskScheduler@{TaskScheduler}!showTask@{showTask}}
@@ -691,53 +744,60 @@ Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00363}{363}} of
 {\footnotesize\ttfamily \label{class_task_scheduler_abd34a45e5c550f82277f3482e9ca2f25} 
 void Task\+Scheduler\+::show\+Task (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})}
 
-Shows every attribute of the task 
+Shows every attribute of the task
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00200}{200}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em index} & Index of the task to show \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_task_scheduler_8cpp_source_l00217}{217}} of file \mbox{\hyperlink{_task_scheduler_8cpp_source}{Task\+Scheduler.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >=\ 0\ \&\&\ index\ <\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size())\ \{}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Title:\ "{}}\ <<\ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getTitle()\ <<\ std::endl;}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Description:\ "{}}\ <<\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDescription()\ <<\ std::endl;}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Due\ date:\ "{}}\ <<\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDueDate()\ <<\ std::endl;}
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Priority:\ "{}}\ <<\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getPriority()\ <<\ std::endl;}
-\DoxyCodeLine{00206\ }
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Recurring:\ "{}}\ <<\ \ (\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].isRecurring()\ ?\ \textcolor{stringliteral}{"{}Yes,\ "{}}\ +\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getRecurringOpt()\ :\ \textcolor{stringliteral}{"{}NO"{}})\ <<\ std::endl;}
-\DoxyCodeLine{00209\ }
-\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependencies().empty())\ \{}
-\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Dependecy\ list:\ "{}};}
-\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependencies())\ \{}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ i\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
-\DoxyCodeLine{00217\ }
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}No\ dependencies!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00222\ }
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependants().empty())\ \{}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Dependant\ list:\ "{}};}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependants())\ \{}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ i\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
-\DoxyCodeLine{00229\ }
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}No\ dependants!"{}}\ <<\ std::endl;}
-\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Task\ ID:\ "{}}\ <<\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getTaskID()\ <<\ std::endl;}
-\DoxyCodeLine{00236\ }
-\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Completed:\ "{}}\ <<\ (\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getCompleted()\ ?\ \textcolor{stringliteral}{"{}COMPLETED!"{}}\ :\ \textcolor{stringliteral}{"{}INCOMPLETE!"{}})\ <<\ std::endl;}
-\DoxyCodeLine{00238\ }
-\DoxyCodeLine{00239\ \ \ \ \ \}}
-\DoxyCodeLine{00240\ \}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >=\ 0\ \&\&\ index\ <\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}.size())\ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Title:\ "{}}\ <<\ \ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getTitle()\ <<\ std::endl;}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Description:\ "{}}\ <<\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDescription()\ <<\ std::endl;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Due\ date:\ "{}}\ <<\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDueDate()\ <<\ std::endl;}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Priority:\ "{}}\ <<\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getPriority()\ <<\ std::endl;}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Recurring:\ "{}}\ <<\ \ (\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].isRecurring()\ ?\ \textcolor{stringliteral}{"{}Yes,\ "{}}\ +\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getRecurringOpt()\ :\ \textcolor{stringliteral}{"{}NO"{}})\ <<\ std::endl;}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependencies().empty())\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Dependecy\ list:\ "{}};}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependencies())\ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ i\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}No\ dependencies!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependants().empty())\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Dependant\ list:\ "{}};}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ :\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getDependants())\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ i\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}No\ dependants!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Task\ ID:\ "{}}\ <<\ \mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getTaskID()\ <<\ std::endl;}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Completed:\ "{}}\ <<\ (\mbox{\hyperlink{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}{tasks}}[index].getCompleted()\ ?\ \textcolor{stringliteral}{"{}COMPLETED!"{}}\ :\ \textcolor{stringliteral}{"{}INCOMPLETE!"{}})\ <<\ std::endl;}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \}}
 
 \end{DoxyCode}
 
@@ -751,7 +811,7 @@ std\+::string Task\+Scheduler\+::filename\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8h_source_l00016}{16}} of file \mbox{\hyperlink{_task_scheduler_8h_source}{Task\+Scheduler.\+h}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8h_source_l00018}{18}} of file \mbox{\hyperlink{_task_scheduler_8h_source}{Task\+Scheduler.\+h}}.
 
 \Hypertarget{class_task_scheduler_af1f00f1b9bd5e047e453f2b30d056f0c}\index{TaskScheduler@{TaskScheduler}!tasks@{tasks}}
 \index{tasks@{tasks}!TaskScheduler@{TaskScheduler}}
@@ -761,7 +821,7 @@ std\+::vector$<$\mbox{\hyperlink{class_task}{Task}}$>$ Task\+Scheduler\+::tasks\
 
 
 
-Definition at line \mbox{\hyperlink{_task_scheduler_8h_source_l00015}{15}} of file \mbox{\hyperlink{_task_scheduler_8h_source}{Task\+Scheduler.\+h}}.
+Definition at line \mbox{\hyperlink{_task_scheduler_8h_source_l00017}{17}} of file \mbox{\hyperlink{_task_scheduler_8h_source}{Task\+Scheduler.\+h}}.
 
 
 

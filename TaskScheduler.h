@@ -1,3 +1,9 @@
+/** /file TaskScheduler.h
+  * TaskScheduler class header file. 
+  * Main class that combines most of the other classes functionalities.
+  * Handles almost every action with tasks.
+  */
+
 #ifndef TASK_SCHEDULER_H
 #define TASK_SCHEDULER_H
 
@@ -6,10 +12,6 @@
 #include <string>
 
 
-/**
-  * Main class that combines most of the other classes functionalities.
-  * Handles almost every action with tasks.
-  */
 class TaskScheduler {
 private:
     std::vector<Task> tasks;

@@ -1,3 +1,8 @@
+/** /file Task.h
+  * Tasks class provides represents each task in the taskscheduler.
+  * It provides basic functionality. Mostly getters and setters. 
+  */
+
 #ifndef TASK_H
 #define TASK_H
 
@@ -5,10 +10,6 @@
 #include <fstream>
 #include <vector>
 
-/**
-  * Tasks class provides represents each task in the taskscheduler.
-  * It provides basic functionality. Mostly getters and setters. 
-  */
 
 class Task {
 private:

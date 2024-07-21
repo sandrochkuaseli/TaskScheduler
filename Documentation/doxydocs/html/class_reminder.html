@@ -129,9 +129,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a46e4debf3801757546d0292c529e1365"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_reminder.html">Reminder</a> handles the task of notifying the user about upcoming tasks. Runs in the background on two threads. </p>
+<div class="textblock"><p>/file <a class="el" href="_reminder_8h.html">Reminder.h</a> <a class="el" href="class_reminder.html">Reminder</a> class header file. Contains function declarations. <a class="el" href="class_reminder.html">Reminder</a> handles the task of notifying the user about upcoming tasks. Runs in the background on two threads. </p>
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00014">14</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00019">19</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a128f75d0d678e8e364e91cd2b6e632ed" name="a128f75d0d678e8e364e91cd2b6e632ed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a128f75d0d678e8e364e91cd2b6e632ed">&#9670;&#160;</a></span>~Reminder()</h2>
@@ -148,11 +148,11 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00015">15</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   15</span>                    {</div>
-<div class="line"><span class="lineno">   16</span>    <a class="code hl_function" href="#aad90e4fbc94e37b00fd553b84ece19bc">stop</a>();</div>
-<div class="line"><span class="lineno">   17</span>}</div>
-<div class="ttc" id="aclass_reminder_html_aad90e4fbc94e37b00fd553b84ece19bc"><div class="ttname"><a href="#aad90e4fbc94e37b00fd553b84ece19bc">Reminder::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8cpp_source.html#l00037">Reminder.cpp:37</a></div></div>
+<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00021">21</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   21</span>                    {</div>
+<div class="line"><span class="lineno">   22</span>    <a class="code hl_function" href="#aad90e4fbc94e37b00fd553b84ece19bc">stop</a>();</div>
+<div class="line"><span class="lineno">   23</span>}</div>
+<div class="ttc" id="aclass_reminder_html_aad90e4fbc94e37b00fd553b84ece19bc"><div class="ttname"><a href="#aad90e4fbc94e37b00fd553b84ece19bc">Reminder::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8cpp_source.html#l00043">Reminder.cpp:43</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -170,13 +170,13 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><a class="el" href="class_reminder.html">Reminder</a> class constructor </p>
+<p>/file <a class="el" href="_reminder_8cpp.html">Reminder.cpp</a> <a class="el" href="class_reminder.html">Reminder</a> class source file. Contains all the function definitions. <a class="el" href="class_reminder.html">Reminder</a> class constructor </p>
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00011">11</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   11</span>                                               :</div>
-<div class="line"><span class="lineno">   12</span>    <a class="code hl_variable" href="#afc381add7921aff7f5382326e1bab423">taskScheduler</a>(<a class="code hl_variable" href="#afc381add7921aff7f5382326e1bab423">taskScheduler</a>), <a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>{ <span class="keyword">false</span> } {}</div>
-<div class="ttc" id="aclass_reminder_html_a28b2dbdabe867a2ebe30ba09c96fe3bd"><div class="ttname"><a href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">Reminder::running</a></div><div class="ttdeci">std::atomic&lt; bool &gt; running</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8h_source.html#l00017">Reminder.h:17</a></div></div>
-<div class="ttc" id="aclass_reminder_html_afc381add7921aff7f5382326e1bab423"><div class="ttname"><a href="#afc381add7921aff7f5382326e1bab423">Reminder::taskScheduler</a></div><div class="ttdeci">TaskScheduler &amp; taskScheduler</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8h_source.html#l00016">Reminder.h:16</a></div></div>
+<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00017">17</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   17</span>                                               :</div>
+<div class="line"><span class="lineno">   18</span>    <a class="code hl_variable" href="#afc381add7921aff7f5382326e1bab423">taskScheduler</a>(<a class="code hl_variable" href="#afc381add7921aff7f5382326e1bab423">taskScheduler</a>), <a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>{ <span class="keyword">false</span> } {}</div>
+<div class="ttc" id="aclass_reminder_html_a28b2dbdabe867a2ebe30ba09c96fe3bd"><div class="ttname"><a href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">Reminder::running</a></div><div class="ttdeci">std::atomic&lt; bool &gt; running</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8h_source.html#l00022">Reminder.h:22</a></div></div>
+<div class="ttc" id="aclass_reminder_html_afc381add7921aff7f5382326e1bab423"><div class="ttname"><a href="#afc381add7921aff7f5382326e1bab423">Reminder::taskScheduler</a></div><div class="ttdeci">TaskScheduler &amp; taskScheduler</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8h_source.html#l00021">Reminder.h:21</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -197,64 +197,64 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Reminds about tasks that are either past their due date or are due in the future (months, weeks, days) </p>
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00222">222</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  222</span>                                         {</div>
-<div class="line"><span class="lineno">  223</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">  224</span>    std::time_t currentTime = std::chrono::system_clock::to_time_t(now);</div>
-<div class="line"><span class="lineno">  225</span> </div>
-<div class="line"><span class="lineno">  226</span>    std::tm localTime;</div>
-<div class="line"><span class="lineno">  227</span><span class="preprocessor">#if defined(_MSC_VER) </span><span class="comment">// For Microsoft Visual Studio</span></div>
-<div class="line"><span class="lineno">  228</span>    localtime_s(&amp;localTime, &amp;currentTime);</div>
-<div class="line"><span class="lineno">  229</span><span class="preprocessor">#else </span><span class="comment">// For other compilers</span></div>
-<div class="line"><span class="lineno">  230</span>    localtime_r(&amp;currentTime, &amp;localTime);</div>
-<div class="line"><span class="lineno">  231</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">  232</span> </div>
-<div class="line"><span class="lineno">  233</span>    <span class="keywordflow">for</span> (<a class="code hl_class" href="class_task.html">Task</a> task : <a class="code hl_variable" href="#afc381add7921aff7f5382326e1bab423">taskScheduler</a>.getTasks()) {</div>
-<div class="line"><span class="lineno">  234</span>        <span class="keywordflow">if</span> (!task.getCompleted()) {</div>
-<div class="line"><span class="lineno">  235</span>            <span class="keywordtype">int</span> hoursToDate = <a class="code hl_function" href="_reminder_8cpp.html#a43842e30ac1bc81d5f92ccac7f9bb3f8">countHoursToDate</a>(task.getDueDate());</div>
-<div class="line"><span class="lineno">  236</span>            <span class="keywordtype">int</span> daysToDate = hoursToDate / 24;</div>
-<div class="line"><span class="lineno">  237</span>            std::istringstream dueDateStream(task.getDueDate());</div>
-<div class="line"><span class="lineno">  238</span> </div>
-<div class="line"><span class="lineno">  239</span>            <span class="keywordtype">int</span> year, month, day, hour, minute;</div>
-<div class="line"><span class="lineno">  240</span>            <span class="keywordtype">char</span> dash1, dash2, colon;</div>
+<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00231">231</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  231</span>                                         {</div>
+<div class="line"><span class="lineno">  232</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">  233</span>    std::time_t currentTime = std::chrono::system_clock::to_time_t(now);</div>
+<div class="line"><span class="lineno">  234</span> </div>
+<div class="line"><span class="lineno">  235</span>    std::tm localTime;</div>
+<div class="line"><span class="lineno">  236</span><span class="preprocessor">#if defined(_MSC_VER) </span><span class="comment">// For Microsoft Visual Studio</span></div>
+<div class="line"><span class="lineno">  237</span>    localtime_s(&amp;localTime, &amp;currentTime);</div>
+<div class="line"><span class="lineno">  238</span><span class="preprocessor">#else </span><span class="comment">// For other compilers</span></div>
+<div class="line"><span class="lineno">  239</span>    localtime_r(&amp;currentTime, &amp;localTime);</div>
+<div class="line"><span class="lineno">  240</span><span class="preprocessor">#endif</span></div>
 <div class="line"><span class="lineno">  241</span> </div>
-<div class="line"><span class="lineno">  242</span>            dueDateStream &gt;&gt; year &gt;&gt; dash1 &gt;&gt; month &gt;&gt; dash2 &gt;&gt; day &gt;&gt; hour &gt;&gt; colon &gt;&gt; minute;</div>
-<div class="line"><span class="lineno">  243</span> </div>
-<div class="line"><span class="lineno">  244</span>            <span class="keywordflow">if</span> (hoursToDate &lt; -1) {</div>
-<div class="line"><span class="lineno">  245</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; was due on &quot;</span> &lt;&lt; task.getDueDate() &lt;&lt; <span class="stringliteral">&quot; and is still incomplete!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  246</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
-<div class="line"><span class="lineno">  247</span>            }</div>
-<div class="line"><span class="lineno">  248</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (hoursToDate &gt; 0 &amp;&amp; hoursToDate &lt; 24 ){</div>
-<div class="line"><span class="lineno">  249</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due soon!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  250</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
-<div class="line"><span class="lineno">  251</span>            }</div>
-<div class="line"><span class="lineno">  252</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (hoursToDate &gt; 24 &amp;&amp; hoursToDate &lt; 36)</div>
-<div class="line"><span class="lineno">  253</span>            {</div>
-<div class="line"><span class="lineno">  254</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due tomorrow!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  242</span>    <span class="keywordflow">for</span> (<a class="code hl_class" href="class_task.html">Task</a> task : <a class="code hl_variable" href="#afc381add7921aff7f5382326e1bab423">taskScheduler</a>.getTasks()) {</div>
+<div class="line"><span class="lineno">  243</span>        <span class="keywordflow">if</span> (!task.getCompleted()) {</div>
+<div class="line"><span class="lineno">  244</span>            <span class="keywordtype">int</span> hoursToDate = <a class="code hl_function" href="_reminder_8cpp.html#a43842e30ac1bc81d5f92ccac7f9bb3f8">countHoursToDate</a>(task.getDueDate());</div>
+<div class="line"><span class="lineno">  245</span>            <span class="keywordtype">int</span> daysToDate = hoursToDate / 24;</div>
+<div class="line"><span class="lineno">  246</span>            std::istringstream dueDateStream(task.getDueDate());</div>
+<div class="line"><span class="lineno">  247</span> </div>
+<div class="line"><span class="lineno">  248</span>            <span class="keywordtype">int</span> year, month, day, hour, minute;</div>
+<div class="line"><span class="lineno">  249</span>            <span class="keywordtype">char</span> dash1, dash2, colon;</div>
+<div class="line"><span class="lineno">  250</span> </div>
+<div class="line"><span class="lineno">  251</span>            dueDateStream &gt;&gt; year &gt;&gt; dash1 &gt;&gt; month &gt;&gt; dash2 &gt;&gt; day &gt;&gt; hour &gt;&gt; colon &gt;&gt; minute;</div>
+<div class="line"><span class="lineno">  252</span> </div>
+<div class="line"><span class="lineno">  253</span>            <span class="keywordflow">if</span> (hoursToDate &lt; -1) {</div>
+<div class="line"><span class="lineno">  254</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; was due on &quot;</span> &lt;&lt; task.getDueDate() &lt;&lt; <span class="stringliteral">&quot; and is still incomplete!&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><span class="lineno">  255</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
 <div class="line"><span class="lineno">  256</span>            }</div>
-<div class="line"><span class="lineno">  257</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (daysToDate &lt; 8 &amp;&amp; daysToDate &gt; 1) {</div>
-<div class="line"><span class="lineno">  258</span> </div>
-<div class="line"><span class="lineno">  259</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due in &quot;</span> &lt;&lt; daysToDate &lt;&lt; <span class="stringliteral">&quot; days!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  260</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
-<div class="line"><span class="lineno">  261</span>            }</div>
-<div class="line"><span class="lineno">  262</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (daysToDate == 30 ) {</div>
-<div class="line"><span class="lineno">  263</span> </div>
-<div class="line"><span class="lineno">  264</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due in 1 month!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  265</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
-<div class="line"><span class="lineno">  266</span>            }</div>
-<div class="line"><span class="lineno">  267</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (daysToDate % 30 == 0 &amp;&amp; daysToDate != 0) {</div>
-<div class="line"><span class="lineno">  268</span> </div>
-<div class="line"><span class="lineno">  269</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due in &quot;</span> &lt;&lt; daysToDate / 30 &lt;&lt; <span class="stringliteral">&quot; months!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  270</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
-<div class="line"><span class="lineno">  271</span>            }</div>
-<div class="line"><span class="lineno">  272</span>        }</div>
-<div class="line"><span class="lineno">  273</span> </div>
-<div class="line"><span class="lineno">  274</span>    }</div>
-<div class="line"><span class="lineno">  275</span> </div>
-<div class="line"><span class="lineno">  276</span>}</div>
-<div class="ttc" id="a_reminder_8cpp_html_a43842e30ac1bc81d5f92ccac7f9bb3f8"><div class="ttname"><a href="_reminder_8cpp.html#a43842e30ac1bc81d5f92ccac7f9bb3f8">countHoursToDate</a></div><div class="ttdeci">int countHoursToDate(std::string dueDateStr)</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8cpp_source.html#l00090">Reminder.cpp:90</a></div></div>
-<div class="ttc" id="aclass_task_html"><div class="ttname"><a href="class_task.html">Task</a></div><div class="ttdef"><b>Definition</b> <a href="_task_8h_source.html#l00013">Task.h:13</a></div></div>
+<div class="line"><span class="lineno">  257</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (hoursToDate &gt; 0 &amp;&amp; hoursToDate &lt; 24 ){</div>
+<div class="line"><span class="lineno">  258</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due soon!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  259</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
+<div class="line"><span class="lineno">  260</span>            }</div>
+<div class="line"><span class="lineno">  261</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (hoursToDate &gt; 24 &amp;&amp; hoursToDate &lt; 36)</div>
+<div class="line"><span class="lineno">  262</span>            {</div>
+<div class="line"><span class="lineno">  263</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due tomorrow!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  264</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
+<div class="line"><span class="lineno">  265</span>            }</div>
+<div class="line"><span class="lineno">  266</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (daysToDate &lt; 8 &amp;&amp; daysToDate &gt; 1) {</div>
+<div class="line"><span class="lineno">  267</span> </div>
+<div class="line"><span class="lineno">  268</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due in &quot;</span> &lt;&lt; daysToDate &lt;&lt; <span class="stringliteral">&quot; days!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  269</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
+<div class="line"><span class="lineno">  270</span>            }</div>
+<div class="line"><span class="lineno">  271</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (daysToDate == 30 ) {</div>
+<div class="line"><span class="lineno">  272</span> </div>
+<div class="line"><span class="lineno">  273</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due in 1 month!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  274</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
+<div class="line"><span class="lineno">  275</span>            }</div>
+<div class="line"><span class="lineno">  276</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (daysToDate % 30 == 0 &amp;&amp; daysToDate != 0) {</div>
+<div class="line"><span class="lineno">  277</span> </div>
+<div class="line"><span class="lineno">  278</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due in &quot;</span> &lt;&lt; daysToDate / 30 &lt;&lt; <span class="stringliteral">&quot; months!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  279</span>                std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
+<div class="line"><span class="lineno">  280</span>            }</div>
+<div class="line"><span class="lineno">  281</span>        }</div>
+<div class="line"><span class="lineno">  282</span> </div>
+<div class="line"><span class="lineno">  283</span>    }</div>
+<div class="line"><span class="lineno">  284</span> </div>
+<div class="line"><span class="lineno">  285</span>}</div>
+<div class="ttc" id="a_reminder_8cpp_html_a43842e30ac1bc81d5f92ccac7f9bb3f8"><div class="ttname"><a href="_reminder_8cpp.html#a43842e30ac1bc81d5f92ccac7f9bb3f8">countHoursToDate</a></div><div class="ttdeci">int countHoursToDate(std::string dueDateStr)</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8cpp_source.html#l00099">Reminder.cpp:99</a></div></div>
+<div class="ttc" id="aclass_task_html"><div class="ttname"><a href="class_task.html">Task</a></div><div class="ttdef"><b>Definition</b> <a href="_task_8h_source.html#l00014">Task.h:14</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -274,98 +274,98 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Reminds about tasks that are due at the moment Renews due date if the due date is now and the task is still incomplete Renews due date according to recurring settings </p>
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00128">128</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  128</span>                                      {</div>
-<div class="line"><span class="lineno">  129</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
-<div class="line"><span class="lineno">  130</span>    std::time_t currentTime = std::chrono::system_clock::to_time_t(now);</div>
-<div class="line"><span class="lineno">  131</span> </div>
-<div class="line"><span class="lineno">  132</span>    std::tm localTime;</div>
-<div class="line"><span class="lineno">  133</span><span class="preprocessor">#if defined(_MSC_VER) </span><span class="comment">// For Microsoft Visual Studio</span></div>
-<div class="line"><span class="lineno">  134</span>    localtime_s(&amp;localTime, &amp;currentTime);</div>
-<div class="line"><span class="lineno">  135</span><span class="preprocessor">#else </span><span class="comment">// For other compilers</span></div>
-<div class="line"><span class="lineno">  136</span>    localtime_r(&amp;currentTime, &amp;localTime);</div>
-<div class="line"><span class="lineno">  137</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">  138</span> </div>
-<div class="line"><span class="lineno">  139</span>    <span class="keywordflow">for</span> (<a class="code hl_class" href="class_task.html">Task</a>&amp; task : <a class="code hl_variable" href="#afc381add7921aff7f5382326e1bab423">taskScheduler</a>.getTasks()) {</div>
+<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00137">137</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  137</span>                                      {</div>
+<div class="line"><span class="lineno">  138</span>    <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
+<div class="line"><span class="lineno">  139</span>    std::time_t currentTime = std::chrono::system_clock::to_time_t(now);</div>
 <div class="line"><span class="lineno">  140</span> </div>
-<div class="line"><span class="lineno">  141</span>        std::istringstream dueDateStream(task.getDueDate());</div>
-<div class="line"><span class="lineno">  142</span> </div>
-<div class="line"><span class="lineno">  143</span>        localTime.tm_sec = 0;</div>
-<div class="line"><span class="lineno">  144</span>        std::time_t currentTimeT = std::mktime(&amp;localTime);</div>
-<div class="line"><span class="lineno">  145</span> </div>
-<div class="line"><span class="lineno">  146</span>        std::tm dueDateTime = {};</div>
-<div class="line"><span class="lineno">  147</span>        <span class="keywordtype">int</span> year, month, day, hour, minute;</div>
-<div class="line"><span class="lineno">  148</span>        <span class="keywordtype">char</span> dash1, dash2, colon;</div>
+<div class="line"><span class="lineno">  141</span>    std::tm localTime;</div>
+<div class="line"><span class="lineno">  142</span><span class="preprocessor">#if defined(_MSC_VER) </span><span class="comment">// For Microsoft Visual Studio</span></div>
+<div class="line"><span class="lineno">  143</span>    localtime_s(&amp;localTime, &amp;currentTime);</div>
+<div class="line"><span class="lineno">  144</span><span class="preprocessor">#else </span><span class="comment">// For other compilers</span></div>
+<div class="line"><span class="lineno">  145</span>    localtime_r(&amp;currentTime, &amp;localTime);</div>
+<div class="line"><span class="lineno">  146</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">  147</span> </div>
+<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">for</span> (<a class="code hl_class" href="class_task.html">Task</a>&amp; task : <a class="code hl_variable" href="#afc381add7921aff7f5382326e1bab423">taskScheduler</a>.getTasks()) {</div>
 <div class="line"><span class="lineno">  149</span> </div>
-<div class="line"><span class="lineno">  150</span>        dueDateStream &gt;&gt; year &gt;&gt; dash1 &gt;&gt; month &gt;&gt; dash2 &gt;&gt; day &gt;&gt; hour &gt;&gt; colon &gt;&gt; minute;</div>
+<div class="line"><span class="lineno">  150</span>        std::istringstream dueDateStream(task.getDueDate());</div>
 <div class="line"><span class="lineno">  151</span> </div>
-<div class="line"><span class="lineno">  152</span>        dueDateTime.tm_year = year - 1900;</div>
-<div class="line"><span class="lineno">  153</span>        dueDateTime.tm_mon = month - 1;   </div>
-<div class="line"><span class="lineno">  154</span>        dueDateTime.tm_mday = day;</div>
-<div class="line"><span class="lineno">  155</span>        dueDateTime.tm_hour = hour - 1;</div>
-<div class="line"><span class="lineno">  156</span>        dueDateTime.tm_min = minute;</div>
-<div class="line"><span class="lineno">  157</span>        dueDateTime.tm_sec = 0;</div>
+<div class="line"><span class="lineno">  152</span>        localTime.tm_sec = 0;</div>
+<div class="line"><span class="lineno">  153</span>        std::time_t currentTimeT = std::mktime(&amp;localTime);</div>
+<div class="line"><span class="lineno">  154</span> </div>
+<div class="line"><span class="lineno">  155</span>        std::tm dueDateTime = {};</div>
+<div class="line"><span class="lineno">  156</span>        <span class="keywordtype">int</span> year, month, day, hour, minute;</div>
+<div class="line"><span class="lineno">  157</span>        <span class="keywordtype">char</span> dash1, dash2, colon;</div>
 <div class="line"><span class="lineno">  158</span> </div>
-<div class="line"><span class="lineno">  159</span>        std::time_t dueDateTimeT = std::mktime(&amp;dueDateTime);</div>
+<div class="line"><span class="lineno">  159</span>        dueDateStream &gt;&gt; year &gt;&gt; dash1 &gt;&gt; month &gt;&gt; dash2 &gt;&gt; day &gt;&gt; hour &gt;&gt; colon &gt;&gt; minute;</div>
 <div class="line"><span class="lineno">  160</span> </div>
-<div class="line"><span class="lineno">  161</span>        <span class="keywordflow">if</span>(currentTimeT == dueDateTimeT &amp;&amp; !task.getCompleted()){</div>
-<div class="line"><span class="lineno">  162</span>                </div>
-<div class="line"><span class="lineno">  163</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due now!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  164</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;Reminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; has not yet been completed! Reminding again in 1 hour! (Due date will be adjusted) &quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  165</span>                </div>
-<div class="line"><span class="lineno">  166</span>            dueDateTimeT += 3600;</div>
-<div class="line"><span class="lineno">  167</span>            std::tm newDueDateTime;</div>
-<div class="line"><span class="lineno">  168</span><span class="preprocessor">#if defined(_MSC_VER) </span><span class="comment">// For Microsoft Visual Studio</span></div>
-<div class="line"><span class="lineno">  169</span>            localtime_s(&amp;newDueDateTime, &amp;dueDateTimeT);</div>
-<div class="line"><span class="lineno">  170</span><span class="preprocessor">#else </span><span class="comment">// For other compilers</span></div>
-<div class="line"><span class="lineno">  171</span>            localtime_r(&amp;dueDateTimeT, &amp;newDueDateTime);</div>
-<div class="line"><span class="lineno">  172</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">  173</span>            std::ostringstream oss;</div>
-<div class="line"><span class="lineno">  174</span>            oss &lt;&lt; std::put_time(&amp;newDueDateTime, <span class="stringliteral">&quot;%Y-%m-%d %H:%M&quot;</span>);</div>
-<div class="line"><span class="lineno">  175</span>            std::string newdueStr = oss.str();</div>
-<div class="line"><span class="lineno">  176</span>            task.setDueDate(newdueStr);</div>
-<div class="line"><span class="lineno">  177</span> </div>
-<div class="line"><span class="lineno">  178</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;New Due Date Time: &quot;</span> &lt;&lt; newdueStr &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  179</span> </div>
-<div class="line"><span class="lineno">  180</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
-<div class="line"><span class="lineno">  181</span> </div>
-<div class="line"><span class="lineno">  182</span>        }<span class="keywordflow">else</span> <span class="keywordflow">if</span> (currentTimeT == dueDateTimeT &amp;&amp; task.getCompleted() &amp;&amp; task.isRecurring()) {</div>
-<div class="line"><span class="lineno">  183</span> </div>
-<div class="line"><span class="lineno">  184</span>            </div>
-<div class="line"><span class="lineno">  185</span>            <span class="keywordflow">if</span> (task.getRecurringOpt() == <span class="stringliteral">&quot;daily&quot;</span>) {</div>
-<div class="line"><span class="lineno">  186</span>                dueDateTimeT += 3600 * 24;</div>
-<div class="line"><span class="lineno">  187</span>            }</div>
-<div class="line"><span class="lineno">  188</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(task.getRecurringOpt() == <span class="stringliteral">&quot;monthly&quot;</span>){</div>
-<div class="line"><span class="lineno">  189</span>                dueDateTimeT += 3600 * 24 * <a class="code hl_function" href="class_task_scheduler.html#a5b832aeaaa56a1d7e4281df05dab98f1">TaskScheduler::getDaysInMonth</a>(year, month);</div>
-<div class="line"><span class="lineno">  190</span>            }</div>
-<div class="line"><span class="lineno">  191</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (task.getRecurringOpt() == <span class="stringliteral">&quot;yearly&quot;</span>) {</div>
-<div class="line"><span class="lineno">  192</span>                dueDateTimeT += 3600 * 24 * 365;</div>
-<div class="line"><span class="lineno">  193</span>            }</div>
-<div class="line"><span class="lineno">  194</span> </div>
-<div class="line"><span class="lineno">  195</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due now! It has already been completed but it is a &quot;</span> &lt;&lt; task.getRecurringOpt() &lt;&lt; <span class="stringliteral">&quot; recurring task!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  196</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;Setting task to incomplete! Respective, dependants and dependecies are also set to incomplete!&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  197</span>            </div>
-<div class="line"><span class="lineno">  198</span>            std::tm newDueDateTime;</div>
-<div class="line"><span class="lineno">  199</span><span class="preprocessor">#if defined(_MSC_VER) </span><span class="comment">// For Microsoft Visual Studio</span></div>
-<div class="line"><span class="lineno">  200</span>            localtime_s(&amp;newDueDateTime, &amp;dueDateTimeT);</div>
-<div class="line"><span class="lineno">  201</span><span class="preprocessor">#else </span><span class="comment">// For other compilers</span></div>
-<div class="line"><span class="lineno">  202</span>            localtime_r(&amp;dueDateTimeT, &amp;newDueDateTime);</div>
-<div class="line"><span class="lineno">  203</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">  204</span>            std::ostringstream oss;</div>
-<div class="line"><span class="lineno">  205</span>            oss &lt;&lt; std::put_time(&amp;newDueDateTime, <span class="stringliteral">&quot;%Y-%m-%d %H:%M&quot;</span>);</div>
-<div class="line"><span class="lineno">  206</span>            std::string newdueStr = oss.str();</div>
-<div class="line"><span class="lineno">  207</span>            task.setDueDate(newdueStr);</div>
-<div class="line"><span class="lineno">  208</span>            task.setCompleted(<span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">  209</span> </div>
-<div class="line"><span class="lineno">  210</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;New Due Date Time: &quot;</span> &lt;&lt; newdueStr &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  211</span> </div>
-<div class="line"><span class="lineno">  212</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
-<div class="line"><span class="lineno">  213</span>        }</div>
-<div class="line"><span class="lineno">  214</span> </div>
-<div class="line"><span class="lineno">  215</span>    }</div>
-<div class="line"><span class="lineno">  216</span> </div>
-<div class="line"><span class="lineno">  217</span>}</div>
-<div class="ttc" id="aclass_task_scheduler_html_a5b832aeaaa56a1d7e4281df05dab98f1"><div class="ttname"><a href="class_task_scheduler.html#a5b832aeaaa56a1d7e4281df05dab98f1">TaskScheduler::getDaysInMonth</a></div><div class="ttdeci">static int getDaysInMonth(int year, int month)</div><div class="ttdef"><b>Definition</b> <a href="_task_scheduler_8h_source.html#l00047">TaskScheduler.h:47</a></div></div>
+<div class="line"><span class="lineno">  161</span>        dueDateTime.tm_year = year - 1900;</div>
+<div class="line"><span class="lineno">  162</span>        dueDateTime.tm_mon = month - 1;   </div>
+<div class="line"><span class="lineno">  163</span>        dueDateTime.tm_mday = day;</div>
+<div class="line"><span class="lineno">  164</span>        dueDateTime.tm_hour = hour - 1;</div>
+<div class="line"><span class="lineno">  165</span>        dueDateTime.tm_min = minute;</div>
+<div class="line"><span class="lineno">  166</span>        dueDateTime.tm_sec = 0;</div>
+<div class="line"><span class="lineno">  167</span> </div>
+<div class="line"><span class="lineno">  168</span>        std::time_t dueDateTimeT = std::mktime(&amp;dueDateTime);</div>
+<div class="line"><span class="lineno">  169</span> </div>
+<div class="line"><span class="lineno">  170</span>        <span class="keywordflow">if</span>(currentTimeT == dueDateTimeT &amp;&amp; !task.getCompleted()){</div>
+<div class="line"><span class="lineno">  171</span>                </div>
+<div class="line"><span class="lineno">  172</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due now!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  173</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;Reminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; has not yet been completed! Reminding again in 1 hour! (Due date will be adjusted) &quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  174</span>                </div>
+<div class="line"><span class="lineno">  175</span>            dueDateTimeT += 3600;</div>
+<div class="line"><span class="lineno">  176</span>            std::tm newDueDateTime;</div>
+<div class="line"><span class="lineno">  177</span><span class="preprocessor">#if defined(_MSC_VER) </span><span class="comment">// For Microsoft Visual Studio</span></div>
+<div class="line"><span class="lineno">  178</span>            localtime_s(&amp;newDueDateTime, &amp;dueDateTimeT);</div>
+<div class="line"><span class="lineno">  179</span><span class="preprocessor">#else </span><span class="comment">// For other compilers</span></div>
+<div class="line"><span class="lineno">  180</span>            localtime_r(&amp;dueDateTimeT, &amp;newDueDateTime);</div>
+<div class="line"><span class="lineno">  181</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">  182</span>            std::ostringstream oss;</div>
+<div class="line"><span class="lineno">  183</span>            oss &lt;&lt; std::put_time(&amp;newDueDateTime, <span class="stringliteral">&quot;%Y-%m-%d %H:%M&quot;</span>);</div>
+<div class="line"><span class="lineno">  184</span>            std::string newdueStr = oss.str();</div>
+<div class="line"><span class="lineno">  185</span>            task.setDueDate(newdueStr);</div>
+<div class="line"><span class="lineno">  186</span> </div>
+<div class="line"><span class="lineno">  187</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;New Due Date Time: &quot;</span> &lt;&lt; newdueStr &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  188</span> </div>
+<div class="line"><span class="lineno">  189</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
+<div class="line"><span class="lineno">  190</span> </div>
+<div class="line"><span class="lineno">  191</span>        }<span class="keywordflow">else</span> <span class="keywordflow">if</span> (currentTimeT == dueDateTimeT &amp;&amp; task.getCompleted() &amp;&amp; task.isRecurring()) {</div>
+<div class="line"><span class="lineno">  192</span> </div>
+<div class="line"><span class="lineno">  193</span>            </div>
+<div class="line"><span class="lineno">  194</span>            <span class="keywordflow">if</span> (task.getRecurringOpt() == <span class="stringliteral">&quot;daily&quot;</span>) {</div>
+<div class="line"><span class="lineno">  195</span>                dueDateTimeT += 3600 * 24;</div>
+<div class="line"><span class="lineno">  196</span>            }</div>
+<div class="line"><span class="lineno">  197</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(task.getRecurringOpt() == <span class="stringliteral">&quot;monthly&quot;</span>){</div>
+<div class="line"><span class="lineno">  198</span>                dueDateTimeT += 3600 * 24 * <a class="code hl_function" href="class_task_scheduler.html#a5b832aeaaa56a1d7e4281df05dab98f1">TaskScheduler::getDaysInMonth</a>(year, month);</div>
+<div class="line"><span class="lineno">  199</span>            }</div>
+<div class="line"><span class="lineno">  200</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (task.getRecurringOpt() == <span class="stringliteral">&quot;yearly&quot;</span>) {</div>
+<div class="line"><span class="lineno">  201</span>                dueDateTimeT += 3600 * 24 * 365;</div>
+<div class="line"><span class="lineno">  202</span>            }</div>
+<div class="line"><span class="lineno">  203</span> </div>
+<div class="line"><span class="lineno">  204</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;\nReminder: Task &#39;&quot;</span> &lt;&lt; task.getTitle() &lt;&lt; <span class="stringliteral">&quot;&#39; is due now! It has already been completed but it is a &quot;</span> &lt;&lt; task.getRecurringOpt() &lt;&lt; <span class="stringliteral">&quot; recurring task!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  205</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;Setting task to incomplete! Respective, dependants and dependecies are also set to incomplete!&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  206</span>            </div>
+<div class="line"><span class="lineno">  207</span>            std::tm newDueDateTime;</div>
+<div class="line"><span class="lineno">  208</span><span class="preprocessor">#if defined(_MSC_VER) </span><span class="comment">// For Microsoft Visual Studio</span></div>
+<div class="line"><span class="lineno">  209</span>            localtime_s(&amp;newDueDateTime, &amp;dueDateTimeT);</div>
+<div class="line"><span class="lineno">  210</span><span class="preprocessor">#else </span><span class="comment">// For other compilers</span></div>
+<div class="line"><span class="lineno">  211</span>            localtime_r(&amp;dueDateTimeT, &amp;newDueDateTime);</div>
+<div class="line"><span class="lineno">  212</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">  213</span>            std::ostringstream oss;</div>
+<div class="line"><span class="lineno">  214</span>            oss &lt;&lt; std::put_time(&amp;newDueDateTime, <span class="stringliteral">&quot;%Y-%m-%d %H:%M&quot;</span>);</div>
+<div class="line"><span class="lineno">  215</span>            std::string newdueStr = oss.str();</div>
+<div class="line"><span class="lineno">  216</span>            task.setDueDate(newdueStr);</div>
+<div class="line"><span class="lineno">  217</span>            task.setCompleted(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  218</span> </div>
+<div class="line"><span class="lineno">  219</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;New Due Date Time: &quot;</span> &lt;&lt; newdueStr &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  220</span> </div>
+<div class="line"><span class="lineno">  221</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span>;</div>
+<div class="line"><span class="lineno">  222</span>        }</div>
+<div class="line"><span class="lineno">  223</span> </div>
+<div class="line"><span class="lineno">  224</span>    }</div>
+<div class="line"><span class="lineno">  225</span> </div>
+<div class="line"><span class="lineno">  226</span>}</div>
+<div class="ttc" id="aclass_task_scheduler_html_a5b832aeaaa56a1d7e4281df05dab98f1"><div class="ttname"><a href="class_task_scheduler.html#a5b832aeaaa56a1d7e4281df05dab98f1">TaskScheduler::getDaysInMonth</a></div><div class="ttdeci">static int getDaysInMonth(int year, int month)</div><div class="ttdef"><b>Definition</b> <a href="_task_scheduler_8h_source.html#l00049">TaskScheduler.h:49</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -385,19 +385,19 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Runs checksTasksAndRemindLonger() every 59 minutes </p>
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00075">75</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   76</span>{</div>
-<div class="line"><span class="lineno">   77</span>    std::unique_lock&lt;std::mutex&gt; lock(<a class="code hl_variable" href="#a22f69bcdd39775b2df352883cfae8e53">mtx</a>);</div>
-<div class="line"><span class="lineno">   78</span>    <span class="keywordflow">while</span> (<a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>.load()) {</div>
-<div class="line"><span class="lineno">   79</span>        <a class="code hl_function" href="#a86c0063f405233e4604279c60ac21725">checkTasksAndRemindLonger</a>();</div>
-<div class="line"><span class="lineno">   80</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a46e4debf3801757546d0292c529e1365">cv</a>.wait_for(lock, std::chrono::minutes(59), [<span class="keyword">this</span>] { return !running.load(); })) {</div>
-<div class="line"><span class="lineno">   81</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   82</span>        }</div>
-<div class="line"><span class="lineno">   83</span>    }</div>
-<div class="line"><span class="lineno">   84</span>}</div>
-<div class="ttc" id="aclass_reminder_html_a22f69bcdd39775b2df352883cfae8e53"><div class="ttname"><a href="#a22f69bcdd39775b2df352883cfae8e53">Reminder::mtx</a></div><div class="ttdeci">std::mutex mtx</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8h_source.html#l00020">Reminder.h:20</a></div></div>
-<div class="ttc" id="aclass_reminder_html_a46e4debf3801757546d0292c529e1365"><div class="ttname"><a href="#a46e4debf3801757546d0292c529e1365">Reminder::cv</a></div><div class="ttdeci">std::condition_variable cv</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8h_source.html#l00021">Reminder.h:21</a></div></div>
-<div class="ttc" id="aclass_reminder_html_a86c0063f405233e4604279c60ac21725"><div class="ttname"><a href="#a86c0063f405233e4604279c60ac21725">Reminder::checkTasksAndRemindLonger</a></div><div class="ttdeci">void checkTasksAndRemindLonger()</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8cpp_source.html#l00222">Reminder.cpp:222</a></div></div>
+<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00081">81</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   82</span>{</div>
+<div class="line"><span class="lineno">   83</span>    std::unique_lock&lt;std::mutex&gt; lock(<a class="code hl_variable" href="#a22f69bcdd39775b2df352883cfae8e53">mtx</a>);</div>
+<div class="line"><span class="lineno">   84</span>    <span class="keywordflow">while</span> (<a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>.load()) {</div>
+<div class="line"><span class="lineno">   85</span>        <a class="code hl_function" href="#a86c0063f405233e4604279c60ac21725">checkTasksAndRemindLonger</a>();</div>
+<div class="line"><span class="lineno">   86</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a46e4debf3801757546d0292c529e1365">cv</a>.wait_for(lock, std::chrono::minutes(59), [<span class="keyword">this</span>] { return !running.load(); })) {</div>
+<div class="line"><span class="lineno">   87</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   88</span>        }</div>
+<div class="line"><span class="lineno">   89</span>    }</div>
+<div class="line"><span class="lineno">   90</span>}</div>
+<div class="ttc" id="aclass_reminder_html_a22f69bcdd39775b2df352883cfae8e53"><div class="ttname"><a href="#a22f69bcdd39775b2df352883cfae8e53">Reminder::mtx</a></div><div class="ttdeci">std::mutex mtx</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8h_source.html#l00025">Reminder.h:25</a></div></div>
+<div class="ttc" id="aclass_reminder_html_a46e4debf3801757546d0292c529e1365"><div class="ttname"><a href="#a46e4debf3801757546d0292c529e1365">Reminder::cv</a></div><div class="ttdeci">std::condition_variable cv</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8h_source.html#l00026">Reminder.h:26</a></div></div>
+<div class="ttc" id="aclass_reminder_html_a86c0063f405233e4604279c60ac21725"><div class="ttname"><a href="#a86c0063f405233e4604279c60ac21725">Reminder::checkTasksAndRemindLonger</a></div><div class="ttdeci">void checkTasksAndRemindLonger()</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8cpp_source.html#l00231">Reminder.cpp:231</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -417,17 +417,17 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Runs checksTasksAndRemindNow() every 59 seconds </p>
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00062">62</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   62</span>                           {</div>
-<div class="line"><span class="lineno">   63</span>    std::unique_lock&lt;std::mutex&gt; lock(<a class="code hl_variable" href="#a22f69bcdd39775b2df352883cfae8e53">mtx</a>);</div>
-<div class="line"><span class="lineno">   64</span>    <span class="keywordflow">while</span> (<a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>.load()) {</div>
-<div class="line"><span class="lineno">   65</span>        <a class="code hl_function" href="#a9d627bc6b3af3fcace812dc2d2e8995d">checkTasksAndRemindNow</a>();</div>
-<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a46e4debf3801757546d0292c529e1365">cv</a>.wait_for(lock, std::chrono::seconds(59), [<span class="keyword">this</span>] { return !running.load(); })) {</div>
-<div class="line"><span class="lineno">   67</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   68</span>        }</div>
-<div class="line"><span class="lineno">   69</span>    }</div>
-<div class="line"><span class="lineno">   70</span>}</div>
-<div class="ttc" id="aclass_reminder_html_a9d627bc6b3af3fcace812dc2d2e8995d"><div class="ttname"><a href="#a9d627bc6b3af3fcace812dc2d2e8995d">Reminder::checkTasksAndRemindNow</a></div><div class="ttdeci">void checkTasksAndRemindNow()</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8cpp_source.html#l00128">Reminder.cpp:128</a></div></div>
+<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00068">68</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   68</span>                           {</div>
+<div class="line"><span class="lineno">   69</span>    std::unique_lock&lt;std::mutex&gt; lock(<a class="code hl_variable" href="#a22f69bcdd39775b2df352883cfae8e53">mtx</a>);</div>
+<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">while</span> (<a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>.load()) {</div>
+<div class="line"><span class="lineno">   71</span>        <a class="code hl_function" href="#a9d627bc6b3af3fcace812dc2d2e8995d">checkTasksAndRemindNow</a>();</div>
+<div class="line"><span class="lineno">   72</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a46e4debf3801757546d0292c529e1365">cv</a>.wait_for(lock, std::chrono::seconds(59), [<span class="keyword">this</span>] { return !running.load(); })) {</div>
+<div class="line"><span class="lineno">   73</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   74</span>        }</div>
+<div class="line"><span class="lineno">   75</span>    }</div>
+<div class="line"><span class="lineno">   76</span>}</div>
+<div class="ttc" id="aclass_reminder_html_a9d627bc6b3af3fcace812dc2d2e8995d"><div class="ttname"><a href="#a9d627bc6b3af3fcace812dc2d2e8995d">Reminder::checkTasksAndRemindNow</a></div><div class="ttdeci">void checkTasksAndRemindNow()</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8cpp_source.html#l00137">Reminder.cpp:137</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -447,19 +447,19 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Start two threads, one checks every 59 seconds other check checks every 59 minutes </p>
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00022">22</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   22</span>                     {</div>
-<div class="line"><span class="lineno">   23</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>.load()) {</div>
-<div class="line"><span class="lineno">   24</span>        <a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>.store(<span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   25</span> </div>
-<div class="line"><span class="lineno">   26</span>        <a class="code hl_variable" href="#a9f4fc1d1d06610285783276299cbf8f8">reminderThreadMin</a> = std::thread(&amp;<a class="code hl_function" href="#aa04082b1ccf912127f2055c3d7913070">Reminder::runEveryMin</a>, <span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   27</span>        <a class="code hl_variable" href="#ab5a7c7dcd45a6c85f2f56b4a4ecd608c">reminderThreadHour</a> = std::thread(&amp;<a class="code hl_function" href="#aad5ab7e8bfd7cee9daedc8718406ef3a">Reminder::runEveryHour</a>, <span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   28</span>    }</div>
-<div class="line"><span class="lineno">   29</span>}</div>
-<div class="ttc" id="aclass_reminder_html_a9f4fc1d1d06610285783276299cbf8f8"><div class="ttname"><a href="#a9f4fc1d1d06610285783276299cbf8f8">Reminder::reminderThreadMin</a></div><div class="ttdeci">std::thread reminderThreadMin</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8h_source.html#l00018">Reminder.h:18</a></div></div>
-<div class="ttc" id="aclass_reminder_html_aa04082b1ccf912127f2055c3d7913070"><div class="ttname"><a href="#aa04082b1ccf912127f2055c3d7913070">Reminder::runEveryMin</a></div><div class="ttdeci">void runEveryMin()</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8cpp_source.html#l00062">Reminder.cpp:62</a></div></div>
-<div class="ttc" id="aclass_reminder_html_aad5ab7e8bfd7cee9daedc8718406ef3a"><div class="ttname"><a href="#aad5ab7e8bfd7cee9daedc8718406ef3a">Reminder::runEveryHour</a></div><div class="ttdeci">void runEveryHour()</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8cpp_source.html#l00075">Reminder.cpp:75</a></div></div>
-<div class="ttc" id="aclass_reminder_html_ab5a7c7dcd45a6c85f2f56b4a4ecd608c"><div class="ttname"><a href="#ab5a7c7dcd45a6c85f2f56b4a4ecd608c">Reminder::reminderThreadHour</a></div><div class="ttdeci">std::thread reminderThreadHour</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8h_source.html#l00019">Reminder.h:19</a></div></div>
+<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00028">28</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   28</span>                     {</div>
+<div class="line"><span class="lineno">   29</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>.load()) {</div>
+<div class="line"><span class="lineno">   30</span>        <a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>.store(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   31</span> </div>
+<div class="line"><span class="lineno">   32</span>        <a class="code hl_variable" href="#a9f4fc1d1d06610285783276299cbf8f8">reminderThreadMin</a> = std::thread(&amp;<a class="code hl_function" href="#aa04082b1ccf912127f2055c3d7913070">Reminder::runEveryMin</a>, <span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">   33</span>        <a class="code hl_variable" href="#ab5a7c7dcd45a6c85f2f56b4a4ecd608c">reminderThreadHour</a> = std::thread(&amp;<a class="code hl_function" href="#aad5ab7e8bfd7cee9daedc8718406ef3a">Reminder::runEveryHour</a>, <span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">   34</span>    }</div>
+<div class="line"><span class="lineno">   35</span>}</div>
+<div class="ttc" id="aclass_reminder_html_a9f4fc1d1d06610285783276299cbf8f8"><div class="ttname"><a href="#a9f4fc1d1d06610285783276299cbf8f8">Reminder::reminderThreadMin</a></div><div class="ttdeci">std::thread reminderThreadMin</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8h_source.html#l00023">Reminder.h:23</a></div></div>
+<div class="ttc" id="aclass_reminder_html_aa04082b1ccf912127f2055c3d7913070"><div class="ttname"><a href="#aa04082b1ccf912127f2055c3d7913070">Reminder::runEveryMin</a></div><div class="ttdeci">void runEveryMin()</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8cpp_source.html#l00068">Reminder.cpp:68</a></div></div>
+<div class="ttc" id="aclass_reminder_html_aad5ab7e8bfd7cee9daedc8718406ef3a"><div class="ttname"><a href="#aad5ab7e8bfd7cee9daedc8718406ef3a">Reminder::runEveryHour</a></div><div class="ttdeci">void runEveryHour()</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8cpp_source.html#l00081">Reminder.cpp:81</a></div></div>
+<div class="ttc" id="aclass_reminder_html_ab5a7c7dcd45a6c85f2f56b4a4ecd608c"><div class="ttname"><a href="#ab5a7c7dcd45a6c85f2f56b4a4ecd608c">Reminder::reminderThreadHour</a></div><div class="ttdeci">std::thread reminderThreadHour</div><div class="ttdef"><b>Definition</b> <a href="_reminder_8h_source.html#l00024">Reminder.h:24</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -479,27 +479,27 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Terminate threads We use cv and mtx to tell tasks to wake up for termination </p>
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00037">37</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   37</span>                    {</div>
-<div class="line"><span class="lineno">   38</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>.load()) {</div>
-<div class="line"><span class="lineno">   39</span>        {</div>
-<div class="line"><span class="lineno">   40</span>            std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="#a22f69bcdd39775b2df352883cfae8e53">mtx</a>);</div>
-<div class="line"><span class="lineno">   41</span>            <a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>.store(<span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">   42</span> </div>
-<div class="line"><span class="lineno">   43</span>        }</div>
-<div class="line"><span class="lineno">   44</span> </div>
-<div class="line"><span class="lineno">   45</span>        <a class="code hl_variable" href="#a46e4debf3801757546d0292c529e1365">cv</a>.notify_all();</div>
-<div class="line"><span class="lineno">   46</span> </div>
-<div class="line"><span class="lineno">   47</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a9f4fc1d1d06610285783276299cbf8f8">reminderThreadMin</a>.joinable()) {</div>
-<div class="line"><span class="lineno">   48</span>            <a class="code hl_variable" href="#a9f4fc1d1d06610285783276299cbf8f8">reminderThreadMin</a>.join();</div>
-<div class="line"><span class="lineno">   49</span> </div>
-<div class="line"><span class="lineno">   50</span>        }</div>
-<div class="line"><span class="lineno">   51</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ab5a7c7dcd45a6c85f2f56b4a4ecd608c">reminderThreadHour</a>.joinable()) {</div>
-<div class="line"><span class="lineno">   52</span>            <a class="code hl_variable" href="#ab5a7c7dcd45a6c85f2f56b4a4ecd608c">reminderThreadHour</a>.join();</div>
-<div class="line"><span class="lineno">   53</span>        }</div>
-<div class="line"><span class="lineno">   54</span> </div>
-<div class="line"><span class="lineno">   55</span>    }</div>
-<div class="line"><span class="lineno">   56</span>}</div>
+<p class="definition">Definition at line <a class="el" href="_reminder_8cpp_source.html#l00043">43</a> of file <a class="el" href="_reminder_8cpp_source.html">Reminder.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   43</span>                    {</div>
+<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>.load()) {</div>
+<div class="line"><span class="lineno">   45</span>        {</div>
+<div class="line"><span class="lineno">   46</span>            std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="#a22f69bcdd39775b2df352883cfae8e53">mtx</a>);</div>
+<div class="line"><span class="lineno">   47</span>            <a class="code hl_variable" href="#a28b2dbdabe867a2ebe30ba09c96fe3bd">running</a>.store(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>        }</div>
+<div class="line"><span class="lineno">   50</span> </div>
+<div class="line"><span class="lineno">   51</span>        <a class="code hl_variable" href="#a46e4debf3801757546d0292c529e1365">cv</a>.notify_all();</div>
+<div class="line"><span class="lineno">   52</span> </div>
+<div class="line"><span class="lineno">   53</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a9f4fc1d1d06610285783276299cbf8f8">reminderThreadMin</a>.joinable()) {</div>
+<div class="line"><span class="lineno">   54</span>            <a class="code hl_variable" href="#a9f4fc1d1d06610285783276299cbf8f8">reminderThreadMin</a>.join();</div>
+<div class="line"><span class="lineno">   55</span> </div>
+<div class="line"><span class="lineno">   56</span>        }</div>
+<div class="line"><span class="lineno">   57</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ab5a7c7dcd45a6c85f2f56b4a4ecd608c">reminderThreadHour</a>.joinable()) {</div>
+<div class="line"><span class="lineno">   58</span>            <a class="code hl_variable" href="#ab5a7c7dcd45a6c85f2f56b4a4ecd608c">reminderThreadHour</a>.join();</div>
+<div class="line"><span class="lineno">   59</span>        }</div>
+<div class="line"><span class="lineno">   60</span> </div>
+<div class="line"><span class="lineno">   61</span>    }</div>
+<div class="line"><span class="lineno">   62</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -524,7 +524,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00021">21</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00026">26</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
 
 </div>
 </div>
@@ -548,7 +548,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00020">20</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00025">25</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
 
 </div>
 </div>
@@ -572,7 +572,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00019">19</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00024">24</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
 
 </div>
 </div>
@@ -596,7 +596,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00018">18</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00023">23</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
 
 </div>
 </div>
@@ -620,7 +620,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00017">17</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00022">22</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
 
 </div>
 </div>
@@ -644,7 +644,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00016">16</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_reminder_8h_source.html#l00021">21</a> of file <a class="el" href="_reminder_8h_source.html">Reminder.h</a>.</p>
 
 </div>
 </div>
